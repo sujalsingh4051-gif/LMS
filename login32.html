@@ -1,0 +1,2404 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <base target="_self">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduLearn Pro - Learning Management System</title>
+    <meta name="description" content="Comprehensive LMS platform with university selection, student portal, faculty portal, and admin portal">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#4F46E5",
+                        secondary: "#10B981",
+                        accent: "#F59E0B",
+                        dark: "#1F2937",
+                        light: "#F9FAFB"
+                    },
+                    fontFamily: {
+                        'sans': ['Inter', 'system-ui', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        
+        .portal-card {
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+        
+        .portal-card:hover {
+            transform: translateY(-5px);
+            border-color: #4F46E5;
+            box-shadow: 0 10px 25px rgba(79, 70, 229, 0.1);
+        }
+        
+        .progress-bar {
+            transition: width 1s ease-in-out;
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+        
+        .university-logo {
+            filter: grayscale(100%);
+            opacity: 0.7;
+            transition: all 0.3s ease;
+        }
+        
+        .university-logo:hover,
+        .university-logo.selected {
+            filter: grayscale(0%);
+            opacity: 1;
+        }
+        
+        .mcq-option {
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        
+        .mcq-option:hover {
+            background-color: #F3F4F6;
+        }
+        
+        .mcq-option.selected {
+            background-color: #DBEAFE;
+            border-color: #3B82F6;
+        }
+        
+        .mcq-option.correct {
+            background-color: #D1FAE5;
+            border-color: #10B981;
+        }
+        
+        .mcq-option.incorrect {
+            background-color: #FEE2E2;
+            border-color: #EF4444;
+        }
+    </style>
+</head>
+
+<body class="min-h-screen bg-gray-50">
+    <!-- Header/Navigation -->
+    <header class="bg-white shadow-sm sticky top-0 z-50">
+        <nav class="container mx-auto px-4 py-4">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center space-x-2">
+                    <div class="bg-primary p-2 rounded-lg">
+                        <i class="fas fa-graduation-cap text-white text-2xl"></i>
+                    </div>
+                    <div>
+                        <h1 class="text-2xl font-bold text-dark">EduLearn<span class="text-primary">Pro</span></h1>
+                        <p class="text-xs text-gray-500">Learning Management System</p>
+                    </div>
+                </div>
+
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#" class="text-dark font-medium hover:text-primary transition" onclick="showSection('home')">Home</a>
+                    <a href="#" class="text-dark font-medium hover:text-primary transition" onclick="showSection('universities')">Universities</a>
+                    <a href="#" class="text-dark font-medium hover:text-primary transition" onclick="showSection('portals')">Portals</a>
+                    <a href="#" class="text-dark font-medium hover:text-primary transition" onclick="showSection('features')">Features</a>
+                    <a href="#" class="text-dark font-medium hover:text-primary transition" onclick="showSection('contact')">Contact</a>
+                </div>
+
+                <div class="flex items-center space-x-4">
+                    <button id="loginBtn" class="bg-primary text-white px-6 py-2 rounded-lg font-medium hover:bg-indigo-700 transition" onclick="showLoginModal()">
+                        <i class="fas fa-sign-in-alt mr-2"></i>Login
+                    </button>
+                    <button class="md:hidden text-dark" onclick="toggleMobileMenu()">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Mobile Menu -->
+            <div id="mobileMenu" class="hidden md:hidden mt-4 pb-4 border-t pt-4">
+                <div class="flex flex-col space-y-4">
+                    <a href="#" class="text-dark font-medium hover:text-primary transition" onclick="showSection('home')">Home</a>
+                    <a href="#" class="text-dark font-medium hover:text-primary transition" onclick="showSection('universities')">Universities</a>
+                    <a href="#" class="text-dark font-medium hover:text-primary transition" onclick="showSection('portals')">Portals</a>
+                    <a href="#" class="text-dark font-medium hover:text-primary transition" onclick="showSection('features')">Features</a>
+                    <a href="#" class="text-dark font-medium hover:text-primary transition" onclick="showSection('contact')">Contact</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container mx-auto px-4 py-8">
+        <!-- Home Section -->
+        <section id="home" class="tab-content active">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl md:text-5xl font-bold text-dark mb-4">Advanced Learning Management System</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">A comprehensive platform for universities, faculty, and students with interactive learning tools, progress tracking, and administrative controls.</p>
+
+                <div class="mt-10">
+                    <button class="bg-primary text-white px-8 py-3 rounded-lg font-medium text-lg hover:bg-indigo-700 transition mr-4" onclick="showSection('universities')">
+                        <i class="fas fa-university mr-2"></i>Select University
+                    </button>
+                    <button class="bg-secondary text-white px-8 py-3 rounded-lg font-medium text-lg hover:bg-emerald-600 transition" onclick="showSection('portals')">
+                        <i class="fas fa-door-open mr-2"></i>Access Portal
+                    </button>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
+                <div class="bg-white p-8 rounded-xl shadow-lg border border-gray-100">
+                    <div class="bg-primary bg-opacity-10 w-16 h-16 rounded-full flex items-center justify-center mb-6">
+                        <i class="fas fa-user-graduate text-primary text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-dark mb-4">Student Portal</h3>
+                    <p class="text-gray-600 mb-6">Access lectures, tutorials, MCQ tests, assignments, and track your learning progress with interactive tools.</p>
+                    <ul class="space-y-2">
+                        <li class="flex items-center"><i class="fas fa-check text-secondary mr-2"></i> Interactive Lectures</li>
+                        <li class="flex items-center"><i class="fas fa-check text-secondary mr-2"></i> MCQ Based Tests</li>
+                        <li class="flex items-center"><i class="fas fa-check text-secondary mr-2"></i> Progress Dashboard</li>
+                    </ul>
+                </div>
+
+                <div class="bg-white p-8 rounded-xl shadow-lg border border-gray-100">
+                    <div class="bg-accent bg-opacity-10 w-16 h-16 rounded-full flex items-center justify-center mb-6">
+                        <i class="fas fa-chalkboard-teacher text-accent text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-dark mb-4">Faculty Portal</h3>
+                    <p class="text-gray-600 mb-6">Manage courses, upload materials, track student progress, grade assignments, and generate reports.</p>
+                    <ul class="space-y-2">
+                        <li class="flex items-center"><i class="fas fa-check text-secondary mr-2"></i> Student Progress Reports</li>
+                        <li class="flex items-center"><i class="fas fa-check text-secondary mr-2"></i> Course Management</li>
+                        <li class="flex items-center"><i class="fas fa-check text-secondary mr-2"></i> Gradebook</li>
+                    </ul>
+                </div>
+
+                <div class="bg-white p-8 rounded-xl shadow-lg border border-gray-100">
+                    <div class="bg-dark bg-opacity-10 w-16 h-16 rounded-full flex items-center justify-center mb-6">
+                        <i class="fas fa-user-cog text-dark text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-dark mb-4">Admin Portal</h3>
+                    <p class="text-gray-600 mb-6">Manage users, universities, system settings, analytics, and oversee the entire LMS platform.</p>
+                    <ul class="space-y-2">
+                        <li class="flex items-center"><i class="fas fa-check text-secondary mr-2"></i> User Management</li>
+                        <li class="flex items-center"><i class="fas fa-check text-secondary mr-2"></i> System Analytics</li>
+                        <li class="flex items-center"><i class="fas fa-check text-secondary mr-2"></i> University Management</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Universities Section -->
+        <section id="universities" class="tab-content">
+            <div class="mb-10">
+                <h2 class="text-3xl font-bold text-dark mb-4">Select Your University</h2>
+                <p class="text-gray-600">Choose your university to access the appropriate courses and portal features.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-10">
+                <!-- University cards will be populated by JavaScript -->
+            </div>
+
+            <div class="bg-white p-6 rounded-xl shadow border border-gray-200">
+                <h3 class="text-xl font-bold text-dark mb-4">Selected University: <span id="selectedUniName" class="text-primary">None selected</span></h3>
+                <p class="text-gray-600 mb-6">After selecting a university, you can proceed to login to your respective portal.</p>
+                <button id="proceedToLoginBtn" class="bg-primary text-white px-6 py-3 rounded-lg font-medium hover:bg-indigo-700 transition disabled:opacity-50 disabled:cursor-not-allowed" onclick="showLoginModal()" disabled>
+                    <i class="fas fa-sign-in-alt mr-2"></i>Proceed to Login
+                </button>
+            </div>
+        </section>
+
+        <!-- Portals Section -->
+        <section id="portals" class="tab-content">
+            <div class="mb-10">
+                <h2 class="text-3xl font-bold text-dark mb-4">Access Your Portal</h2>
+                <p class="text-gray-600">Select your role to access the appropriate portal with specialized features.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Student Portal Card -->
+                <div class="portal-card bg-white p-8 rounded-xl shadow-lg border border-gray-100">
+                    <div class="bg-primary bg-opacity-10 w-20 h-20 rounded-full flex items-center justify-center mb-6 mx-auto">
+                        <i class="fas fa-user-graduate text-primary text-3xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-dark mb-4 text-center">Student Portal</h3>
+                    <p class="text-gray-600 mb-6 text-center">Access learning materials, tests, and track your progress.</p>
+
+                    <div class="mb-6">
+                        <h4 class="font-bold text-dark mb-3">Key Features:</h4>
+                        <ul class="space-y-2">
+                            <li class="flex items-center"><i class="fas fa-play-circle text-secondary mr-2"></i> Video Lectures</li>
+                            <li class="flex items-center"><i class="fas fa-book text-secondary mr-2"></i> Interactive Tutorials</li>
+                            <li class="flex items-center"><i class="fas fa-question-circle text-secondary mr-2"></i> MCQ Based Tests</li>
+                            <li class="flex items-center"><i class="fas fa-tasks text-secondary mr-2"></i> Assignments & Projects</li>
+                            <li class="flex items-center"><i class="fas fa-chart-line text-secondary mr-2"></i> Progress Dashboard</li>
+                            <li class="flex items-center"><i class="fas fa-calendar-alt text-secondary mr-2"></i> Course Schedule</li>
+                        </ul>
+                    </div>
+
+                    <button class="w-full bg-primary text-white py-3 rounded-lg font-medium hover:bg-indigo-700 transition" onclick="selectPortal('student')">
+                        <i class="fas fa-sign-in-alt mr-2"></i>Access Student Portal
+                    </button>
+                </div>
+
+                <!-- Faculty Portal Card -->
+                <div class="portal-card bg-white p-8 rounded-xl shadow-lg border border-gray-100">
+                    <div class="bg-accent bg-opacity-10 w-20 h-20 rounded-full flex items-center justify-center mb-6 mx-auto">
+                        <i class="fas fa-chalkboard-teacher text-accent text-3xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-dark mb-4 text-center">Faculty Portal</h3>
+                    <p class="text-gray-600 mb-6 text-center">Manage courses, students, and track academic progress.</p>
+
+                    <div class="mb-6">
+                        <h4 class="font-bold text-dark mb-3">Key Features:</h4>
+                        <ul class="space-y-2">
+                            <li class="flex items-center"><i class="fas fa-user-friends text-secondary mr-2"></i> Student Progress Reports</li>
+                            <li class="flex items-center"><i class="fas fa-upload text-secondary mr-2"></i> Course Material Upload</li>
+                            <li class="flex items-center"><i class="fas fa-check-double text-secondary mr-2"></i> Assignment Grading</li>
+                            <li class="flex items-center"><i class="fas fa-chart-bar text-secondary mr-2"></i> Analytics & Insights</li>
+                            <li class="flex items-center"><i class="fas fa-comments text-secondary mr-2"></i> Student Communication</li>
+                            <li class="flex items-center"><i class="fas fa-file-alt text-secondary mr-2"></i> Report Generation</li>
+                        </ul>
+                    </div>
+
+                    <button class="w-full bg-accent text-white py-3 rounded-lg font-medium hover:bg-yellow-600 transition" onclick="selectPortal('faculty')">
+                        <i class="fas fa-sign-in-alt mr-2"></i>Access Faculty Portal
+                    </button>
+                </div>
+
+                <!-- Admin Portal Card -->
+                <div class="portal-card bg-white p-8 rounded-xl shadow-lg border border-gray-100">
+                    <div class="bg-dark bg-opacity-10 w-20 h-20 rounded-full flex items-center justify-center mb-6 mx-auto">
+                        <i class="fas fa-user-cog text-dark text-3xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-dark mb-4 text-center">Admin Portal</h3>
+                    <p class="text-gray-600 mb-6 text-center">Manage the entire LMS system, users, and universities.</p>
+
+                    <div class="mb-6">
+                        <h4 class="font-bold text-dark mb-3">Key Features:</h4>
+                        <ul class="space-y-2">
+                            <li class="flex items-center"><i class="fas fa-users-cog text-secondary mr-2"></i> User Management</li>
+                            <li class="flex items-center"><i class="fas fa-university text-secondary mr-2"></i> University Management</li>
+                            <li class="flex items-center"><i class="fas fa-cogs text-secondary mr-2"></i> System Configuration</li>
+                            <li class="flex items-center"><i class="fas fa-chart-pie text-secondary mr-2"></i> Platform Analytics</li>
+                            <li class="flex items-center"><i class="fas fa-shield-alt text-secondary mr-2"></i> Security & Permissions</li>
+                            <li class="flex items-center"><i class="fas fa-database text-secondary mr-2"></i> Data Management</li>
+                        </ul>
+                    </div>
+
+                    <button class="w-full bg-dark text-white py-3 rounded-lg font-medium hover:bg-gray-800 transition" onclick="selectPortal('admin')">
+                        <i class="fas fa-sign-in-alt mr-2"></i>Access Admin Portal
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section id="features" class="tab-content">
+            <div class="mb-10">
+                <h2 class="text-3xl font-bold text-dark mb-4">Platform Features</h2>
+                <p class="text-gray-600">Explore the comprehensive features available across all portals.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="bg-white p-6 rounded-xl shadow border border-gray-200">
+                    <h3 class="text-xl font-bold text-dark mb-4 flex items-center">
+                        <i class="fas fa-graduation-cap text-primary mr-3"></i>Student Features
+                    </h3>
+                    <ul class="space-y-3">
+                        <li class="flex items-start">
+                            <i class="fas fa-video text-secondary mt-1 mr-3"></i>
+                            <div>
+                                <h4 class="font-medium text-dark">Video Lectures</h4>
+                                <p class="text-gray-600 text-sm">Access recorded lectures with playback controls and notes.</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-question-circle text-secondary mt-1 mr-3"></i>
+                            <div>
+                                <h4 class="font-medium text-dark">Interactive MCQ Tests</h4>
+                                <p class="text-gray-600 text-sm">Take tests with instant feedback and performance analysis.</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-project-diagram text-secondary mt-1 mr-3"></i>
+                            <div>
+                                <h4 class="font-medium text-dark">Assignment Submission</h4>
+                                <p class="text-gray-600 text-sm">Submit assignments online with file upload and deadline tracking.</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-chart-line text-secondary mt-1 mr-3"></i>
+                            <div>
+                                <h4 class="font-medium text-dark">Progress Tracking</h4>
+                                <p class="text-gray-600 text-sm">Visual dashboards to track course progress and grades.</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="bg-white p-6 rounded-xl shadow border border-gray-200">
+                    <h3 class="text-xl font-bold text-dark mb-4 flex items-center">
+                        <i class="fas fa-chalkboard-teacher text-accent mr-3"></i>Faculty Features
+                    </h3>
+                    <ul class="space-y-3">
+                        <li class="flex items-start">
+                            <i class="fas fa-user-check text-secondary mt-1 mr-3"></i>
+                            <div>
+                                <h4 class="font-medium text-dark">Student Progress Monitoring</h4>
+                                <p class="text-gray-600 text-sm">Track individual student progress and identify areas for improvement.</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-upload text-secondary mt-1 mr-3"></i>
+                            <div>
+                                <h4 class="font-medium text-dark">Content Management</h4>
+                                <p class="text-gray-600 text-sm">Upload and organize course materials, lectures, and resources.</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-double text-secondary mt-1 mr-3"></i>
+                            <div>
+                                <h4 class="font-medium text-dark">Automated Grading</h4>
+                                <p class="text-gray-600 text-sm">Grade assignments and tests with automated scoring for MCQs.</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-file-export text-secondary mt-1 mr-3"></i>
+                            <div>
+                                <h4 class="font-medium text-dark">Report Generation</h4>
+                                <p class="text-gray-600 text-sm">Generate detailed reports on class performance and attendance.</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="bg-white p-6 rounded-xl shadow border border-gray-200 md:col-span-2">
+                    <h3 class="text-xl font-bold text-dark mb-4 flex items-center">
+                        <i class="fas fa-user-cog text-dark mr-3"></i>Admin Features
+                    </h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <ul class="space-y-3">
+                            <li class="flex items-start">
+                                <i class="fas fa-users text-secondary mt-1 mr-3"></i>
+                                <div>
+                                    <h4 class="font-medium text-dark">User Management</h4>
+                                    <p class="text-gray-600 text-sm">Create, manage, and deactivate user accounts across all portals.</p>
+                                </div>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-university text-secondary mt-1 mr-3"></i>
+                                <div>
+                                    <h4 class="font-medium text-dark">University Management</h4>
+                                    <p class="text-gray-600 text-sm">Add and configure universities, departments, and courses.</p>
+                                </div>
+                            </li>
+                        </ul>
+                        <ul class="space-y-3">
+                            <li class="flex items-start">
+                                <i class="fas fa-chart-pie text-secondary mt=1 mr-3"></i>
+                                <div>
+                                    <h4 class="font-medium text-dark">Platform Analytics</h4>
+                                    <p class="text-gray-600 text-sm">Comprehensive analytics on platform usage and performance.</p>
+                                </div>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-shield-alt text-secondary mt-1 mr-3"></i>
+                                <div>
+                                    <h4 class="font-medium text-dark">Security & Permissions</h4>
+                                    <p class="text-gray-600 text-sm">Manage access controls, permissions, and security settings.</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="tab-content">
+            <div class="mb-10">
+                <h2 class="text-3xl font-bold text-dark mb-4">Contact Us</h2>
+                <p class="text-gray-600">Get in touch with our support team for any questions or assistance.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="bg-white p-8 rounded-xl shadow border border-gray-200">
+                    <h3 class="text-xl font-bold text-dark mb-6">Send us a Message</h3>
+                    <form id="contactForm">
+                        <div class="mb-6">
+                            <label class="block text-dark font-medium mb-2" for="name">Full Name</label>
+                            <input type="text" id="name" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent" placeholder="Enter your name" required>
+                        </div>
+
+                        <div class="mb-6">
+                            <label class="block text-dark font-medium mb-2" for="email">Email Address</label>
+                            <input type="email" id="email" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent" placeholder="Enter your email" required>
+                        </div>
+
+                        <div class="mb-6">
+                            <label class="block text-dark font-medium mb-2" for="subject">Subject</label>
+                            <select id="subject" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent" required>
+                                <option value="">Select a subject</option>
+                                <option value="technical">Technical Support</option>
+                                <option value="account">Account Issues</option>
+                                <option value="billing">Billing & Payments</option>
+                                <option value="feature">Feature Request</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+
+                        <div class="mb-6">
+                            <label class="block text-dark font-medium mb-2" for="message">Message</label>
+                            <textarea id="message" rows="5" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent" placeholder="Enter your message" required></textarea>
+                        </div>
+
+                        <button type="submit" class="w-full bg-primary text-white py-3 rounded-lg font-medium hover:bg-indigo-700 transition">
+                            <i class="fas fa-paper-plane mr-2"></i>Send Message
+                        </button>
+                    </form>
+                </div>
+
+                <div class="bg-white p-8 rounded-xl shadow border border-gray-200">
+                    <h3 class="text-xl font-bold text-dark mb-6">Contact Information</h3>
+
+                    <div class="space-y-6">
+                        <div class="flex items-start">
+                            <div class="bg-primary bg-opacity-10 p-3 rounded-lg mr-4">
+                                <i class="fas fa-map-marker-alt text-primary text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-medium text-dark">Address</h4>
+                                <p class="text-gray-600">123 Education Street, Learning City, LC 12345</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start">
+                            <div class="bg-primary bg-opacity-10 p-3 rounded-lg mr-4">
+                                <i class="fas fa-phone-alt text-primary text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-medium text-dark">Phone</h4>
+                                <p class="text-gray-600">+1 (555) 123-4567</p>
+                                <p class="text-gray-600 text-sm">Mon-Fri, 9am-6pm EST</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start">
+                            <div class="bg-primary bg-opacity-10 p-3 rounded-lg mr-4">
+                                <i class="fas fa-envelope text-primary text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-medium text-dark">Email</h4>
+                                <p class="text-gray-600">support@edulearnpro.com</p>
+                                <p class="text-gray-600">info@edulearnpro.com</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start">
+                            <div class="bg-primary bg-opacity-10 p-3 rounded-lg mr-4">
+                                <i class="fas fa-headset text-primary text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-medium text-dark">Support Hours</h4>
+                                <p class="text-gray-600">24/7 Technical Support Available</p>
+                                <p class="text-gray-600 text-sm">Live chat support: 8am-10pm EST</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-10">
+                        <h4 class="font-medium text-dark mb-4">Follow Us</h4>
+                        <div class="flex space-x-4">
+                            <a href="#" class="bg-gray-100 p-3 rounded-lg text-gray-600 hover:bg-primary hover:text-white transition">
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
+                            <a href="#" class="bg-gray-100 p-3 rounded-lg text-gray-600 hover:bg-primary hover:text-white transition">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                            <a href="#" class="bg-gray-100 p-3 rounded-lg text-gray-600 hover:bg-primary hover:text-white transition">
+                                <i class="fab fa-linkedin-in"></i>
+                            </a>
+                            <a href="#" class="bg-gray-100 p-3 rounded-lg text-gray-600 hover:bg-primary hover:text-white transition">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Demo Portals (Initially Hidden) -->
+        <div id="demoPortals" class="hidden">
+            <!-- Student Portal Demo -->
+            <div id="studentPortal" class="tab-content">
+                <div class="flex justify-between items-center mb-8">
+                    <div>
+                        <h2 class="text-3xl font-bold text-dark">Student Portal</h2>
+                        <p class="text-gray-600">Welcome back, <span class="font-medium text-primary">Alex Johnson</span></p>
+                    </div>
+                    <div class="flex items-center space-x-4">
+                        <div class="text-right">
+                            <p class="font-medium text-dark">Computer Science</p>
+                            <p class="text-sm text-gray-500">Stanford University</p>
+                        </div>
+                        <div class="w-12 h-12 bg-primary rounded-full flex items-center justify-center text-white font-bold">
+                            AJ
+                        </div>
+                        <button class="text-gray-500 hover:text-dark" onclick="showSection('portals')">
+                            <i class="fas fa-sign-out-alt text-xl"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                    <!-- Left Column -->
+                    <div class="lg:col-span-2">
+                        <!-- Courses -->
+                        <div class="bg-white rounded-xl shadow border border-gray-200 p-6 mb-8">
+                            <div class="flex justify-between items-center mb-6">
+                                <h3 class="text-xl font-bold text-dark">My Courses</h3>
+                                <button class="text-primary font-medium hover:text-indigo-700">View All</button>
+                            </div>
+
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div class="border border-gray-200 rounded-lg p-5 hover:border-primary transition">
+                                    <div class="flex justify-between items-start mb-4">
+                                        <div>
+                                            <h4 class="font-bold text-dark">Data Structures</h4>
+                                            <p class="text-gray-500 text-sm">CS201 • Prof. Williams</p>
+                                        </div>
+                                        <span class="bg-green-100 text-green-800 text-xs font-medium px-3 py-1 rounded-full">In Progress</span>
+                                    </div>
+                                    <p class="text-gray-600 text-sm mb-4">Learn fundamental data structures and algorithms with practical implementations.</p>
+                                    <div class="flex justify-between items-center">
+                                        <div class="w-full bg-gray-200 rounded-full h-2 mr-4">
+                                            <div class="bg-primary h-2 rounded-full progress-bar" style="width: 65%"></div>
+                                        </div>
+                                        <span class="text-sm font-medium text-dark">65%</span>
+                                    </div>
+                                    <div class="flex justify-between mt-4">
+                                        <button class="text-primary text-sm font-medium hover:text-indigo-700" onclick="openCourse('data-structures')">Enter Course</button>
+                                        <button class="text-gray-500 text-sm hover:text-dark" onclick="viewCourseDetails('data-structures')">Details</button>
+                                    </div>
+                                </div>
+
+                                <div class="border border-gray-200 rounded-lg p-5 hover:border-primary transition">
+                                    <div class="flex justify-between items-start mb-4">
+                                        <div>
+                                            <h4 class="font-bold text-dark">Web Development</h4>
+                                            <p class="text-gray-500 text-sm">CS301 • Prof. Davis</p>
+                                        </div>
+                                        <span class="bg-blue-100 text-blue-800 text-xs font-medium px-3 py-1 rounded-full">Upcoming</span>
+                                    </div>
+                                    <p class="text-gray-600 text-sm mb-4">Modern web development with HTML5, CSS3, JavaScript and frameworks.</p>
+                                    <div class="flex justify-between items-center">
+                                        <div class="w-full bg-gray-200 rounded-full h-2 mr-4">
+                                            <div class="bg-primary h-2 rounded-full progress-bar" style="width: 30%"></div>
+                                        </div>
+                                        <span class="text-sm font-medium text-dark">30%</span>
+                                    </div>
+                                    <div class="flex justify-between mt-4">
+                                        <button class="text-primary text-sm font-medium hover:text-indigo-700" onclick="openCourse('web-development')">Enter Course</button>
+                                        <button class="text-gray-500 text-sm hover:text-dark" onclick="viewCourseDetails('web-development')">Details</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Upcoming Tests -->
+                        <div class="bg-white rounded-xl shadow border border-gray-200 p-6 mb-8">
+                            <h3 class="text-xl font-bold text-dark mb-6">Upcoming MCQ Tests</h3>
+
+                            <div class="space-y-4">
+                                <div class="flex items-center justify-between p-4 border border-gray-200 rounded-lg hover:bg-gray-50 transition">
+                                    <div>
+                                        <h4 class="font-medium text-dark">Data Structures - Quiz 3</h4>
+                                        <p class="text-gray-500 text-sm">Topics: Trees, Graphs, Sorting Algorithms</p>
+                                        <p class="text-gray-500 text-sm mt-1"><i class="far fa-clock mr-1"></i>Due: Tomorrow, 11:59 PM</p>
+                                    </div>
+                                    <button class="bg-primary text-white px-5 py-2 rounded-lg font-medium hover:bg-indigo-700 transition" onclick="startMCQTest('data-structures-quiz3')">
+                                        Start Test
+                                    </button>
+                                </div>
+
+                                <div class="flex items-center justify-between p-4 border border-gray-200 rounded-lg hover:bg-gray-50 transition">
+                                    <div>
+                                        <h4 class="font-medium text-dark">Web Development - Midterm</h4>
+                                        <p class="text-gray-500 text-sm">Topics: HTML5, CSS3, JavaScript Basics</p>
+                                        <p class="text-gray-500 text-sm mt-1"><i class="far fa-clock mr-1"></i>Due: Nov 15, 11:59 PM</p>
+                                    </div>
+                                    <button class="bg-gray-200 text-dark px-5 py-2 rounded-lg font-medium hover:bg-gray-300 transition" disabled>
+                                        Available Soon
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right Column -->
+                    <div>
+                        <!-- Progress Summary -->
+                        <div class="bg-white rounded-xl shadow border border-gray-200 p-6 mb-8">
+                            <h3 class="text-xl font-bold text-dark mb-6">Progress Summary</h3>
+
+                            <div class="space-y-6">
+                                <div>
+                                    <div class="flex justify-between mb-2">
+                                        <span class="text-dark font-medium">Overall Progress</span>
+                                        <span class="text-dark font-bold">72%</span>
+                                    </div>
+                                    <div class="w-full bg-gray-200 rounded-full h-3">
+                                        <div class="bg-primary h-3 rounded-full progress-bar" style="width: 72%"></div>
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <div class="flex justify-between mb-2">
+                                        <span class="text-dark font-medium">Assignments Completed</span>
+                                        <span class="text-dark font-bold">8/12</span>
+                                    </div>
+                                    <div class="w-full bg-gray-200 rounded-full h-3">
+                                        <div class="bg-secondary h-3 rounded-full progress-bar" style="width: 67%"></div>
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <div class="flex justify-between mb-2">
+                                        <span class="text-dark font-medium">Test Average</span>
+                                        <span class="text-dark font-bold">85%</span>
+                                    </div>
+                                    <div class="w-full bg-gray-200 rounded-full h-3">
+                                        <div class="bg-accent h-3 rounded-full progress-bar" style="width: 85%"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="mt-8 pt-6 border-t border-gray-200">
+                                <h4 class="font-medium text-dark mb-4">Recent Achievements</h4>
+                                <div class="flex space-x-4">
+                                    <div class="text-center">
+                                        <div class="w-12 h-12 bg-yellow-100 rounded-full flex items-center justify-center mx-auto mb-2">
+                                            <i class="fas fa-trophy text-yellow-600"></i>
+                                        </div>
+                                        <p class="text-xs font-medium">Fast Learner</p>
+                                    </div>
+                                    <div class="text-center">
+                                        <div class="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-2">
+                                            <i class="fas fa-star text-green-600"></i>
+                                        </div>
+                                        <p class="text-xs font-medium">Perfect Score</p>
+                                    </div>
+                                    <div class="text-center">
+                                        <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-2">
+                                            <i class="fas fa-check-circle text-blue-600"></i>
+                                        </div>
+                                        <p class="text-xs font-medium">On Time</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Upcoming Lectures -->
+                        <div class="bg-white rounded-xl shadow border border-gray-200 p-6">
+                            <h3 class="text-xl font-bold text-dark mb-6">Today's Lectures</h3>
+
+                            <div class="space-y-4">
+                                <div class="p-4 border border-gray-200 rounded-lg">
+                                    <div class="flex justify-between items-start mb-2">
+                                        <h4 class="font-medium text-dark">Data Structures</h4>
+                                        <span class="bg-primary text-white text-xs font-medium px-2 py-1 rounded">Live</span>
+                                    </div>
+                                    <p class="text-gray-500 text-sm">Graph Algorithms</p>
+                                    <p class="text-gray-500 text-sm mt-2"><i class="far fa-clock mr-1"></i>10:00 AM - 11:30 AM</p>
+                                    <button class="w-full mt-3 bg-primary text-white py-2 rounded-lg font-medium hover:bg-indigo-700 transition">
+                                        <i class="fas fa-video mr-2"></i>Join Lecture
+                                    </button>
+                                </div>
+
+                                <div class="p-4 border border-gray-200 rounded-lg">
+                                    <div class="flex justify-between items-start mb-2">
+                                        <h4 class="font-medium text-dark">Web Development</h4>
+                                        <span class="bg-gray-200 text-dark text-xs font-medium px-2 py-1 rounded">Recorded</span>
+                                    </div>
+                                    <p class="text-gray-500 text-sm">CSS Flexbox & Grid</p>
+                                    <p class="text-gray-500 text-sm mt-2"><i class="far fa-clock mr-1"></i>Available Anytime</p>
+                                    <button class="w-full mt-3 bg-gray-100 text-dark py-2 rounded-lg font-medium hover:bg-gray-200 transition">
+                                        <i class="fas fa-play-circle mr-2"></i>Watch Recording
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Faculty Portal Demo -->
+            <div id="facultyPortal" class="tab-content">
+                <div class="flex justify-between items-center mb-8">
+                    <div>
+                        <h2 class="text-3xl font-bold text-dark">Faculty Portal</h2>
+                        <p class="text-gray-600">Welcome, <span class="font-medium text-accent">Prof. Michael Williams</span></p>
+                    </div>
+                    <div class="flex items-center space-x-4">
+                        <div class="text-right">
+                            <p class="font-medium text-dark">Computer Science Dept.</p>
+                            <p class="text-sm text-gray-500">Stanford University</p>
+                        </div>
+                        <div class="w-12 h-12 bg-accent rounded-full flex items-center justify-center text-white font-bold">
+                            MW
+                        </div>
+                        <button class="text-gray-500 hover:text-dark" onclick="showSection('portals')">
+                            <i class="fas fa-sign-out-alt text-xl"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                    <!-- Left Column -->
+                    <div class="lg:col-span-2">
+                        <!-- Course Management -->
+                        <div class="bg-white rounded-xl shadow border border-gray-200 p-6 mb-8">
+                            <div class="flex justify-between items-center mb-6">
+                                <h3 class="text-xl font-bold text-dark">My Courses</h3>
+                                <button class="bg-primary text-white px-4 py-2 rounded-lg font-medium hover:bg-indigo-700 transition">
+                                    <i class="fas fa-plus mr-2"></i>Add Course
+                                </button>
+                            </div>
+
+                            <div class="overflow-x-auto">
+                                <table class="w-full">
+                                    <thead>
+                                        <tr class="border-b border-gray-200">
+                                            <th class="text-left py-3 text-dark font-medium">Course</th>
+                                            <th class="text-left py-3 text-dark font-medium">Students</th>
+                                            <th class="text-left py-3 text-dark font-medium">Avg. Grade</th>
+                                            <th class="text-left py-3 text-dark font-medium">Status</th>
+                                            <th class="text-left py-3 text-dark font-medium">Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr class="border-b border-gray-100 hover:bg-gray-50">
+                                            <td class="py-4">
+                                                <div>
+                                                    <h4 class="font-medium text-dark">Data Structures</h4>
+                                                    <p class="text-gray-500 text-sm">CS201 • Fall 2023</p>
+                                                </div>
+                                            </td>
+                                            <td class="py-4">
+                                                <span class="font-medium text-dark">42</span>
+                                            </td>
+                                            <td class="py-4">
+                                                <span class="font-medium text-dark">84%</span>
+                                            </td>
+                                            <td class="py-4">
+                                                <span class="bg-green-100 text-green-800 text-xs font-medium px-3 py-1 rounded-full">Active</span>
+                                            </td>
+                                            <td class="py-4">
+                                                <div class="flex space-x-2">
+                                                    <button class="text-primary hover:text-indigo-700" title="View Students" onclick="viewStudentProgress('data-structures')">
+                                                        <i class="fas fa-users"></i>
+                                                    </button>
+                                                    <button class="text-accent hover:text-yellow-700" title="Grade Assignments">
+                                                        <i class="fas fa-check-double"></i>
+                                                    </button>
+                                                    <button class="text-secondary hover:text-emerald-700" title="Analytics">
+                                                        <i class="fas fa-chart-bar"></i>
+                                                    </button>
+                                                </div>
+                                            </td>
+                                        </tr>
+
+                                        <tr class="border-b border-gray-100 hover:bg-gray-50">
+                                            <td class="py-4">
+                                                <div>
+                                                    <h4 class="font-medium text-dark">Algorithms</h4>
+                                                    <p class="text-gray-500 text-sm">CS301 • Fall 2023</p>
+                                                </div>
+                                            </td>
+                                            <td class="py-4">
+                                                <span class="font-medium text-dark">38</span>
+                                            </td>
+                                            <td class="py-4">
+                                                <span class="font-medium text-dark">79%</span>
+                                            </td>
+                                            <td class="py-4">
+                                                <span class="bg-green-100 text-green-800 text-xs font-medium px-3 py-1 rounded-full">Active</span>
+                                            </td>
+                                            <td class="py-4">
+                                                <div class="flex space-x-2">
+                                                    <button class="text-primary hover:text-indigo-700" title="View Students">
+                                                        <i class="fas fa-users"></i>
+                                                    </button>
+                                                    <button class="text-accent hover:text-yellow-700" title="Grade Assignments">
+                                                        <i class="fas fa-check-double"></i>
+                                                    </button>
+                                                    <button class="text-secondary hover:text-emerald-700" title="Analytics">
+                                                        <i class="fas fa-chart-bar"></i>
+                                                    </button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <!-- Student Progress Overview -->
+                        <div class="bg-white rounded-xl shadow border border-gray-200 p-6">
+                            <h3 class="text-xl font-bold text-dark mb-6">Student Progress Overview</h3>
+
+                            <div class="mb-6">
+                                <div class="flex justify-between mb-4">
+                                    <h4 class="font-medium text-dark">Data Structures - CS201</h4>
+                                    <button class="text-primary text-sm font-medium hover:text-indigo-700" onclick="generateProgressReport()">
+                                        <i class="fas fa-download mr-1"></i>Generate Report
+                                    </button>
+                                </div>
+
+                                <div class="space-y-4">
+                                    <div>
+                                        <div class="flex justify-between mb-1">
+                                            <span class="text-dark">Alex Johnson</span>
+                                            <span class="text-dark font-medium">92%</span>
+                                        </div>
+                                        <div class="w-full bg-gray-200 rounded-full h-2">
+                                            <div class="bg-green-500 h-2 rounded-full progress-bar" style="width: 92%"></div>
+                                        </div>
+                                    </div>
+
+                                    <div>
+                                        <div class="flex justify-between mb-1">
+                                            <span class="text-dark">Sarah Miller</span>
+                                            <span class="text-dark font-medium">85%</span>
+                                        </div>
+                                        <div class="w-full bg-gray-200 rounded-full h-2">
+                                            <div class="bg-green-500 h-2 rounded-full progress-bar" style="width: 85%"></div>
+                                        </div>
+                                    </div>
+
+                                    <div>
+                                        <div class="flex justify-between mb-1">
+                                            <span class="text-dark">David Chen</span>
+                                            <span class="text-dark font-medium">78%</span>
+                                        </div>
+                                        <div class="w-full bg-gray-200 rounded-full h-2">
+                                            <div class="bg-yellow-500 h-2 rounded-full progress-bar" style="width: 78%"></div>
+                                        </div>
+                                    </div>
+
+                                    <div>
+                                        <div class="flex justify-between mb-1">
+                                            <span class="text-dark">Emma Wilson</span>
+                                            <span class="text-dark font-medium">65%</span>
+                                        </div>
+                                        <div class="w-full bg-gray-200 rounded-full h-2">
+                                            <div class="bg-red-500 h-2 rounded-full progress-bar" style="width: 65%"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right Column -->
+                    <div>
+                        <!-- Quick Actions -->
+                        <div class="bg-white rounded-xl shadow border border-gray-200 p-6 mb-8">
+                            <h3 class="text-xl font-bold text-dark mb-6">Quick Actions</h3>
+
+                            <div class="space-y-4">
+                                <button class="w-full flex items-center p-4 border border-gray-200 rounded-lg hover:bg-gray-50 transition">
+                                    <div class="bg-primary bg-opacity-10 p-3 rounded-lg mr-4">
+                                        <i class="fas fa-upload text-primary"></i>
+                                    </div>
+                                    <div class="text-left">
+                                        <h4 class="font-medium text-dark">Upload Lecture</h4>
+                                        <p class="text-gray-500 text-sm">Add new course material</p>
+                                    </div>
+                                </button>
+
+                                <button class="w-full flex items-center p-4 border border-gray-200 rounded-lg hover:bg-gray-50 transition">
+                                    <div class="bg-accent bg-opacity-10 p-3 rounded-lg mr-4">
+                                        <i class="fas fa-edit text-accent"></i>
+                                    </div>
+                                    <div class="text-left">
+                                        <h4 class="font-medium text-dark">Create Assignment</h4>
+                                        <p class="text-gray-500 text-sm">Set up new assignment</p>
+                                    </div>
+                                </button>
+
+                                <button class="w-full flex items-center p-4 border border-gray-200 rounded-lg hover:bg-gray-50 transition">
+                                    <div class="bg-secondary bg-opacity-10 p-3 rounded-lg mr-4">
+                                        <i class="fas fa-chart-line text-secondary"></i>
+                                    </div>
+                                    <div class="text-left">
+                                        <h4 class="font-medium text-dark">View Analytics</h4>
+                                        <p class="text-gray-500 text-sm">Course performance data</p>
+                                    </div>
+                                </button>
+
+                                <button class="w-full flex items-center p-4 border border-gray-200 rounded-lg hover:bg-gray-50 transition">
+                                    <div class="bg-dark bg-opacity-10 p-3 rounded-lg mr-4">
+                                        <i class="fas fa-comments text-dark"></i>
+                                    </div>
+                                    <div class="text-left">
+                                        <h4 class="font-medium text-dark">Student Messages</h4>
+                                        <p class="text-gray-500 text-sm">3 unread messages</p>
+                                    </div>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Pending Grading -->
+                        <div class="bg-white rounded-xl shadow border border-gray-200 p-6">
+                            <h3 class="text-xl font-bold text-dark mb-6">Pending Grading</h3>
+
+                            <div class="space-y-4">
+                                <div class="p-4 border border-gray-200 rounded-lg">
+                                    <div class="flex justify-between items-start mb-2">
+                                        <h4 class="font-medium text-dark">Data Structures - Assignment 4</h4>
+                                        <span class="bg-red-100 text-red-800 text-xs font-medium px-2 py-1 rounded">12 pending</span>
+                                    </div>
+                                    <p class="text-gray-500 text-sm mb-3">Binary Trees Implementation</p>
+                                    <button class="w-full bg-accent text-white py-2 rounded-lg font-medium hover:bg-yellow-600 transition">
+                                        <i class="fas fa-check-double mr-2"></i>Grade Assignments
+                                    </button>
+                                </div>
+
+                                <div class="p-4 border border-gray-200 rounded-lg">
+                                    <div class="flex justify-between items-start mb-2">
+                                        <h4 class="font-medium text-dark">Algorithms - Quiz 2</h4>
+                                        <span class="bg-yellow-100 text-yellow-800 text-xs font-medium px-2 py-1 rounded">5 pending</span>
+                                    </div>
+                                    <p class="text-gray-500 text-sm mb-3">Dynamic Programming</p>
+                                    <button class="w-full bg-gray-100 text-dark py-2 rounded-lg font-medium hover:bg-gray-200 transition">
+                                        <i class="fas fa-check-double mr-2"></i>Grade Submissions
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Admin Portal Demo -->
+            <div id="adminPortal" class="tab-content">
+                <div class="flex justify-between items-center mb-8">
+                    <div>
+                        <h2 class="text-3xl font-bold text-dark">Admin Portal</h2>
+                        <p class="text-gray-600">System Administrator Dashboard</p>
+                    </div>
+                    <div class="flex items-center space-x-4">
+                        <div class="text-right">
+                            <p class="font-medium text-dark">Administrator</p>
+                            <p class="text-sm text-gray-500">EduLearn Pro</p>
+                        </div>
+                        <div class="w-12 h-12 bg-dark rounded-full flex items-center justify-center text-white font-bold">
+                            SA
+                        </div>
+                        <button class="text-gray-500 hover:text-dark" onclick="showSection('portals')">
+                            <i class="fas fa-sign-out-alt text-xl"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                    <!-- Left Column -->
+                    <div class="lg:col-span-2">
+                        <!-- System Overview -->
+                        <div class="bg-white rounded-xl shadow border border-gray-200 p-6 mb-8">
+                            <h3 class="text-xl font-bold text-dark mb-6">System Overview</h3>
+
+                            <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mb-8">
+                                <div class="bg-blue-50 p-5 rounded-lg">
+                                    <div class="flex items-center justify-between">
+                                        <div>
+                                            <p class="text-gray-500 text-sm">Total Users</p>
+                                            <p class="text-2xl font-bold text-dark">2,847</p>
+                                        </div>
+                                        <div class="bg-blue-100 p-3 rounded-lg">
+                                            <i class="fas fa-users text-blue-600"></i>
+                                        </div>
+                                    </div>
+                                    <p class="text-green-600 text-sm mt-2"><i class="fas fa-arrow-up mr-1"></i>12% from last month</p>
+                                </div>
+
+                                <div class="bg-green-50 p-5 rounded-lg">
+                                    <div class="flex items-center justify-between">
+                                        <div>
+                                            <p class="text-gray-500 text-sm">Active Courses</p>
+                                            <p class="text-2xl font-bold text-dark">156</p>
+                                        </div>
+                                        <div class="bg-green-100 p-3 rounded-lg">
+                                            <i class="fas fa-book-open text-green-600"></i>
+                                        </div>
+                                    </div>
+                                    <p class="text-green-600 text-sm mt-2"><i class="fas fa-arrow-up mr-1"></i>8% from last month</p>
+                                </div>
+
+                                <div class="bg-purple-50 p-5 rounded-lg">
+                                    <div class="flex items-center justify-between">
+                                        <div>
+                                            <p class="text-gray-500 text-sm">Universities</p>
+                                            <p class="text-2xl font-bold text-dark">24</p>
+                                        </div>
+                                        <div class="bg-purple-100 p-3 rounded-lg">
+                                            <i class="fas fa-university text-purple-600"></i>
+                                        </div>
+                                    </div>
+                                    <p class="text-green-600 text-sm mt-2"><i class="fas fa-arrow-up mr-1"></i>3 new this month</p>
+                                </div>
+
+                                <div class="bg-yellow-50 p-5 rounded-lg">
+                                    <div class="flex items-center justify-between">
+                                        <div>
+                                            <p class="text-gray-500 text-sm">Storage Used</p>
+                                            <p class="text-2xl font-bold text-dark">78%</p>
+                                        </div>
+                                        <div class="bg-yellow-100 p-3 rounded-lg">
+                                            <i class="fas fa-database text-yellow-600"></i>
+                                        </div>
+                                    </div>
+                                    <p class="text-red-600 text-sm mt-2"><i class="fas fa-exclamation-triangle mr-1"></i>Needs attention</p>
+                                </div>
+                            </div>
+
+                            <div>
+                                <h4 class="font-medium text-dark mb-4">Recent Activity</h4>
+                                <div class="space-y-4">
+                                    <div class="flex items-center p-3 border border-gray-200 rounded-lg">
+                                        <div class="bg-green-100 p-2 rounded-lg mr-4">
+                                            <i class="fas fa-user-plus text-green-600"></i>
+                                        </div>
+                                        <div class="flex-1">
+                                            <p class="text-dark">New university registered: "Cambridge University"</p>
+                                            <p class="text-gray-500 text-sm">2 hours ago</p>
+                                        </div>
+                                    </div>
+
+                                    <div class="flex items-center p-3 border border-gray-200 rounded-lg">
+                                        <div class="bg-blue-100 p-2 rounded-lg mr-4">
+                                            <i class="fas fa-user text-blue-600"></i>
+                                        </div>
+                                        <div class="flex-1">
+                                            <p class="text-dark">25 new student accounts created</p>
+                                            <p class="text-gray-500 text-sm">Yesterday, 4:30 PM</p>
+                                        </div>
+                                    </div>
+
+                                    <div class="flex items-center p-3 border border-gray-200 rounded-lg">
+                                        <div class="bg-red-100 p-2 rounded-lg mr-4">
+                                            <i class="fas fa-exclamation-triangle text-red-600"></i>
+                                        </div>
+                                        <div class="flex-1">
+                                            <p class="text-dark">System backup completed successfully</p>
+                                            <p class="text-gray-500 text-sm">Nov 5, 2:00 AM</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- User Management -->
+                        <div class="bg-white rounded-xl shadow border border-gray-200 p-6">
+                            <div class="flex justify-between items-center mb-6">
+                                <h3 class="text-xl font-bold text-dark">User Management</h3>
+                                <button class="bg-primary text-white px-4 py-2 rounded-lg font-medium hover:bg-indigo-700 transition">
+                                    <i class="fas fa-user-plus mr-2"></i>Add User
+                                </button>
+                            </div>
+
+                            <div class="overflow-x-auto">
+                                <table class="w-full">
+                                    <thead>
+                                        <tr class="border-b border-gray-200">
+                                            <th class="text-left py-3 text-dark font-medium">User</th>
+                                            <th class="text-left py-3 text-dark font-medium">Role</th>
+                                            <th class="text-left py-3 text-dark font-medium">University</th>
+                                            <th class="text-left py-3 text-dark font-medium">Status</th>
+                                            <th class="text-left py-3 text-dark font-medium">Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr class="border-b border-gray-100 hover:bg-gray-50">
+                                            <td class="py-4">
+                                                <div class="flex items-center">
+                                                    <div class="w-8 h-8 bg-primary rounded-full flex items-center justify-center text-white font-bold text-sm mr-3">
+                                                        AJ
+                                                    </div>
+                                                    <div>
+                                                        <h4 class="font-medium text-dark">Alex Johnson</h4>
+                                                        <p class="text-gray-500 text-sm">alex.j@stanford.edu</p>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td class="py-4">
+                                                <span class="bg-blue-100 text-blue-800 text-xs font-medium px-3 py-1 rounded-full">Student</span>
+                                            </td>
+                                            <td class="py-4">
+                                                <span class="text-dark">Stanford University</span>
+                                            </td>
+                                            <td class="py-4">
+                                                <span class="bg-green-100 text-green-800 text-xs font-medium px-3 py-1 rounded-full">Active</span>
+                                            </td>
+                                            <td class="py-4">
+                                                <div class="flex space-x-2">
+                                                    <button class="text-primary hover:text-indigo-700" title="Edit">
+                                                        <i class="fas fa-edit"></i>
+                                                    </button>
+                                                    <button class="text-dark hover:text-gray-800" title="Permissions">
+                                                        <i class="fas fa-key"></i>
+                                                    </button>
+                                                    <button class="text-red-500 hover:text-red-700" title="Deactivate">
+                                                        <i class="fas fa-user-slash"></i>
+                                                    </button>
+                                                </div>
+                                            </td>
+                                        </tr>
+
+                                        <tr class="border-b border-gray-100 hover:bg-gray-50">
+                                            <td class="py-4">
+                                                <div class="flex items-center">
+                                                    <div class="w-8 h-8 bg-accent rounded-full flex items-center justify-center text-white font-bold text-sm mr-3">
+                                                        MW
+                                                    </div>
+                                                    <div>
+                                                        <h4 class="font-medium text-dark">Michael Williams</h4>
+                                                        <p class="text-gray-500 text-sm">m.williams@stanford.edu</p>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td class="py-4">
+                                                <span class="bg-yellow-100 text-yellow-800 text-xs font-medium px-3 py-1 rounded-full">Faculty</span>
+                                            </td>
+                                            <td class="py-4">
+                                                <span class="text-dark">Stanford University</span>
+                                            </td>
+                                            <td class="py-4">
+                                                <span class="bg-green-100 text-green-800 text-xs font-medium px-3 py-1 rounded-full">Active</span>
+                                            </td>
+                                            <td class="py-4">
+                                                <div class="flex space-x-2">
+                                                    <button class="text-primary hover:text-indigo-700" title="Edit">
+                                                        <i class="fas fa-edit"></i>
+                                                    </button>
+                                                    <button class="text-dark hover:text-gray-800" title="Permissions">
+                                                        <i class="fas fa-key"></i>
+                                                    </button>
+                                                    <button class="text-red-500 hover:text-red-700" title="Deactivate">
+                                                        <i class="fas fa-user-slash"></i>
+                                                    </button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right Column -->
+                    <div>
+                        <!-- System Health -->
+                        <div class="bg-white rounded-xl shadow border border-gray-200 p-6 mb-8">
+                            <h3 class="text-xl font-bold text-dark mb-6">System Health</h3>
+
+                            <div class="space-y-6">
+                                <div>
+                                    <div class="flex justify-between mb-2">
+                                        <span class="text-dark font-medium">Server Uptime</span>
+                                        <span class="text-dark font-bold">99.8%</span>
+                                    </div>
+                                    <div class="w-full bg-gray-200 rounded-full h-3">
+                                        <div class="bg-green-500 h-3 rounded-full progress-bar" style="width: 99.8%"></div>
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <div class="flex justify-between mb-2">
+                                        <span class="text-dark font-medium">API Response Time</span>
+                                        <span class="text-dark font-bold">142ms</span>
+                                    </div>
+                                    <div class="w-full bg-gray-200 rounded-full h-3">
+                                        <div class="bg-green-500 h-3 rounded-full progress-bar" style="width: 95%"></div>
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <div class="flex justify-between mb-2">
+                                        <span class="text-dark font-medium">Database Load</span>
+                                        <span class="text-dark font-bold">68%</span>
+                                    </div>
+                                    <div class="w-full bg-gray-200 rounded-full h-3">
+                                        <div class="bg-yellow-500 h-3 rounded-full progress-bar" style="width: 68%"></div>
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <div class="flex justify-between mb-2">
+                                        <span class="text-dark font-medium">Active Sessions</span>
+                                        <span class="text-dark font-bold">1,243</span>
+                                    </div>
+                                    <div class="w-full bg-gray-200 rounded-full h-3">
+                                        <div class="bg-blue-500 h-3 rounded-full progress-bar" style="width: 82%"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="mt-8 pt-6 border-t border-gray-200">
+                                <h4 class="font-medium text-dark mb-4">Quick Actions</h4>
+                                <div class="grid grid-cols-2 gap-3">
+                                    <button class="bg-gray-100 text-dark py-2 rounded-lg font-medium hover:bg-gray-200 transition text-sm">
+                                        <i class="fas fa-database mr-1"></i>Backup
+                                    </button>
+                                    <button class="bg-gray-100 text-dark py-2 rounded-lg font-medium hover:bg-gray-200 transition text-sm">
+                                        <i class="fas fa-cogs mr-1"></i>Settings
+                                    </button>
+                                    <button class="bg-gray-100 text-dark py-2 rounded-lg font-medium hover:bg-gray-200 transition text-sm">
+                                        <i class="fas fa-chart-bar mr-1"></i>Analytics
+                                    </button>
+                                    <button class="bg-gray-100 text-dark py-2 rounded-lg font-medium hover:bg-gray-200 transition text-sm">
+                                        <i class="fas fa-shield-alt mr-1"></i>Security
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- University Management -->
+                        <div class="bg-white rounded-xl shadow border border-gray-200 p-6">
+                            <div class="flex justify-between items-center mb-6">
+                                <h3 class="text-xl font-bold text-dark">University Management</h3>
+                                <button class="bg-primary text-white px-3 py-2 rounded-lg font-medium hover:bg-indigo-700 transition text-sm">
+                                    <i class="fas fa-plus mr-1"></i>Add
+                                </button>
+                            </div>
+
+                            <div class="space-y-4">
+                                <div class="flex items-center justify-between p-3 border border-gray-200 rounded-lg">
+                                    <div class="flex items-center">
+                                        <div class="w-10 h-10 bg-red-100 rounded-lg flex items-center justify-center mr-3">
+                                            <i class="fas fa-university text-red-600"></i>
+                                        </div>
+                                        <div>
+                                            <h4 class="font-medium text-dark">Stanford University</h4>
+                                            <p class="text-gray-500 text-sm">1,245 users</p>
+                                        </div>
+                                    </div>
+                                    <span class="bg-green-100 text-green-800 text-xs font-medium px-2 py-1 rounded">Active</span>
+                                </div>
+
+                                <div class="flex items-center justify-between p-3 border border-gray-200 rounded-lg">
+                                    <div class="flex items-center">
+                                        <div class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center mr-3">
+                                            <i class="fas fa-university text-blue-600"></i>
+                                        </div>
+                                        <div>
+                                            <h4 class="font-medium text-dark">MIT</h4>
+                                            <p class="text-gray-500 text-sm">892 users</p>
+                                        </div>
+                                    </div>
+                                    <span class="bg-green-100 text-green-800 text-xs font-medium px-2 py-1 rounded">Active</span>
+                                </div>
+
+                                <div class="flex items-center justify-between p-3 border border-gray-200 rounded-lg">
+                                    <div class="flex items-center">
+                                        <div class="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center mr-3">
+                                            <i class="fas fa-university text-green-600"></i>
+                                        </div>
+                                        <div>
+                                            <h4 class="font-medium text-dark">Harvard University</h4>
+                                            <p class="text-gray-500 text-sm">1,087 users</p>
+                                        </div>
+                                    </div>
+                                    <span class="bg-green-100 text-green-800 text-xs font-medium px-2 py-1 rounded">Active</span>
+                                </div>
+
+                                <div class="flex items-center justify-between p-3 border border-gray-200 rounded-lg">
+                                    <div class="flex items-center">
+                                        <div class="w-10 h-10 bg-purple-100 rounded-lg flex items-center justify-center mr-3">
+                                            <i class="fas fa-university text-purple-600"></i>
+                                        </div>
+                                        <div>
+                                            <h4 class="font-medium text-dark">Cambridge University</h4>
+                                            <p class="text-gray-500 text-sm">Pending setup</p>
+                                        </div>
+                                    </div>
+                                    <span class="bg-yellow-100 text-yellow-800 text-xs font-medium px-2 py-1 rounded">Setup</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- MCQ Test Interface (Initially Hidden) -->
+        <div id="mcqTestContainer" class="hidden">
+            <div class="bg-white rounded-xl shadow-lg border border-gray-200 p-8 max-w-4xl mx-auto">
+                <div class="flex justify-between items-center mb-8">
+                    <div>
+                        <h2 class="text-2xl font-bold text-dark" id="testTitle">Data Structures - Quiz 3</h2>
+                        <p class="text-gray-600" id="testDescription">Topics: Trees, Graphs, Sorting Algorithms</p>
+                    </div>
+                    <div class="text-right">
+                        <div class="text-2xl font-bold text-primary" id="timer">15:00</div>
+                        <p class="text-gray-500 text-sm">Time Remaining</p>
+                    </div>
+                </div>
+
+                <div class="mb-8">
+                    <div class="flex justify-between mb-2">
+                        <span class="text-dark font-medium">Progress</span>
+                        <span class="text-dark font-medium"><span id="currentQuestion">1</span>/<span id="totalQuestions">10</span></span>
+                    </div>
+                    <div class="w-full bg-gray-200 rounded-full h-3">
+                        <div class="bg-primary h-3 rounded-full progress-bar" id="testProgress" style="width: 10%"></div>
+                    </div>
+                </div>
+
+                <div class="mb-10">
+                    <h3 class="text-xl font-bold text-dark mb-6" id="questionText">Which data structure uses LIFO (Last In First Out) principle?</h3>
+
+                    <div class="space-y-4" id="optionsContainer">
+                        <!-- Options will be populated by JavaScript -->
+                    </div>
+                </div>
+
+                <div class="flex justify-between">
+                    <button id="prevBtn" class="bg-gray-200 text-dark px-6 py-3 rounded-lg font-medium hover:bg-gray-300 transition disabled:opacity-50 disabled:cursor-not-allowed" disabled>
+                        <i class="fas fa-arrow-left mr-2"></i>Previous
+                    </button>
+
+                    <div class="flex space-x-4">
+                        <button id="markBtn" class="bg-yellow-100 text-yellow-800 px-6 py-3 rounded-lg font-medium hover:bg-yellow-200 transition">
+                            <i class="far fa-bookmark mr-2"></i>Mark for Review
+                        </button>
+                        <button id="nextBtn" class="bg-primary text-white px-8 py-3 rounded-lg font-medium hover:bg-indigo-700 transition">
+                            Next<i class="fas fa-arrow-right ml-2"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="mt-10 pt-8 border-t border-gray-200">
+                    <h4 class="font-medium text-dark mb-4">Question Navigation</h4>
+                    <div class="flex flex-wrap gap-3" id="questionNavigation">
+                        <!-- Question navigation buttons will be populated by JavaScript -->
+                    </div>
+
+                    <div class="flex justify-between mt-8">
+                        <button class="text-gray-500 hover:text-dark" onclick="exitTest()">
+                            <i class="fas fa-times mr-2"></i>Exit Test
+                        </button>
+                        <button id="submitTestBtn" class="bg-secondary text-white px-8 py-3 rounded-lg font-medium hover:bg-emerald-600 transition">
+                            <i class="fas fa-paper-plane mr-2"></i>Submit Test
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Test Results (Initially Hidden) -->
+        <div id="testResults" class="hidden">
+            <div class="bg-white rounded-xl shadow-lg border border-gray-200 p-8 max-w-4xl mx-auto">
+                <div class="text-center mb-10">
+                    <div class="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-trophy text-green-600 text-3xl"></i>
+                    </div>
+                    <h2 class="text-3xl font-bold text-dark mb-4">Test Completed!</h2>
+                    <p class="text-gray-600 text-lg">You have successfully completed the MCQ test.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-10">
+                    <div class="text-center p-6 border border-gray-200 rounded-lg">
+                        <div class="text-4xl font-bold text-primary mb-2" id="scorePercentage">85%</div>
+                        <p class="text-gray-600">Overall Score</p>
+                    </div>
+
+                    <div class="text-center p-6 border border-gray-200 rounded-lg">
+                        <div class="text-4xl font-bold text-secondary mb-2" id="correctAnswers">8</div>
+                        <p class="text-gray-600">Correct Answers</p>
+                    </div>
+
+                    <div class="text-center p-6 border border-gray-200 rounded-lg">
+                        <div class="text-4xl font-bold text-accent mb-2" id="timeTaken">12:45</div>
+                        <p class="text-gray-600">Time Taken</p>
+                    </div>
+                </div>
+
+                <div class="mb-10">
+                    <h3 class="text-xl font-bold text-dark mb-6">Performance Summary</h3>
+
+                    <div class="space-y-6">
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="text-dark">Data Structures Knowledge</span>
+                                <span class="text-dark font-medium">90%</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-3">
+                                <div class="bg-green-500 h-3 rounded-full progress-bar" style="width: 90%"></div>
+                            </div>
+                        </div>
+
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="text-dark">Algorithm Understanding</span>
+                                <span class="text-dark font-medium">80%</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-3">
+                                <div class="bg-blue-500 h-3 rounded-full progress-bar" style="width: 80%"></div>
+                            </div>
+                        </div>
+
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="text-dark">Time Management</span>
+                                <span class="text-dark font-medium">75%</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-3">
+                                <div class="bg-yellow-500 h-3 rounded-full progress-bar" style="width: 75%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex justify-center space-x-6">
+                    <button class="bg-primary text-white px-8 py-3 rounded-lg font-medium hover:bg-indigo-700 transition" onclick="reviewTest()">
+                        <i class="fas fa-redo mr-2"></i>Review Answers
+                    </button>
+                    <button class="bg-gray-200 text-dark px-8 py-3 rounded-lg font-medium hover:bg-gray-300 transition" onclick="returnToStudentPortal()">
+                        <i class="fas fa-arrow-left mr-2"></i>Back to Portal
+                    </button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white mt-12">
+        <div class="container mx-auto px-4 py-12">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <div class="flex items-center space-x-2 mb-6">
+                        <div class="bg-primary p-2 rounded-lg">
+                            <i class="fas fa-graduation-cap text-white text-2xl"></i>
+                        </div>
+                        <div>
+                            <h2 class="text-2xl font-bold">EduLearn<span class="text-primary">Pro</span></h2>
+                            <p class="text-gray-400 text-sm">Learning Management System</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-400 mb-6">A comprehensive LMS platform for universities, faculty, and students with advanced learning tools.</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="bg-gray-800 p-3 rounded-lg text-gray-400 hover:bg-primary hover:text-white transition">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="bg-gray-800 p-3 rounded-lg text-gray-400 hover:bg-primary hover:text-white transition">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="bg-gray-800 p-3 rounded-lg text-gray-400 hover:bg-primary hover:text-white transition">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="#" class="bg-gray-800 p-3 rounded-lg text-gray-400 hover:bg-primary hover:text-white transition">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="text-xl font-bold mb-6">Quick Links</h3>
+                    <ul class="space-y-3">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition" onclick="showSection('home')">Home</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition" onclick="showSection('universities')">Universities</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition" onclick="showSection('portals')">Portals</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition" onclick="showSection('features')">Features</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition" onclick="showSection('contact')">Contact</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h3 class="text-xl font-bold mb-6">Portals</h3>
+                    <ul class="space-y-3">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition" onclick="selectPortal('student')">Student Portal</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition" onclick="selectPortal('faculty')">Faculty Portal</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition" onclick="selectPortal('admin')">Admin Portal</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition" onclick="showLoginModal()">Login</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition" onclick="showLoginModal()">Register</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h3 class="text-xl font-bold mb-6">Contact Info</h3>
+                    <ul class="space-y-4">
+                        <li class="flex items-start">
+                            <i class="fas fa-map-marker-alt text-primary mt-1 mr-3"></i>
+                            <span class="text-gray-400">123 Education Street, Learning City, LC 12345</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-phone-alt text-primary mt-1 mr-3"></i>
+                            <span class="text-gray-400">+1 (555) 123-4567</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-envelope text-primary mt-1 mr-3"></i>
+                            <span class="text-gray-400">support@edulearnpro.com</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="border-t border-gray-800 mt-12 pt-8 text-center text-gray-400">
+                <p>&copy; 2023 EduLearn Pro. All rights reserved. | <a href="#" class="hover:text-white transition">Privacy Policy</a> | <a href="#" class="hover:text-white transition">Terms of Service</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Login Modal -->
+    <div id="loginModal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+        <div class="bg-white rounded-xl shadow-2xl max-w-md w-full">
+            <div class="p-8">
+                <div class="flex justify-between items-center mb-8">
+                    <h3 class="text-2xl font-bold text-dark">Portal Login</h3>
+                    <button class="text-gray-500 hover:text-dark text-xl" onclick="closeLoginModal()">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+
+                <div class="mb-6">
+                    <p class="text-gray-600 mb-4">Selected University: <span id="loginUniName" class="font-medium text-primary">None selected</span></p>
+                    <p class="text-gray-600 mb-4">Selected Portal: <span id="loginPortalName" class="font-medium text-primary">None selected</span></p>
+                </div>
+
+                <form id="loginForm">
+                    <div class="mb-6">
+                        <label class="block text-dark font-medium mb-2" for="loginEmail">Email Address</label>
+                        <input type="email" id="loginEmail" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent" placeholder="Enter your email" required>
+                    </div>
+
+                    <div class="mb-6">
+                        <label class="block text-dark font-medium mb-2" for="loginPassword">Password</label>
+                        <input type="password" id="loginPassword" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent" placeholder="Enter your password" required>
+                    </div>
+
+                    <div class="flex items-center justify-between mb-8">
+                        <div class="flex items-center">
+                            <input type="checkbox" id="rememberMe" class="w-4 h-4 text-primary rounded focus:ring-primary">
+                            <label for="rememberMe" class="ml-2 text-gray-600">Remember me</label>
+                        </div>
+                        <a href="#" class="text-primary hover:text-indigo-700 font-medium">Forgot Password?</a>
+                    </div>
+
+                    <button type="submit" class="w-full bg-primary text-white py-3 rounded-lg font-medium hover:bg-indigo-700 transition mb-4">
+                        <i class="fas fa-sign-in-alt mr-2"></i>Login to Portal
+                    </button>
+
+                    <p class="text-center text-gray-600">
+                        Don't have an account? <a href="#" class="text-primary hover:text-indigo-700 font-medium">Contact your administrator</a>
+                    </p>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+        // Define data at the beginning
+        const universities = [{
+            "id": 1,
+            "name": "Stanford University",
+            "location": "Stanford, CA",
+            "students": 1245,
+            "courses": 42,
+            "color": "red"
+        }, {
+            "id": 2,
+            "name": "Massachusetts Institute of Technology",
+            "location": "Cambridge, MA",
+            "students": 892,
+            "courses": 38,
+            "color": "blue"
+        }, {
+            "id": 3,
+            "name": "Harvard University",
+            "location": "Cambridge, MA",
+            "students": 1087,
+            "courses": 51,
+            "color": "green"
+        }, {
+            "id": 4,
+            "name": "University of Cambridge",
+            "location": "Cambridge, UK",
+            "students": 756,
+            "courses": 33,
+            "color": "purple"
+        }, {
+            "id": 5,
+            "name": "University of Oxford",
+            "location": "Oxford, UK",
+            "students": 812,
+            "courses": 39,
+            "color": "indigo"
+        }, {
+            "id": 6,
+            "name": "California Institute of Technology",
+            "location": "Pasadena, CA",
+            "students": 523,
+            "courses": 28,
+            "color": "yellow"
+        }];
+
+        const mcqTest = {
+            "id": "data-structures-quiz3",
+            "title": "Data Structures - Quiz 3",
+            "description": "Topics: Trees, Graphs, Sorting Algorithms",
+            "duration": 900, // 15 minutes in seconds
+            "questions": [{
+                "id": 1,
+                "question": "Which data structure uses LIFO (Last In First Out) principle?",
+                "options": [{
+                    "id": "a",
+                    "text": "Queue",
+                    "correct": false
+                }, {
+                    "id": "b",
+                    "text": "Stack",
+                    "correct": true
+                }, {
+                    "id": "c",
+                    "text": "Linked List",
+                    "correct": false
+                }, {
+                    "id": "d",
+                    "text": "Tree",
+                    "correct": false
+                }]
+            }, {
+                "id": 2,
+                "question": "What is the time complexity of binary search algorithm?",
+                "options": [{
+                    "id": "a",
+                    "text": "O(n)",
+                    "correct": false
+                }, {
+                    "id": "b",
+                    "text": "O(n log n)",
+                    "correct": false
+                }, {
+                    "id": "c",
+                    "text": "O(log n)",
+                    "correct": true
+                }, {
+                    "id": "d",
+                    "text": "O(1)",
+                    "correct": false
+                }]
+            }, {
+                "id": 3,
+                "question": "Which of the following is NOT a sorting algorithm?",
+                "options": [{
+                    "id": "a",
+                    "text": "Quick Sort",
+                    "correct": false
+                }, {
+                    "id": "b",
+                    "text": "Merge Sort",
+                    "correct": false
+                }, {
+                    "id": "c",
+                    "text": "Binary Sort",
+                    "correct": true
+                }, {
+                    "id": "d",
+                    "text": "Bubble Sort",
+                    "correct": false
+                }]
+            }, {
+                "id": 4,
+                "question": "In a binary tree, what is the maximum number of nodes at level 'l'?",
+                "options": [{
+                    "id": "a",
+                    "text": "2^l",
+                    "correct": true
+                }, {
+                    "id": "b",
+                    "text": "2l",
+                    "correct": false
+                }, {
+                    "id": "c",
+                    "text": "l^2",
+                    "correct": false
+                }, {
+                    "id": "d",
+                    "text": "l/2",
+                    "correct": false
+                }]
+            }, {
+                "id": 5,
+                "question": "Which graph traversal uses queue data structure?",
+                "options": [{
+                    "id": "a",
+                    "text": "Depth First Search",
+                    "correct": false
+                }, {
+                    "id": "b",
+                    "text": "Breadth First Search",
+                    "correct": true
+                }, {
+                    "id": "c",
+                    "text": "Topological Sort",
+                    "correct": false
+                }, {
+                    "id": "d",
+                    "text": "Dijkstra's Algorithm",
+                    "correct": false
+                }]
+            }]
+        };
+
+        // Application state
+        let currentState = {
+            selectedUniversity: null,
+            selectedPortal: null,
+            currentSection: "home",
+            currentPortalView: null,
+            mcqTestState: {
+                currentQuestion: 0,
+                answers: {},
+                markedForReview: [],
+                timeRemaining: mcqTest.duration,
+                timerInterval: null
+            }
+        };
+
+        // DOM Elements
+        const mobileMenu = document.getElementById("mobileMenu");
+        const demoPortals = document.getElementById("demoPortals");
+        const mcqTestContainer = document.getElementById("mcqTestContainer");
+        const testResults = document.getElementById("testResults");
+        const loginModal = document.getElementById("loginModal");
+        const proceedToLoginBtn = document.getElementById("proceedToLoginBtn");
+        const selectedUniName = document.getElementById("selectedUniName");
+        const loginUniName = document.getElementById("loginUniName");
+        const loginPortalName = document.getElementById("loginPortalName");
+
+        // Initialize the application
+        document.addEventListener("DOMContentLoaded", function() {
+            renderUniversities();
+            setupEventListeners();
+            updateProgressBars();
+        });
+
+        // Render universities in the universities section
+        function renderUniversities() {
+            const container = document.querySelector("#universities .grid");
+            if (!container) return;
+
+            container.innerHTML = "";
+
+            universities.forEach(university => {
+                const universityCard = document.createElement("div");
+                universityCard.className = "bg-white p-6 rounded-xl shadow border border-gray-200 hover:shadow-md transition cursor-pointer university-logo";
+                universityCard.dataset.id = university.id;
+
+                universityCard.innerHTML = `
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-${university.color}-100 rounded-lg flex items-center justify-center mr-4">
+                            <i class="fas fa-university text-${university.color}-600 text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-dark">${university.name}</h3>
+                            <p class="text-gray-500 text-sm">${university.location}</p>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-2 gap-4 mb-4">
+                        <div class="text-center p-3 bg-gray-50 rounded-lg">
+                            <p class="text-2xl font-bold text-dark">${university.students}</p>
+                            <p class="text-gray-500 text-xs">Students</p>
+                        </div>
+                        <div class="text-center p-3 bg-gray-50 rounded-lg">
+                            <p class="text-2xl font-bold text-dark">${university.courses}</p>
+                            <p class="text-gray-500 text-xs">Courses</p>
+                        </div>
+                    </div>
+                    <div class="text-center">
+                        <span class="text-primary font-medium">Select University</span>
+                    </div>
+                `;
+
+                universityCard.addEventListener("click", () => selectUniversity(university.id));
+                container.appendChild(universityCard);
+            });
+        }
+
+        // Setup event listeners
+        function setupEventListeners() {
+            // Contact form submission
+            const contactForm = document.getElementById("contactForm");
+            if (contactForm) {
+                contactForm.addEventListener("submit", function(e) {
+                    e.preventDefault();
+                    alert("Thank you for your message! We will get back to you soon.");
+                    contactForm.reset();
+                });
+            }
+
+            // Login form submission
+            const loginForm = document.getElementById("loginForm");
+            if (loginForm) {
+                loginForm.addEventListener("submit", function(e) {
+                    e.preventDefault();
+                    handleLogin();
+                });
+            }
+
+            // Test submission
+            const submitTestBtn = document.getElementById("submitTestBtn");
+            if (submitTestBtn) {
+                submitTestBtn.addEventListener("click", submitTest);
+            }
+        }
+
+        // Toggle mobile menu
+        function toggleMobileMenu() {
+            mobileMenu.classList.toggle("hidden");
+        }
+
+        // Show a specific section
+        function showSection(sectionId) {
+            // Hide all sections
+            document.querySelectorAll(".tab-content").forEach(section => {
+                section.classList.remove("active");
+            });
+
+            // Hide demo portals if visible
+            demoPortals.classList.add("hidden");
+            mcqTestContainer.classList.add("hidden");
+            testResults.classList.add("hidden");
+
+            // Show the requested section
+            const section = document.getElementById(sectionId);
+            if (section) {
+                section.classList.add("active");
+                currentState.currentSection = sectionId;
+
+                // Update mobile menu if open
+                mobileMenu.classList.add("hidden");
+            }
+        }
+
+        // Select a university
+        function selectUniversity(universityId) {
+            // Remove selected class from all universities
+            document.querySelectorAll(".university-logo").forEach(uni => {
+                uni.classList.remove("selected");
+            });
+
+            // Add selected class to clicked university
+            const selectedUni = document.querySelector(`.university-logo[data-id="${universityId}"]`);
+            if (selectedUni) {
+                selectedUni.classList.add("selected");
+            }
+
+            // Update state
+            const university = universities.find(u => u.id === universityId);
+            currentState.selectedUniversity = university;
+
+            // Update UI
+            selectedUniName.textContent = university.name;
+            loginUniName.textContent = university.name;
+            proceedToLoginBtn.disabled = false;
+
+            // Show notification
+            showNotification(`Selected: ${university.name}`, "success");
+        }
+
+        // Select a portal
+        function selectPortal(portalType) {
+            if (!currentState.selectedUniversity) {
+                showNotification("Please select a university first", "error");
+                showSection("universities");
+                return;
+            }
+
+            currentState.selectedPortal = portalType;
+            loginPortalName.textContent = portalType.charAt(0).toUpperCase() + portalType.slice(1) + " Portal";
+
+            // Show login modal
+            showLoginModal();
+        }
+
+        // Show login modal
+        function showLoginModal() {
+            if (!currentState.selectedUniversity) {
+                showNotification("Please select a university first", "error");
+                showSection("universities");
+                return;
+            }
+
+            if (!currentState.selectedPortal) {
+                showNotification("Please select a portal first", "error");
+                showSection("portals");
+                return;
+            }
+
+            loginModal.classList.remove("hidden");
+        }
+
+        // Close login modal
+        function closeLoginModal() {
+            loginModal.classList.add("hidden");
+            document.getElementById("loginForm").reset();
+        }
+
+        // Handle login
+        function handleLogin() {
+            const email = document.getElementById("loginEmail").value;
+            const password = document.getElementById("loginPassword").value;
+
+            if (!email || !password) {
+                showNotification("Please enter both email and password", "error");
+                return;
+            }
+
+            // For demo purposes, accept any login
+            closeLoginModal();
+            showNotification(`Successfully logged in to ${currentState.selectedPortal} portal`, "success");
+
+            // Show the appropriate portal
+            showPortal(currentState.selectedPortal);
+        }
+
+        // Show portal interface
+        function showPortal(portalType) {
+            // Hide all sections
+            document.querySelectorAll(".tab-content").forEach(section => {
+                section.classList.remove("active");
+            });
+
+            // Hide demo portals container
+            demoPortals.classList.remove("hidden");
+
+            // Hide all portal views
+            document.querySelectorAll("#demoPortals .tab-content").forEach(portal => {
+                portal.classList.remove("active");
+            });
+
+            // Show the selected portal
+            const portal = document.getElementById(`${portalType}Portal`);
+            if (portal) {
+                portal.classList.add("active");
+                currentState.currentPortalView = portalType;
+            }
+
+            // Update progress bars with animation
+            setTimeout(updateProgressBars, 100);
+        }
+
+        // Start MCQ test
+        function startMCQTest(testId) {
+            // Reset test state
+            currentState.mcqTestState = {
+                currentQuestion: 0,
+                answers: {},
+                markedForReview: [],
+                timeRemaining: mcqTest.duration,
+                timerInterval: null
+            };
+
+            // Hide portal and show test
+            demoPortals.classList.add("hidden");
+            mcqTestContainer.classList.remove("hidden");
+
+            // Initialize test
+            loadQuestion(0);
+            startTimer();
+            updateQuestionNavigation();
+        }
+
+        // Load a specific question
+        function loadQuestion(questionIndex) {
+            const question = mcqTest.questions[questionIndex];
+            if (!question) return;
+
+            // Update current question
+            currentState.mcqTestState.currentQuestion = questionIndex;
+
+            // Update UI
+            document.getElementById("testTitle").textContent = mcqTest.title;
+            document.getElementById("testDescription").textContent = mcqTest.description;
+            document.getElementById("questionText").textContent = question.question;
+            document.getElementById("currentQuestion").textContent = questionIndex + 1;
+            document.getElementById("totalQuestions").textContent = mcqTest.questions.length;
+
+            // Calculate progress
+            const progress = ((questionIndex + 1) / mcqTest.questions.length) * 100;
+            document.getElementById("testProgress").style.width = `${progress}%`;
+
+            // Update options
+            const optionsContainer = document.getElementById("optionsContainer");
+            optionsContainer.innerHTML = "";
+
+            question.options.forEach(option => {
+                const optionElement = document.createElement("div");
+                optionElement.className = "mcq-option p-4 border border-gray-300 rounded-lg";
+                optionElement.dataset.optionId = option.id;
+
+                // Check if this option was previously selected
+                const isSelected = currentState.mcqTestState.answers[question.id] === option.id;
+                if (isSelected) {
+                    optionElement.classList.add("selected");
+                }
+
+                optionElement.innerHTML = `
+                    <div class="flex items-center">
+                        <div class="w-8 h-8 border border-gray-300 rounded-full flex items-center justify-center mr-4 ${isSelected ? "bg-primary text-white border-primary" : ""}">
+                            ${option.id.toUpperCase()}
+                        </div>
+                        <div class="flex-1">${option.text}</div>
+                    </div>
+                `;
+
+                optionElement.addEventListener("click", () => selectOption(option.id));
+                optionsContainer.appendChild(optionElement);
+            });
+
+            // Update button states
+            document.getElementById("prevBtn").disabled = questionIndex === 0;
+            document.getElementById("nextBtn").textContent = questionIndex === mcqTest.questions.length - 1 ? "Submit" : "Next";
+
+            // Update mark button
+            const isMarked = currentState.mcqTestState.markedForReview.includes(question.id);
+            document.getElementById("markBtn").innerHTML = isMarked ?
+                '<i class="fas fa-bookmark mr-2"></i>Marked for Review' :
+                '<i class="far fa-bookmark mr-2"></i>Mark for Review';
+            document.getElementById("markBtn").className = isMarked ?
+                "bg-yellow-500 text-white px-6 py-3 rounded-lg font-medium hover:bg-yellow-600 transition" :
+                "bg-yellow-100 text-yellow-800 px-6 py-3 rounded-lg font-medium hover:bg-yellow-200 transition";
+        }
+
+        // Select an option
+        function selectOption(optionId) {
+            const questionIndex = currentState.mcqTestState.currentQuestion;
+            const question = mcqTest.questions[questionIndex];
+
+            // Save answer
+            currentState.mcqTestState.answers[question.id] = optionId;
+
+            // Update UI
+            document.querySelectorAll(".mcq-option").forEach(option => {
+                option.classList.remove("selected");
+            });
+
+            const selectedOption = document.querySelector(`.mcq-option[data-option-id="${optionId}"]`);
+            if (selectedOption) {
+                selectedOption.classList.add("selected");
+
+                // Update the option letter background
+                const optionLetter = selectedOption.querySelector("div > div");
+                if (optionLetter) {
+                    optionLetter.classList.add("bg-primary", "text-white", "border-primary");
+                }
+            }
+
+            // Remove selection from other options
+            document.querySelectorAll(".mcq-option").forEach(option => {
+                if (option.dataset.optionId !== optionId) {
+                    const optionLetter = option.querySelector("div > div");
+                    if (optionLetter) {
+                        optionLetter.classList.remove("bg-primary", "text-white", "border-primary");
+                    }
+                }
+            });
+        }
+
+        // Mark question for review
+        function markForReview() {
+            const questionIndex = currentState.mcqTestState.currentQuestion;
+            const question = mcqTest.questions[questionIndex];
+            const questionId = question.id;
+
+            const index = currentState.mcqTestState.markedForReview.indexOf(questionId);
+            if (index === -1) {
+                // Mark for review
+                currentState.mcqTestState.markedForReview.push(questionId);
+                document.getElementById("markBtn").innerHTML = '<i class="fas fa-bookmark mr-2"></i>Marked for Review';
+                document.getElementById("markBtn").className = "bg-yellow-500 text-white px-6 py-3 rounded-lg font-medium hover:bg-yellow-600 transition";
+            } else {
+                // Remove from review
+                currentState.mcqTestState.markedForReview.splice(index, 1);
+                document.getElementById("markBtn").innerHTML = '<i class="far fa-bookmark mr-2"></i>Mark for Review';
+                document.getElementById("markBtn").className = "bg-yellow-100 text-yellow-800 px-6 py-3 rounded-lg font-medium hover:bg-yellow-200 transition";
+            }
+
+            // Update navigation
+            updateQuestionNavigation();
+        }
+
+        // Navigate to next question
+        function nextQuestion() {
+            const currentIndex = currentState.mcqTestState.currentQuestion;
+
+            if (currentIndex === mcqTest.questions.length - 1) {
+                // Last question, submit test
+                submitTest();
+            } else {
+                // Load next question
+                loadQuestion(currentIndex + 1);
+            }
+        }
+
+        // Navigate to previous question
+        function prevQuestion() {
+            const currentIndex = currentState.mcqTestState.currentQuestion;
+            if (currentIndex > 0) {
+                loadQuestion(currentIndex - 1);
+            }
+        }
+
+        // Start the test timer
+        function startTimer() {
+            // Clear any existing timer
+            if (currentState.mcqTestState.timerInterval) {
+                clearInterval(currentState.mcqTestState.timerInterval);
+            }
+
+            // Update timer immediately
+            updateTimerDisplay();
+
+            // Start new timer
+            currentState.mcqTestState.timerInterval = setInterval(() => {
+                currentState.mcqTestState.timeRemaining--;
+                updateTimerDisplay();
+
+                // Check if time is up
+                if (currentState.mcqTestState.timeRemaining <= 0) {
+                    clearInterval(currentState.mcqTestState.timerInterval);
+                    submitTest();
+                }
+            }, 1000);
+        }
+
+        // Update timer display
+        function updateTimerDisplay() {
+            const minutes = Math.floor(currentState.mcqTestState.timeRemaining / 60);
+            const seconds = currentState.mcqTestState.timeRemaining % 60;
+            document.getElementById("timer").textContent = `${minutes.toString().padStart(2, "0")}:${seconds.toString().padStart(2, "0")}`;
+
+            // Change color when time is running low
+            if (currentState.mcqTestState.timeRemaining < 60) {
+                document.getElementById("timer").classList.remove("text-primary");
+                document.getElementById("timer").classList.add("text-red-500");
+            }
+        }
+
+        // Update question navigation buttons
+        function updateQuestionNavigation() {
+            const container = document.getElementById("questionNavigation");
+            if (!container) return;
+
+            container.innerHTML = "";
+
+            mcqTest.questions.forEach((question, index) => {
+                const button = document.createElement("button");
+                button.className = "w-10 h-10 rounded-lg border font-medium transition";
+
+                // Determine button style
+                const isAnswered = currentState.mcqTestState.answers[question.id];
+                const isMarked = currentState.mcqTestState.markedForReview.includes(question.id);
+                const isCurrent = index === currentState.mcqTestState.currentQuestion;
+
+                if (isCurrent) {
+                    button.className += " bg-primary text-white border-primary";
+                } else if (isMarked) {
+                    button.className += " bg-yellow-100 text-yellow-800 border-yellow-300";
+                } else if (isAnswered) {
+                    button.className += " bg-green-100 text-green-800 border-green-300";
+                } else {
+                    button.className += " bg-gray-100 text-gray-800 border-gray-300";
+                }
+
+                button.textContent = index + 1;
+                button.addEventListener("click", () => loadQuestion(index));
+                container.appendChild(button);
+            });
+        }
+
+        // Submit test
+        function submitTest() {
+            // Clear timer
+            if (currentState.mcqTestState.timerInterval) {
+                clearInterval(currentState.mcqTestState.timerInterval);
+            }
+
+            // Calculate score
+            let correctAnswers = 0;
+            mcqTest.questions.forEach(question => {
+                const selectedOptionId = currentState.mcqTestState.answers[question.id];
+                if (selectedOptionId) {
+                    const selectedOption = question.options.find(opt => opt.id === selectedOptionId);
+                    if (selectedOption && selectedOption.correct) {
+                        correctAnswers++;
+                    }
+                }
+            });
+
+            const scorePercentage = Math.round((correctAnswers / mcqTest.questions.length) * 100);
+            const timeTaken = mcqTest.duration - currentState.mcqTestState.timeRemaining;
+            const minutesTaken = Math.floor(timeTaken / 60);
+            const secondsTaken = timeTaken % 60;
+
+            // Update results display
+            document.getElementById("scorePercentage").textContent = `${scorePercentage}%`;
+            document.getElementById("correctAnswers").textContent = `${correctAnswers}/${mcqTest.questions.length}`;
+            document.getElementById("timeTaken").textContent = `${minutesTaken}:${secondsTaken.toString().padStart(2, "0")}`;
+
+            // Show results
+            mcqTestContainer.classList.add("hidden");
+            testResults.classList.remove("hidden");
+        }
+
+        // Exit test
+        function exitTest() {
+            if (confirm("Are you sure you want to exit the test? Your progress will be lost.")) {
+                // Clear timer
+                if (currentState.mcqTestState.timerInterval) {
+                    clearInterval(currentState.mcqTestState.timerInterval);
+                }
+
+                // Return to student portal
+                testResults.classList.add("hidden");
+                mcqTestContainer.classList.add("hidden");
+                demoPortals.classList.remove("hidden");
+                document.getElementById("studentPortal").classList.add("active");
+            }
+        }
+
+        // Review test answers
+        function reviewTest() {
+            // For now, just go back to student portal
+            returnToStudentPortal();
+        }
+
+        // Return to student portal
+        function returnToStudentPortal() {
+            testResults.classList.add("hidden");
+            demoPortals.classList.remove("hidden");
+            document.getElementById("studentPortal").classList.add("active");
+        }
+
+        // Open course
+        function openCourse(courseId) {
+            showNotification(`Opening course: ${courseId}`, "info");
+            // In a real application, this would navigate to the course page
+        }
+
+        // View course details
+        function viewCourseDetails(courseId) {
+            showNotification(`Showing details for: ${courseId}`, "info");
+            // In a real application, this would show a modal with course details
+        }
+
+        // View student progress
+        function viewStudentProgress(courseId) {
+            showNotification(`Showing student progress for: ${courseId}`, "info");
+            // In a real application, this would show a detailed progress report
+        }
+
+        // Generate progress report
+        function generateProgressReport() {
+            showNotification("Generating progress report...", "info");
+            // In a real application, this would generate and download a report
+            setTimeout(() => {
+                showNotification("Progress report generated successfully!", "success");
+            }, 1500);
+        }
+
+        // Update progress bars with animation
+        function updateProgressBars() {
+            document.querySelectorAll(".progress-bar").forEach(bar => {
+                const width = bar.style.width;
+                bar.style.width = "0%";
+                setTimeout(() => {
+                    bar.style.width = width;
+                }, 100);
+            });
+        }
+
+        // Show notification
+        function showNotification(message, type = "info") {
+            // Create notification element
+            const notification = document.createElement("div");
+            notification.className = `fixed top-4 right-4 p-4 rounded-lg shadow-lg z-50 transform transition-transform duration-300 translate-x-full`;
+
+            // Set background color based on type
+            if (type === "success") {
+                notification.className += " bg-green-100 text-green-800 border border-green-200";
+            } else if (type === "error") {
+                notification.className += " bg-red-100 text-red-800 border border-red-200";
+            } else if (type === "warning") {
+                notification.className += " bg-yellow-100 text-yellow-800 border border-yellow-200";
+            } else {
+                notification.className += " bg-blue-100 text-blue-800 border border-blue-200";
+            }
+
+            notification.innerHTML = `
+                <div class="flex items-center">
+                    <i class="fas fa-${type === "success" ? "check-circle" : type === "error" ? "exclamation-circle" : type === "warning" ? "exclamation-triangle" : "info-circle"} mr-3"></i>
+                    <div>${message}</div>
+                </div>
+            `;
+
+            // Add to page
+            document.body.appendChild(notification);
+
+            // Animate in
+            setTimeout(() => {
+                notification.classList.remove("translate-x-full");
+            }, 10);
+
+            // Remove after 3 seconds
+            setTimeout(() => {
+                notification.classList.add("translate-x-full");
+                setTimeout(() => {
+                    document.body.removeChild(notification);
+                }, 300);
+            }, 3000);
+        }
+
+        // Attach event listeners to buttons
+        document.getElementById("prevBtn") ? .addEventListener("click", prevQuestion);
+        document.getElementById("nextBtn") ? .addEventListener("click", nextQuestion);
+        document.getElementById("markBtn") ? .addEventListener("click", markForReview);
+
+        // Prevent default behavior for anchor tags
+        document.querySelectorAll("a").forEach(link => {
+            link.addEventListener("click", function(e) {
+                if (this.getAttribute("href") === "#") {
+                    e.preventDefault();
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="stylelib.css">
+    <title>Document</title>
+</head>
+<body>
+      <!-- Library Management System -->
+      <section id="library" class="py-12 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center maroon-text mb-8">Library Management System</h2>
+            <p class="text-center text-gray-600 mb-12 max-w-3xl mx-auto">Access our extensive collection of books, journals, and digital resources. Search, reserve, and manage your library activities all in one place.</p>
+            
+            <!-- Library Search Box -->
+            <div class="max-w-3xl mx-auto mb-10 bg-gray-50 rounded-lg shadow-md p-6">
+                <h3 class="text-xl font-semibold mb-4">Search Library Resources</h3>
+                <div class="flex flex-wrap gap-3">
+                    <div class="flex-grow">
+                        <input type="text" placeholder="Search by title, author, or keyword..." class="custom-input">
+                    </div>
+                    <div>
+                        <select class="custom-input w-40">
+                            <option value="all">All Categories</option>
+                            <option value="books">Books</option>
+                            <option value="journals">Journals</option>
+                            <option value="ebooks">E-Books</option>
+                            <option value="research">Research Papers</option>
+                        </select>
+                    </div>
+                    <div>
+                        <button class="btn-primary px-6 py-2 rounded">Search</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Library Content Tabs -->
+            <div class="max-w-5xl mx-auto">
+                <div class="flex flex-wrap mb-4">
+                    <div class="tab active" data-tab="popular-books">Popular Books</div>
+                    <div class="tab" data-tab="digital-resources">Digital Resources</div>
+                    <div class="tab" data-tab="my-books">My Books</div>
+                    <div class="tab" data-tab="recommendations">Recommendations</div>
+                </div>
+                
+                <!-- Popular Books Tab -->
+                <div id="popular-books" class="tab-content active">
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <!-- Book Item 1 -->
+                        <div class="bg-white rounded-lg shadow p-4 flex">
+                            <div class="w-1/3">
+                                <div class="h-40 rounded" style="background-image: url('DSA.jpeg'); background-size: cover; background-position: center;"></div>
+
+                            </div>
+                            <div class="w-2/3 pl-4">
+                                <h4 class="font-semibold">Data Structures & Algorithms</h4>
+                                <p class="text-sm text-gray-600">by Thomas H. Cormen</p>
+                                <div class="flex items-center mt-2 mb-3">
+                                    <div class="flex text-yellow-400">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star-half-alt"></i>
+                                    </div>
+                                    <span class="text-xs ml-2">(4.5)</span>
+                                </div>
+                                <div class="text-xs mb-2">
+                                    <span class="inline-block bg-green-100 text-green-800 px-2 py-1 rounded">Available</span>
+                                    <span class="inline-block text-gray-600">12 copies</span>
+                                </div>
+                                <button class="btn-primary text-sm px-3 py-1 rounded">Reserve</button>
+                            </div>
+                        </div>
+                        
+                        <!-- Book Item 2 -->
+                        <div class="bg-white rounded-lg shadow p-4 flex">
+                            <div class="w-1/3">
+                                <div class="h-40 rounded" style="background-image: url('ML.jpeg'); background-size: cover; background-position: center;"></div>
+
+                            </div>
+                            <div class="w-2/3 pl-4">
+                                <h4 class="font-semibold">Machine Learning Fundamentals</h4>
+                                <p class="text-sm text-gray-600">by Andrew Ng</p>
+                                <div class="flex items-center mt-2 mb-3">
+                                    <div class="flex text-yellow-400">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="far fa-star"></i>
+                                    </div>
+                                    <span class="text-xs ml-2">(4.0)</span>
+                                </div>
+                                <div class="text-xs mb-2">
+                                    <span class="inline-block bg-yellow-100 text-yellow-800 px-2 py-1 rounded">Limited</span>
+                                    <span class="inline-block text-gray-600">3 copies</span>
+                                </div>
+                                <button class="btn-primary text-sm px-3 py-1 rounded">Reserve</button>
+                            </div>
+                        </div>
+                        
+                        <!-- Book Item 3 -->
+                        <div class="bg-white rounded-lg shadow p-4 flex">
+                            <div class="w-1/3">
+                                <div class="h-40 rounded" style="background-image: url('NS.jpeg'); background-size: cover; background-position: center;"></div>
+
+                            </div>
+                            <div class="w-2/3 pl-4">
+                                <h4 class="font-semibold">Computer Networks</h4>
+                                <p class="text-sm text-gray-600">by Andrew S. Tanenbaum</p>
+                                <div class="flex items-center mt-2 mb-3">
+                                    <div class="flex text-yellow-400">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                    </div>
+                                    <span class="text-xs ml-2">(4.9)</span>
+                                </div>
+                                <div class="text-xs mb-2">
+                                    <span class="inline-block bg-red-100 text-red-800 px-2 py-1 rounded">On Loan</span>
+                                    <span class="inline-block text-gray-600">Available May 10</span>
+                                </div>
+                                <button class="btn-primary text-sm px-3 py-1 rounded">Join Waitlist</button>
+                            </div>
+                        </div>
+                        
+                        <!-- More books can be added here -->
+                    </div>
+                    <div class="text-center mt-8">
+                        <button class="btn-primary px-6 py-2 rounded">Load More Books</button>
+                    </div>
+                </div>
+                
+                <!-- Digital Resources Tab -->
+                <div id="digital-resources" class="tab-content">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <!-- Digital Resource 1 -->
+                        <div class="bg-white rounded-lg shadow p-5">
+                            <h4 class="font-semibold text-lg mb-2">IEEE Xplore Digital Library</h4>
+                            <p class="text-gray-600 mb-3">Access to IEEE journals, conference proceedings, and standards.</p>
+                            <div class="flex justify-between items-center">
+                                <span class="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded">Subscription Access</span>
+                                <a href="#" class="btn-primary text-sm px-4 py-1 rounded">Access Now</a>
+                            </div>
+                        </div>
+                        
+                        <!-- Digital Resource 2 -->
+                        <div class="bg-white rounded-lg shadow p-5">
+                            <h4 class="font-semibold text-lg mb-2">ACM Digital Library</h4>
+                            <p class="text-gray-600 mb-3">Full-text collection of ACM publications including journals, conference proceedings, and magazines.</p>
+                            <div class="flex justify-between items-center">
+                                <span class="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded">Subscription Access</span>
+                                <a href="#" class="btn-primary text-sm px-4 py-1 rounded">Access Now</a>
+                            </div>
+                        </div>
+                        
+                        <!-- Digital Resource 3 -->
+                        <div class="bg-white rounded-lg shadow p-5">
+                            <h4 class="font-semibold text-lg mb-2">ScienceDirect</h4>
+                            <p class="text-gray-600 mb-3">Access to scientific articles and book chapters from Elsevier journals.</p>
+                            <div class="flex justify-between items-center">
+                                <span class="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded">Subscription Access</span>
+                                <a href="#" class="btn-primary text-sm px-4 py-1 rounded">Access Now</a>
+                            </div>
+                        </div>
+                        
+                        <!-- Digital Resource 4 -->
+                        <div class="bg-white rounded-lg shadow p-5">
+                            <h4 class="font-semibold text-lg mb-2">NPTEL Video Lectures</h4>
+                            <p class="text-gray-600 mb-3">Video lectures from IITs and IISc on various engineering subjects.</p>
+                            <div class="flex justify-between items-center">
+                                <span class="text-xs bg-green-100 text-green-800 px-2 py-1 rounded">Free Access</span>
+                                <a href="#" class="btn-primary text-sm px-4 py-1 rounded">Access Now</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- My Books Tab -->
+                <div id="my-books" class="tab-content">
+                    <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                        <table class="custom-table">
+                            <thead>
+                                <tr>
+                                    <th>Book Title</th>
+                                    <th>Issue Date</th>
+                                    <th>Due Date</th>
+                                    <th>Status</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Principles of Database Systems</td>
+                                    <td>March 15, 2023</td>
+                                    <td>April 15, 2023</td>
+                                    <td><span class="text-green-600">Active</span></td>
+                                    <td><button class="text-blue-600 hover:underline">Renew</button></td>
+                                </tr>
+                                <tr>
+                                    <td>Artificial Intelligence: A Modern Approach</td>
+                                    <td>March 20, 2023</td>
+                                    <td>April 20, 2023</td>
+                                    <td><span class="text-green-600">Active</span></td>
+                                    <td><button class="text-blue-600 hover:underline">Renew</button></td>
+                                </tr>
+                                <tr>
+                                    <td>Computer Organization and Architecture</td>
+                                    <td>February 10, 2023</td>
+                                    <td>March 10, 2023</td>
+                                    <td><span class="text-red-600">Overdue</span></td>
+                                    <td><button class="text-blue-600 hover:underline">Return</button></td>
+                                </tr>
+                                <tr>
+                                    <td>Software Engineering: A Practitioner's Approach</td>
+                                    <td>January 25, 2023</td>
+                                    <td>February 25, 2023</td>
+                                    <td><span class="text-gray-600">Returned</span></td>
+                                    <td><button class="text-blue-600 hover:underline">Borrow Again</button></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <p class="text-sm text-gray-600 mt-4">
+                        <strong>Note:</strong> Overdue books incur a fine of ₹5 per day. Please return or renew your books on time.
+                    </p>
+                </div>
+                
+                <!-- Recommendations Tab -->
+                <div id="recommendations" class="tab-content">
+                    <p class="text-gray-600 mb-6">
+                        Based on your reading history and academic courses, we recommend the following books and resources:
+                    </p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                        <!-- Recommendation 1 -->
+                        <div class="bg-white rounded-lg shadow p-4 flex flex-col items-center">
+                            <div class="h-40 w-32 rounded" style="background-image: url('NS.jpeg'); background-size: cover; background-position: center;"></div>
+                            
+
+                            <h4 class="font-semibold text-center">Python Machine Learning</h4>
+                            <p class="text-sm text-gray-600 text-center">by Sebastian Raschka</p>
+                            <button class="btn-primary text-sm px-3 py-1 rounded mt-3">View Details</button>
+                        </div>
+                        
+                        <!-- Recommendation 2 -->
+                        <div class="bg-white rounded-lg shadow p-4 flex flex-col items-center">
+                            <div class="h-40 w-32 rounded" style="background-image: url('CC.jpeg'); background-size: cover; background-position: center;"></div>
+
+                            <h4 class="font-semibold text-center">Clean Code</h4>
+                            <p class="text-sm text-gray-600 text-center">by Robert C. Martin</p>
+                            <button class="btn-primary text-sm px-3 py-1 rounded mt-3">View Details</button>
+                        </div>
+                        
+                        <!-- Recommendation 3 -->
+                        <div class="bg-white rounded-lg shadow p-4 flex flex-col items-center">
+                            <div class="h-40 w-32 rounded" style="background-image: url('SD.jpeg'); background-size: cover; background-position: center;"></div>
+
+                            <h4 class="font-semibold text-center">System Design Interview</h4>
+                            <p class="text-sm text-gray-600 text-center">by Alex Xu</p>
+                            <button class="btn-primary text-sm px-3 py-1 rounded mt-3">View Details</button>
+                        </div>
+                        
+                        <!-- Recommendation 4 -->
+                        <div class="bg-white rounded-lg shadow p-4 flex flex-col items-center">
+                            <div class="h-40 w-32 rounded" style="background-image: url('DB.jpeg'); background-size: cover; background-position: center;"></div>
+
+                            <h4 class="font-semibold text-center">Database System Concepts</h4>
+                            <p class="text-sm text-gray-600 text-center">by Abraham Silberschatz</p>
+                            <button class="btn-primary text-sm px-3 py-1 rounded mt-3">View Details</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+</html>

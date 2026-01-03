@@ -1,0 +1,1155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Government Polytechnic Adityapur - Official Website</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    
+   
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar fixed w-full top-0 z-50 shadow-md">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center">
+                    <img src="logo.png" alt="GPA Logo" class="h-14 mr-3">
+                    <div class="text-2xl font-bold text-primary mr-2">
+                        <span class="text-secondary">GP Adityapur</span>
+                    </div>
+                </div>
+
+                <div class="hidden md:flex space-x-6">
+                    <a href="#home" class="font-medium hover:text-primary transition">Home</a>
+                    <a href="#about" class="font-medium hover:text-primary transition">About</a>
+                    <a href="#programs" class="font-medium hover:text-primary transition">Programs</a>
+                    <a href="#facilities" class="font-medium hover:text-primary transition">Facilities</a>
+                    <a href="#faculty" class="font-medium hover:text-primary transition">Faculty</a>
+                    <a href="#admissions" class="font-medium hover:text-primary transition">Admissions</a>
+                    <a href="#library" class="font-medium hover:text-primary transition">Library</a>
+                    <a href="#contact" class="font-medium hover:text-primary transition">Contact</a>
+                </div>
+
+                <div class="flex items-center space-x-4">
+                   <a href="login32.html"> <button id="loginBtn" class="px-4 py-2 bg-primary text-white rounded-md hover:bg-opacity-90 transition">Login</button>
+                    <div class="md:hidden">
+                        <button id="menuToggle" class="text-primary focus:outline-none">
+                            <i class="fas fa-bars text-2xl"></i>
+                        </button></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobileMenu" class="navbar-menu md:hidden">
+            <div class="flex justify-end mb-6">
+                <button id="menuClose" class="text-gray-500 focus:outline-none">
+                    <i class="fas fa-times text-2xl"></i>
+                </button>
+            </div>
+            <div class="flex flex-col space-y-4">
+                <a href="#home" class="font-medium hover:text-primary transition py-2">Home</a>
+                <a href="#about" class="font-medium hover:text-primary transition py-2">About</a>
+                <a href="#programs" class="font-medium hover:text-primary transition py-2">Programs</a>
+                <a href="#facilities" class="font-medium hover:text-primary transition py-2">Facilities</a>
+                <a href="#faculty" class="font-medium hover:text-primary transition py-2">Faculty</a>
+                <a href="#admissions" class="font-medium hover:text-primary transition py-2">Admissions</a>
+                <a href="#library" class="font-medium hover:text-primary transition">Library</a>
+                <a href="#contact" class="font-medium hover:text-primary transition py-2">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-section flex items-center justify-center text-white pt-20">
+        <div class="container mx-auto px-6 py-20 text-center">
+            <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 animate-fade-in">Welcome to Government Polytechnic Adityapur</h1>
+            <p class="text-xl md:text-2xl max-w-3xl mx-auto mb-10 animate-fade-in" style="animation-delay: 0.2s">Empowering Students with Quality Technical Education Since 1984</p>
+            <div class="flex flex-col md:flex-row justify-center gap-4 animate-fade-in" style="animation-delay: 0.4s">
+                <a href="#programs" class="bg-primary hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg transition">Explore Programs</a>
+                <a href="#admissions" class="bg-secondary hover:bg-yellow-500 text-white font-bold py-3 px-6 rounded-lg transition">Apply Now</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Announcement Banner -->
+    <div class="bg-secondary text-white py-3">
+        <div class="container mx-auto px-6">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center">
+                    <i class="fas fa-bullhorn mr-3"></i>
+                 <marquee>  <p class="font-medium"> area or page where important announcements, updates, or legal information are presented. It can also be used to provide information about website maintenance, new features, or changes to terms and conditions. </p>
+                    </marquee> 
+                </div>
+                <a href="#admissions" class="underline hover:no-underline ml-4">Learn More</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- About Section -->
+    <section id="about" class="py-16 bg-gray-50">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-primary mb-3">About Our Institution</h2>
+                <div class="w-24 h-1 bg-secondary mx-auto mb-6"></div>
+                <p class="text-gray-600 max-w-3xl mx-auto">Established in 1984, Government Polytechnic Adityapur has been a center of excellence for technical education in Jharkhand.</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-10 items-center">
+                <div>
+                    <h3 class="text-2xl font-semibold mb-4">Our Vision</h3>
+                    <p class="text-gray-700 mb-6">To be a premier institution for technical education that nurtures innovative minds and creates skilled professionals who contribute to national development.</p>
+
+                    <h3 class="text-2xl font-semibold mb-4">Our Mission</h3>
+                    <ul class="list-disc pl-5 text-gray-700 mb-6">
+                        <li class="mb-2">Provide quality technical education with state-of-the-art facilities</li>
+                        <li class="mb-2">Foster industry-academia collaboration for practical learning</li>
+                        <li class="mb-2">Promote innovation, research, and entrepreneurship</li>
+                        <li class="mb-2">Develop ethically responsible technical professionals</li>
+                        <li>Ensure inclusive education with focus on underprivileged sections</li>
+                    </ul>
+
+                    <div class="flex flex-wrap gap-4 mt-8">
+                        <div class="bg-white p-4 rounded-lg shadow-md flex items-center flex-1 min-w-[180px]">
+                            <div class="bg-blue-100 p-3 rounded-full mr-4">
+                                <i class="fas fa-user-graduate text-primary text-xl"></i>
+                            </div>
+                            <div>
+                                <div class="text-3xl font-bold text-primary">8,000+</div>
+                                <div class="text-gray-600">Alumni</div>
+                            </div>
+                        </div>
+                        <div class="bg-white p-4 rounded-lg shadow-md flex items-center flex-1 min-w-[180px]">
+                            <div class="bg-blue-100 p-3 rounded-full mr-4">
+                                <i class="fas fa-chalkboard-teacher text-primary text-xl"></i>
+                            </div>
+                            <div>
+                                <div class="text-3xl font-bold text-primary">50+</div>
+                                <div class="text-gray-600">Faculty</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="bg-white p-4 rounded-lg shadow-md">
+                        <div class="bg-blue-100 p-4 rounded-lg mb-4">
+                            <i class="fas fa-medal text-primary text-4xl"></i>
+                        </div>
+                        <h4 class="text-xl font-semibold mb-2">Excellence</h4>
+                        <p class="text-gray-600">Commitment to highest standards in education and research</p>
+                    </div>
+                    <div class="bg-white p-4 rounded-lg shadow-md">
+                        <div class="bg-blue-100 p-4 rounded-lg mb-4">
+                            <i class="fas fa-lightbulb text-primary text-4xl"></i>
+                        </div>
+                        <h4 class="text-xl font-semibold mb-2">Innovation</h4>
+                        <p class="text-gray-600">Encouraging creative thinking and novel solutions</p>
+                    </div>
+                    <div class="bg-white p-4 rounded-lg shadow-md">
+                        <div class="bg-blue-100 p-4 rounded-lg mb-4">
+                            <i class="fas fa-hands-helping text-primary text-4xl"></i>
+                        </div>
+                        <h4 class="text-xl font-semibold mb-2">Integrity</h4>
+                        <p class="text-gray-600">Upholding ethical values and professional conduct</p>
+                    </div>
+                    <div class="bg-white p-4 rounded-lg shadow-md">
+                        <div class="bg-blue-100 p-4 rounded-lg mb-4">
+                            <i class="fas fa-users text-primary text-4xl"></i>
+                        </div>
+                        <h4 class="text-xl font-semibold mb-2">Inclusivity</h4>
+                        <p class="text-gray-600">Ensuring equal opportunities for all students</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Programs Section -->
+    <section id="programs" class="py-16">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-primary mb-3">Academic Programs</h2>
+                <div class="w-24 h-1 bg-secondary mx-auto mb-6"></div>
+                <p class="text-gray-600 max-w-3xl mx-auto">Explore our diverse range of diploma programs designed to prepare students for successful careers in engineering and technology.</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Program Card 1 -->
+                <div class="program-card bg-white rounded-lg shadow-md overflow-hidden transition duration-300">
+                    <div class="h-3 bg-primary"></div>
+                    <div class="p-6">
+                        <div class="text-2xl font-bold mb-3 text-primary">Mechanical Engineering</div>
+                        <p class="text-gray-600 mb-4">Study design, analysis, and manufacturing of mechanical systems with state-of-the-art laboratory facilities.</p>
+                        <div class="flex flex-wrap gap-2 mb-6">
+                            <span class="bg-blue-100 text-primary px-3 py-1 rounded-full text-sm">3 Years</span>
+                            <span class="bg-blue-100 text-primary px-3 py-1 rounded-full text-sm">60 Seats</span>
+                            <span class="bg-blue-100 text-primary px-3 py-1 rounded-full text-sm">AICTE Approved</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <a href="#" class="text-primary font-medium flex items-center">
+                                Learn more <i class="fas fa-arrow-right ml-2"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Program Card 2 -->
+                <div class="program-card bg-white rounded-lg shadow-md overflow-hidden transition duration-300">
+                    <div class="h-3 bg-primary"></div>
+                    <div class="p-6">
+                        <div class="text-2xl font-bold mb-3 text-primary">Electrical Engineering</div>
+                        <p class="text-gray-600 mb-4">Learn about power systems, electrical machines, and electronics with practical training and industrial visits.</p>
+                        <div class="flex flex-wrap gap-2 mb-6">
+                            <span class="bg-blue-100 text-primary px-3 py-1 rounded-full text-sm">3 Years</span>
+                            <span class="bg-blue-100 text-primary px-3 py-1 rounded-full text-sm">60 Seats</span>
+                            <span class="bg-blue-100 text-primary px-3 py-1 rounded-full text-sm">AICTE Approved</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <a href="#" class="text-primary font-medium flex items-center">
+                                Learn more <i class="fas fa-arrow-right ml-2"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Program Card 3 -->
+                <div class="program-card bg-white rounded-lg shadow-md overflow-hidden transition duration-300">
+                    <div class="h-3 bg-primary"></div>
+                    <div class="p-6">
+                        <div class="text-2xl font-bold mb-3 text-primary">Computer Science and Engineering</div>
+                        <p class="text-gray-600 mb-4">Master programming, database management, and software development with modern computing laboratories.</p>
+                        <div class="flex flex-wrap gap-2 mb-6">
+                            <span class="bg-blue-100 text-primary px-3 py-1 rounded-full text-sm">3 Years</span>
+                            <span class="bg-blue-100 text-primary px-3 py-1 rounded-full text-sm">60 Seats</span>
+                            <span class="bg-blue-100 text-primary px-3 py-1 rounded-full text-sm">AICTE Approved</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <a href="#" class="text-primary font-medium flex items-center">
+                                Learn more <i class="fas fa-arrow-right ml-2"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Program Card 4 -->
+                <div class="program-card bg-white rounded-lg shadow-md overflow-hidden transition duration-300">
+                    <div class="h-3 bg-primary"></div>
+                    <div class="p-6">
+                        <div class="text-2xl font-bold mb-3 text-primary">Electrical Engineering</div>
+                        <p class="text-gray-600 mb-4"> study, design, and application of technologies using electricity, electronics, and electromagnetism.</p>
+                        <div class="flex flex-wrap gap-2 mb-6">
+                            <span class="bg-blue-100 text-primary px-3 py-1 rounded-full text-sm">3 Years</span>
+                            <span class="bg-blue-100 text-primary px-3 py-1 rounded-full text-sm">60 Seats</span>
+                            <span class="bg-blue-100 text-primary px-3 py-1 rounded-full text-sm">AICTE Approved</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <a href="#" class="text-primary font-medium flex items-center">
+                                Learn more <i class="fas fa-arrow-right ml-2"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Program Card 5 -->
+            
+
+                <!-- Program Card 6 -->
+             
+            </div>
+        </div>
+    </section>
+
+    <!-- Facilities Section -->
+    <section id="facilities" class="py-16 bg-gray-50">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-primary mb-3">Campus Facilities</h2>
+                <div class="w-24 h-1 bg-secondary mx-auto mb-6"></div>
+                <p class="text-gray-600 max-w-3xl mx-auto">Our campus is equipped with modern facilities to provide students with a conducive learning environment and holistic development.</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Facility Card 1 -->
+                <div class="facility-card bg-white rounded-lg shadow-md overflow-hidden">
+                    <div class="h-48 bg-gray-300 overflow-hidden">
+                        <div class="w-full h-full bg-blue-100 flex items-center justify-center">
+                            <i class="fas fa-flask text-6xl text-primary"></i>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-3">Modern Laboratories</h3>
+                        <p class="text-gray-600">Well-equipped laboratories for each discipline with the latest equipment and technology for practical learning and experimentation.</p>
+                    </div>
+                </div>
+
+                <!-- Facility Card 2 -->
+                <div class="facility-card bg-white rounded-lg shadow-md overflow-hidden">
+                    <div class="h-48 bg-gray-300 overflow-hidden">
+                        <div class="w-full h-full bg-blue-100 flex items-center justify-center">
+                            <i class="fas fa-laptop-code text-6xl text-primary"></i>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-3">Computer Center</h3>
+                        <p class="text-gray-600">State-of-the-art computer labs with high-speed internet connectivity, latest software, and digital resources for students.</p>
+                    </div>
+                </div>
+
+                <!-- Facility Card 3 -->
+                <div class="facility-card bg-white rounded-lg shadow-md overflow-hidden">
+                    <div class="h-48 bg-gray-300 overflow-hidden">
+                        <div class="w-full h-full bg-blue-100 flex items-center justify-center">
+                            <i class="fas fa-book text-6xl text-primary"></i>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-3">Library</h3>
+                        <p class="text-gray-600">Comprehensive library with vast collection of books, journals, e-resources, and reading spaces for study and research.</p>
+                    </div>
+                </div>
+
+                <!-- Facility Card 4 -->
+                <div class="facility-card bg-white rounded-lg shadow-md overflow-hidden">
+                    <div class="h-48 bg-gray-300 overflow-hidden">
+                        <div class="w-full h-full bg-blue-100 flex items-center justify-center">
+                            <i class="fas fa-hotel text-6xl text-primary"></i>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-3">Hostels</h3>
+                        <p class="text-gray-600">Separate hostels for boys and girls with comfortable accommodation, mess facilities, and security for outstation students.</p>
+                    </div>
+                </div>
+
+                <!-- Facility Card 5 -->
+                <div class="facility-card bg-white rounded-lg shadow-md overflow-hidden">
+                    <div class="h-48 bg-gray-300 overflow-hidden">
+                        <div class="w-full h-full bg-blue-100 flex items-center justify-center">
+                            <i class="fas fa-futbol text-6xl text-primary"></i>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-3">Sports Complex</h3>
+                        <p class="text-gray-600">Indoor and outdoor sports facilities including cricket ground, basketball court, badminton court, and gymnasium.</p>
+                    </div>
+                </div>
+
+                <!-- Facility Card 6 -->
+                <div class="facility-card bg-white rounded-lg shadow-md overflow-hidden">
+                    <div class="h-48 bg-gray-300 overflow-hidden">
+                        <div class="w-full h-full bg-blue-100 flex items-center justify-center">
+                            <i class="fas fa-briefcase text-6xl text-primary"></i>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-3">Training & Placement Cell</h3>
+                        <p class="text-gray-600">Dedicated cell for campus placements, industrial training, career counseling, and industry-institute interaction.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Faculty Section -->
+   <section id="faculty" class="py-16">
+    <div class="container mx-auto px-6">
+        <div class="text-center mb-12">
+            <h2 class="text-3xl font-bold text-primary mb-3">Our Faculty</h2>
+            <div class="w-24 h-1 bg-secondary mx-auto mb-6"></div>
+            <p class="text-gray-600 max-w-3xl mx-auto">Our institution takes pride in its highly qualified and experienced faculty members who are dedicated to academic excellence and student development.</p>
+        </div>
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <!-- Faculty Card 1 -->
+            <div class="bg-white rounded-lg shadow-md overflow-hidden text-center">
+                <!-- Div for Image -->
+                <div class="h-48 flex items-center justify-center">
+                    <img src="photos/sp.jpg" alt="Dr. Srikant Prasad" class="w-full h-full object-cover">
+                </div>
+                
+                <!-- Div for Name and Content -->
+                <div class="p-6">
+                    <h3 class="text-xl font-bold mb-1">Dr. Srikant Prasad</h3>
+                    <p class="text-gray-500 mb-3">HOD-cum-principal</p>
+                    <p class="text-gray-600 mb-4">Ph.D. in Electrical Engineering with 25+ years of teaching and research experience.</p>
+                    <div class="flex justify-center space-x-3">
+                        <a href="#" class="text-primary hover:text-blue-800"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" class="text-primary hover:text-blue-800"><i class="fas fa-envelope"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Faculty Card 2 -->
+            <div class="bg-white rounded-lg shadow-md overflow-hidden text-center">
+                <!-- Div for Image -->
+                <div class="h-48 flex items-center justify-center">
+                    <img src="photos/sd.jpg" alt="Dr. S.D Ram" class="w-full h-full object-cover">
+                </div>
+                
+                <!-- Div for Name and Content -->
+                <div class="p-6">
+                    <h3 class="text-xl font-bold mb-1">Dr. S.D Ram</h3>
+                    <p class="text-gray-500 mb-3">Lecturer(SG)</p>
+                    <p class="text-gray-600 mb-4">Ph.D. in Mechanical Engineering with specialization in Robotics, Thermodynamics, and Renewable Energy</p>
+                    <div class="flex justify-center space-x-3">
+                        <a href="#" class="text-primary hover:text-blue-800"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" class="text-primary hover:text-blue-800"><i class="fas fa-envelope"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Faculty Card 3 -->
+            <div class="bg-white rounded-lg shadow-md overflow-hidden text-center">
+                <!-- Div for Image -->
+                <div class="h-48 flex items-center justify-center">
+                    <img src="photos/rru.jpg" alt="MR. Rewati Raman Upadhayay" class="w-full h-full object-cover">
+                </div>
+                
+                <!-- Div for Name and Content -->
+                <div class="p-6">
+                    <h3 class="text-xl font-bold mb-1">MR. Rewati Raman Upadhayay</h3>
+                    <p class="text-gray-500 mb-3">Lecturer(SG)</p>
+                    <p class="text-gray-600 mb-4">M.Tech with 15+ years of teaching experience and industry collaborations.</p>
+                    <div class="flex justify-center space-x-3">
+                        <a href="#" class="text-primary hover:text-blue-800"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" class="text-primary hover:text-blue-800"><i class="fas fa-envelope"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Faculty Card 4 -->
+            <div class="bg-white rounded-lg shadow-md overflow-hidden text-center">
+                <!-- Div for Image -->
+                <div class="h-48 flex items-center justify-center">
+                    <img src="photos/kunal_sir.webp" alt="Kunal Mahto" class="w-full h-full object-cover">
+                </div>
+                
+                <!-- Div for Name and Content -->
+                <div class="p-6">
+                    <h3 class="text-xl font-bold mb-1">Kunal Mahto</h3>
+                    <p class="text-gray-500 mb-3">HOD, Computer Science and Engineering</p>
+                    <p class="text-gray-600 mb-4">Ph.D. in Computer Science with specialization in AI and Machine Learning.</p>
+                    <div class="flex justify-center space-x-3">
+                        <a href="#" class="text-primary hover:text-blue-800"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" class="text-primary hover:text-blue-800"><i class="fas fa-envelope"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="text-center mt-10">
+            <a href="faculties.html" class="inline-block bg-primary hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg transition">View All Faculty</a>
+        </div>
+    </div>
+</section>
+
+
+
+
+    <!-- Admissions Section -->
+    <section id="admissions" class="py-16 bg-primary text-white">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold mb-3">Admissions</h2>
+                <div class="w-24 h-1 bg-secondary mx-auto mb-6"></div>
+                <p class="max-w-3xl mx-auto">Join our institution for quality technical education and a bright future. Applications are now open for the academic year 2023-24.</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-10">
+                <div>
+                    <h3 class="text-2xl font-semibold mb-6">Admission Process</h3>
+                    <div class="space-y-6">
+                        <div class="flex items-start">
+                            <div class="bg-secondary text-white rounded-full w-8 h-8 flex items-center justify-center mt-1 flex-shrink-0">1</div>
+                            <div class="ml-4">
+                                <h4 class="font-semibold text-xl mb-2">Entrance Examination</h4>
+                                <p>Candidates must qualify the Jharkhand Polytechnic Entrance Test (JPET) conducted by the Jharkhand Combined Entrance Competitive Examination Board (JCECEB).</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="bg-secondary text-white rounded-full w-8 h-8 flex items-center justify-center mt-1 flex-shrink-0">2</div>
+                            <div class="ml-4">
+                                <h4 class="font-semibold text-xl mb-2">Counseling</h4>
+                                <p>Based on the rank obtained in JPET, candidates are called for counseling where they can choose their preferred branch as per the availability.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="bg-secondary text-white rounded-full w-8 h-8 flex items-center justify-center mt-1 flex-shrink-0">3</div>
+                            <div class="ml-4">
+                                <h4 class="font-semibold text-xl mb-2">Document Verification</h4>
+                                <p>Selected candidates need to submit all required documents for verification including academic certificates, domicile certificate, and category certificates if applicable.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="bg-secondary text-white rounded-full w-8 h-8 flex items-center justify-center mt-1 flex-shrink-0">4</div>
+                            <div class="ml-4">
+                                <h4 class="font-semibold text-xl mb-2">Fee Payment</h4>
+                                <p>After successful verification, candidates need to pay the admission fee to confirm their seat in the allotted branch.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="text-2xl font-semibold mb-6">Eligibility Criteria</h3>
+                    <div class="bg-white bg-opacity-10 p-6 rounded-lg mb-8">
+                        <ul class="space-y-3">
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-secondary mr-3 mt-1"></i>
+                                <span>Candidate must have passed 10th/Matriculation with minimum 35% marks (relaxation as per government norms for reserved categories).</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-secondary mr-3 mt-1"></i>
+                                <span>Mathematics and Science are compulsory subjects in 10th class.</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-secondary mr-3 mt-1"></i>
+                                <span>Age limit: Minimum 15 years as on 1st July of the admission year.</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-secondary mr-3 mt-1"></i>
+                                <span>Candidate must be a resident of Jharkhand (For state quota seats).</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <h3 class="text-2xl font-semibold mb-6">Important Dates</h3>
+                    <div class="bg-white bg-opacity-10 p-6 rounded-lg">
+                        <div class="space-y-4">
+                            <div class="flex justify-between">
+                                <span>JPET Application Start Date</span>
+                                <span class="font-semibold">May 1, 2023</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span>JPET Application End Date</span>
+                                <span class="font-semibold">June 15, 2023</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span>JPET Exam Date</span>
+                                <span class="font-semibold">July 5, 2023</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span>Result Declaration</span>
+                                <span class="font-semibold">July 25, 2023</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span>Counseling Start Date</span>
+                                <span class="font-semibold">August 5, 2023</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span>Classes Begin</span>
+                                <span class="font-semibold">September 1, 2023</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center mt-12">
+                <a href="Brochure.pdf" download class="inline-block bg-secondary hover:bg-yellow-500 text-white font-bold py-3 px-6 rounded-lg transition">Download Admission Brochure</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- library-->
+   
+    <section id="library" class="py-12 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center maroon-text mb-8">Library Management System</h2>
+            <p class="text-center text-gray-600 mb-12 max-w-3xl mx-auto">Access our extensive collection of books, journals, and digital resources. Search, reserve, and manage your library activities all in one place.</p>
+            <div class="text-center mt-10">
+                <a href="library.html" class="inline-block bg-primary hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg transition">View All Books</a>
+            </div>
+        </section>
+
+         <!-- Student Performance System -->
+    <section id="performance" class="py-12 bg-gray-100">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center maroon-text mb-8">Student Performance System</h2>
+            <p class="text-center text-gray-600 mb-12 max-w-3xl mx-auto">Track your academic progress, attendance, and performance analytics. Get insights to improve your learning outcomes.</p>
+            
+            <!-- Login Required Notice -->
+            <div class="max-w-5xl mx-auto bg-white rounded-lg shadow-md p-6 mb-8">
+                <div class="flex flex-col md:flex-row items-center justify-between">
+                    <div class="flex items-center mb-4 md:mb-0">
+                        <i class="fas fa-lock text-4xl maroon-text mr-4"></i>
+                        <div>
+                            <h3 class="text-xl font-semibold">Student Login Required</h3>
+                            <p class="text-gray-600">Please log in to access your performance dashboard.</p>
+                        </div>
+                    </div>
+                    <a href="login32.html" class="btn-primary px-6 py-2 rounded">Login Now</a>
+                </div>
+            </div>
+            
+           
+    
+
+    <!-- News & Events Section -->
+    <section class="py-16">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-primary mb-3">News & Events</h2>
+                <div class="w-24 h-1 bg-secondary mx-auto mb-6"></div>
+                <p class="text-gray-600 max-w-3xl mx-auto">Stay updated with the latest happenings, events, and achievements at Government Polytechnic Adityapur.</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- News Card 1 -->
+                <div class="news-card bg-white rounded-lg shadow-md overflow-hidden">
+                    <div class="p-6">
+                        <div class="flex justify-between items-center mb-4">
+                            <span class="bg-blue-100 text-primary px-3 py-1 rounded-full text-sm">Event</span>
+                            <span class="text-gray-500 text-sm">July 15, 2025</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3">Annual Technical Symposium 'TechnoFest 2025'</h3>
+                        <p class="text-gray-600 mb-4">The department of Computer Science is organizing the annual technical symposium 'TechnoFest 2023' on August 10-12, 2023. Students can participate in various technical competitions and workshops.</p>
+                        <a href="#" class="text-primary font-medium flex items-center">
+                            Read more <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- News Card 2 -->
+                <div class="news-card bg-white rounded-lg shadow-md overflow-hidden">
+                    <div class="p-6">
+                        <div class="flex justify-between items-center mb-4">
+                            <span class="bg-blue-100 text-primary px-3 py-1 rounded-full text-sm">News</span>
+                            <span class="text-gray-500 text-sm">July 5, 2023</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3">MoU Signed with Tata Steel for Industry Collaboration</h3>
+                        <p class="text-gray-600 mb-4">Government Polytechnic Adityapur has signed a Memorandum of Understanding with Tata Steel for industry collaboration, internships, and joint research projects.</p>
+                        <a href="#" class="text-primary font-medium flex items-center">
+                            Read more <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- News Card 3 -->
+                <div class="news-card bg-white rounded-lg shadow-md overflow-hidden">
+                    <div class="p-6">
+                        <div class="flex justify-between items-center mb-4">
+                            <span class="bg-blue-100 text-primary px-3 py-1 rounded-full text-sm">Achievement</span>
+                            <span class="text-gray-500 text-sm">June 28, 2023</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3">Students Win State-Level Robotics Competition</h3>
+                        <p class="text-gray-600 mb-4">A team of students from Mechanical and Electrical Engineering departments has won the first prize in the State-Level Robotics Competition held at BIT Mesra.</p>
+                        <a href="#" class="text-primary font-medium flex items-center">
+                            Read more <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center mt-10">
+                <a href="#" class="inline-block bg-primary hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg transition">View All News & Events</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-16 bg-gray-50">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-primary mb-3">Contact Us</h2>
+                <div class="w-24 h-1 bg-secondary mx-auto mb-6"></div>
+                <p class="text-gray-600 max-w-3xl mx-auto">Have questions? Feel free to reach out to us. We're here to help and provide you with all the information you need.</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-10">
+                <div>
+                    <div class="bg-white rounded-lg shadow-md p-6 mb-6">
+                        <h3 class="text-xl font-bold mb-4">Contact Information</h3>
+                        <div class="space-y-4">
+                            <div class="flex items-start">
+                                <div class="bg-blue-100 p-3 rounded-full mr-4">
+                                    <i class="fas fa-map-marker-alt text-primary"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-medium">Address</h4>
+                                    <p class="text-gray-600">Government Polytechnic Adityapur, Gamharia, Jamshedpur, Jharkhand - 832108</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <div class="bg-blue-100 p-3 rounded-full mr-4">
+                                    <i class="fas fa-phone-alt text-primary"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-medium">Phone</h4>
+                                    <p class="text-gray-600">+91 1234567890, +91 9876543210</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <div class="bg-blue-100 p-3 rounded-full mr-4">
+                                    <i class="fas fa-envelope text-primary"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-medium">Email</h4>
+                                    <p class="text-gray-600"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="4535372c2b262c35242905223524212c313c243530376b24266b2c2b">[email&#160;protected]</a>, <a href="/cdn-cgi/l/email-protection" class="__cf_email__"
+                                            data-cfemail="bcd5d2dad3fcdbccddd8d5c8c5ddccc9ce92dddf92d5d2">[email&#160;protected]</a></p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <div class="bg-blue-100 p-3 rounded-full mr-4">
+                                    <i class="fas fa-clock text-primary"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-medium">Office Hours</h4>
+                                    <p class="text-gray-600">Monday to Friday: 9:00 AM - 5:00 PM<br>Saturday: 9:00 AM - 1:00 PM<br>Sunday: Closed</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mt-6">
+                            <h4 class="font-medium mb-3">Connect With Us</h4>
+                            <div class="flex space-x-4">
+                                <a href="#" class="bg-blue-100 w-10 h-10 rounded-full flex items-center justify-center text-primary hover:bg-blue-200 transition">
+                                    <i class="fab fa-facebook-f"></i>
+                                </a>
+                                <a href="#" class="bg-blue-100 w-10 h-10 rounded-full flex items-center justify-center text-primary hover:bg-blue-200 transition">
+                                    <i class="fab fa-twitter"></i>
+                                </a>
+                                <a href="#" class="bg-blue-100 w-10 h-10 rounded-full flex items-center justify-center text-primary hover:bg-blue-200 transition">
+                                    <i class="fab fa-linkedin-in"></i>
+                                </a>
+                                <a href="#" class="bg-blue-100 w-10 h-10 rounded-full flex items-center justify-center text-primary hover:bg-blue-200 transition">
+                                    <i class="fab fa-instagram"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <div class="bg-white rounded-lg shadow-md p-6">
+                        <h3 class="text-xl font-bold mb-4">Send Us a Message</h3>
+                        <form id="contactForm">
+                            <div class="mb-4">
+                                <label for="name" class="block text-gray-700 mb-2">Your Name</label>
+                                <input type="text" id="name" class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-primary" placeholder="Enter your name" required>
+                            </div>
+                            <div class="mb-4">
+                                <label for="email" class="block text-gray-700 mb-2">Email Address</label>
+                                <input type="email" id="email" class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-primary" placeholder="Enter your email" required>
+                            </div>
+                            <div class="mb-4">
+                                <label for="phone" class="block text-gray-700 mb-2">Phone Number</label>
+                                <input type="tel" id="phone" class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-primary" placeholder="Enter your phone number">
+                            </div>
+                            <div class="mb-4">
+                                <label for="subject" class="block text-gray-700 mb-2">Subject</label>
+                                <input type="text" id="subject" class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-primary" placeholder="Enter subject" required>
+                            </div>
+                            <div class="mb-4">
+                                <label for="message" class="block text-gray-700 mb-2">Message</label>
+                                <textarea id="message" rows="5" class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-primary" placeholder="Type your message here" required></textarea>
+                            </div>
+                            <button type="submit" class="w-full bg-primary hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg transition">Send Message</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-primary text-white pt-12 pb-6">
+        <div class="container mx-auto px-6">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Government Polytechnic<br>Adityapur</h3>
+                    <p class="mb-4">A premier technical institution committed to excellence in education and innovation.</p>
+                    <p class="text-sm">© 2025 Government Polytechnic Adityapur.<br>All Rights Reserved.</p>
+                </div>
+
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#home" class="hover:text-gray-300 transition">Home</a></li>
+                        <li><a href="#about" class="hover:text-gray-300 transition">About Us</a></li>
+                        <li><a href="#programs" class="hover:text-gray-300 transition">Programs</a></li>
+                        <li><a href="#facilities" class="hover:text-gray-300 transition">Facilities</a></li>
+                        <li><a href="#faculty" class="hover:text-gray-300 transition">Faculty</a></li>
+                        <li><a href="#admissions" class="hover:text-gray-300 transition">Admissions</a></li>
+                        <li><a href="#contact" class="hover:text-gray-300 transition">Contact</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Resources</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="hover:text-gray-300 transition">Student Portal</a></li>
+                        <li><a href="#" class="hover:text-gray-300 transition">E-Library</a></li>
+                        <li><a href="#" class="hover:text-gray-300 transition">Academic Calendar</a></li>
+                        <li><a href="#" class="hover:text-gray-300 transition">Examination Results</a></li>
+                        <li><a href="#" class="hover:text-gray-300 transition">Placement Records</a></li>
+                        <li><a href="#" class="hover:text-gray-300 transition">Scholarships</a></li>
+                        <li><a href="#" class="hover:text-gray-300 transition">Anti-Ragging Cell</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Newsletter</h4>
+                    <p class="mb-4">Subscribe to our newsletter to receive updates on latest events, news and opportunities.</p>
+                    <form>
+                        <div class="flex">
+                            <input type="email" placeholder="Your email address" class="px-4 py-2 w-full text-gray-800 rounded-l-md focus:outline-none">
+                            <button type="submit" class="bg-secondary hover:bg-yellow-500 text-white px-4 py-2 rounded-r-md transition">Subscribe</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <div class="border-t border-blue-800 mt-8 pt-6 text-sm text-center text-blue-200">
+                <p>Designed and Developed with ❤️ | Government Polytechnic Adityapur | AICTE Approved</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Login Modal -->
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <div class="flex justify-between items-center mb-6">
+                <h3 class="text-2xl font-bold text-primary">Login</h3>
+                <button id="closeLoginModal" class="text-gray-500 hover:text-gray-700 focus:outline-none">
+                    <i class="fas fa-times text-xl"></i>
+                </button>
+            </div>
+
+            <div class="mb-8">
+                <div class="flex border-b">
+                    <button id="studentLoginTab" class="py-2 px-4 font-medium text-primary border-b-2 border-primary">Student</button>
+                    <button id="facultyLoginTab" class="py-2 px-4 font-medium text-gray-500">Faculty</button>
+                    <button id="adminLoginTab" class="py-2 px-4 font-medium text-gray-500">Admin</button>
+                </div>
+            </div>
+        
+
+
+    <!-- Chatbot -->
+ 
+
+<div class="chatbot-container">
+        <div id="chatbotIcon" class="chatbot-icon">
+            <i class="fas fa-comment-dots text-2xl"></i>
+        </div>
+
+        <div id="chatbotWindow" class="chatbot-window" style="display: none;">
+            <div class="chatbot-header">
+                <div>GP Adityapur Assistant</div>
+                <button id="closeChatbot" class="focus:outline-none">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+
+            <div id="chatbotMessages" class="chatbot-messages">
+                <div class="message bot-message">
+                    Hello! Welcome to Government Polytechnic Adityapur. How can I help you today?
+                </div>
+            </div>
+
+            <div class="chatbot-input-container">
+                <input type="text" id="chatbotInput" class="chatbot-input" placeholder="Type your message...">
+                <button id="chatbotSend" class="chatbot-send">
+                    <i class="fas fa-paper-plane"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+       
+  
+
+
+
+    <!-- JavaScript -->
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+    <script>
+        // Mobile Menu Toggle
+        document.getElementById('menuToggle').addEventListener('click', function() {
+            document.getElementById('mobileMenu').classList.add('active');
+        });
+
+        document.getElementById('menuClose').addEventListener('click', function() {
+            document.getElementById('mobileMenu').classList.remove('active');
+        });
+
+        // Login Modal
+        const loginModal = document.getElementById('loginModal');
+        const loginBtn = document.getElementById('loginBtn');
+        const closeLoginModal = document.getElementById('closeLoginModal');
+
+        loginBtn.addEventListener('click', function() {
+            loginModal.style.display = 'flex';
+        });
+
+        closeLoginModal.addEventListener('click', function() {
+            loginModal.style.display = 'none';
+        });
+
+        window.addEventListener('click', function(event) {
+            if (event.target === loginModal) {
+                loginModal.style.display = 'none';
+            }
+        });
+
+        // Login Tabs
+        const studentLoginTab = document.getElementById('studentLoginTab');
+        const facultyLoginTab = document.getElementById('facultyLoginTab');
+        const adminLoginTab = document.getElementById('adminLoginTab');
+
+        studentLoginTab.addEventListener('click', function() {
+            studentLoginTab.classList.add('text-primary', 'border-b-2', 'border-primary');
+            studentLoginTab.classList.remove('text-gray-500');
+            facultyLoginTab.classList.remove('text-primary', 'border-b-2', 'border-primary');
+            facultyLoginTab.classList.add('text-gray-500');
+            adminLoginTab.classList.remove('text-primary', 'border-b-2', 'border-primary');
+            adminLoginTab.classList.add('text-gray-500');
+        });
+
+        facultyLoginTab.addEventListener('click', function() {
+            facultyLoginTab.classList.add('text-primary', 'border-b-2', 'border-primary');
+            facultyLoginTab.classList.remove('text-gray-500');
+            studentLoginTab.classList.remove('text-primary', 'border-b-2', 'border-primary');
+            studentLoginTab.classList.add('text-gray-500');
+            adminLoginTab.classList.remove('text-primary', 'border-b-2', 'border-primary');
+            adminLoginTab.classList.add('text-gray-500');
+        });
+
+        adminLoginTab.addEventListener('click', function() {
+            adminLoginTab.classList.add('text-primary', 'border-b-2', 'border-primary');
+            adminLoginTab.classList.remove('text-gray-500');
+            studentLoginTab.classList.remove('text-primary', 'border-b-2', 'border-primary');
+            studentLoginTab.classList.add('text-gray-500');
+            facultyLoginTab.classList.remove('text-primary', 'border-b-2', 'border-primary');
+            facultyLoginTab.classList.add('text-gray-500');
+        });
+
+        // Login Form Validation
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const loginId = document.getElementById('loginId').value;
+            const password = document.getElementById('loginPassword').value;
+
+            // Basic validation
+            if (loginId && password) {
+                // This is where you would normally send a request to the server
+                // For demonstration, we'll just show an alert
+                alert('Login successful! Redirecting to dashboard...');
+                loginModal.style.display = 'none';
+            } else {
+                alert('Please enter both ID and password');
+            }
+        });
+
+        // Contact Form Validation
+        ('chatbotMessages');
+        const chatbotInput = document.getElementById('chatbotInput');
+        const chatbotSend = document.getElementById('chatbotSend');
+
+        chatbotIcon.addEventListener('click', function() {
+            chatbotWindow.style.display = chatbotWindow.style.display === 'none' ? 'flex' : 'none';
+        });
+
+        closeChatbot.addEventListener('click', function() {
+            chatbotWindow.style.display = 'none';
+        });
+
+        function sendMessage() {
+            const message = chatbotInput.value.trim();
+            if (message) {
+                // Add user message
+                const userMessageElement = document.credocument.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const subject = document.getElementById('subject').value;
+            const message = document.getElementById('message').value;
+
+            // Basic validation
+            if (name && email && subject && message) {
+                // This is where you would normally send a request to the server
+                // For demonstration, we'll just show an alert
+                alert('Message sent successfully! We will get back to you soon.');
+                document.getElementById('contactForm').reset();
+            } else {
+                alert('Please fill all required fields');
+            }
+        });
+
+        // Chatbot Functionality
+         const chatbotIcon = document.getElementById('chatbotIcon');
+        const chatbotWindow = document.getElementById('chatbotWindow');
+        const closeChatbot = document.getElementById('closeChatbot');
+        const chatbotMessages = document.getElementById('chatbotMessages');
+        const chatbotInput = document.getElementById('chatbotInput');
+        const chatbotSend = document.getElementById('chatbotSend');
+
+        chatbotIcon.addEventListener('click', function() {
+            chatbotWindow.style.display = chatbotWindow.style.display === 'none' ? 'flex' : 'none';
+        });
+
+        closeChatbot.addEventListener('click', function() {
+            chatbotWindow.style.display = 'none';
+        });
+
+        function sendMessage() {
+            const message = chatbotInput.value.trim();
+            if (message) {
+                // Add user message
+                const userMessageElement = document.createElement('div');
+                userMessageElement.classList.add('message', 'user-message');
+                userMessageElement.textContent = message;
+                chatbotMessages.appendChild(userMessageElement);
+
+                // Clear input
+                chatbotInput.value = '';
+
+                // Scroll to bottom
+                chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+
+                // Simulate bot response (in a real application, this would be an API call)
+                setTimeout(function() {
+                    const botResponse = getBotResponse(message);
+                    const botMessageElement = document.createElement('div');
+                    botMessageElement.classList.add('message', 'bot-message');
+                    botMessageElement.textContent = botResponse;
+                    chatbotMessages.appendChild(botMessageElement);
+
+                    // Scroll to bottom again
+                    chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+                }, 1000);
+            }
+        }
+
+        chatbotSend.addEventListener('click', sendMessage);
+
+        chatbotInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                sendMessage();
+            }
+        });
+
+        // Simple bot response function (would be much more sophisticated in a real application)
+        function getBotResponse(message) {
+            message = message.toLowerCase();
+
+            if (message.includes('admission') || message.includes('apply')) {
+                return "Admissions for the 2023-24 academic year are open until August 15, 2023. You need to qualify the JPET entrance exam. Please visit the Admissions section for more details.";
+            } else if (message.includes('course') || message.includes('program')) {
+                return "We offer diploma programs in Mechanical, Electrical, Civil, Computer Science, Electronics, and Production Engineering. Each program is 3 years long. Please visit the Programs section for more details.";
+            } else if (message.includes('fee') || message.includes('cost')) {
+                return "The tuition fee is approximately Rs. 12,000 per year for general category students. There are additional fees for hostel, mess, etc. Please contact the administrative office for the detailed fee structure.";
+            } else if (message.includes('contact') || message.includes('address')) {
+                return "You can contact us at +91 1234567890 or email at info@gpadityapur.ac.in. Our address is Government Polytechnic Adityapur, Gamharia, Jamshedpur, Jharkhand - 832108.";
+            } else if (message.includes('placement') || message.includes('job')) {
+                return "We have a dedicated Training & Placement Cell that helps students with internships and job placements. Our students are placed in reputed companies like Tata Steel, SAIL, TCS, and many more.";
+            } else if (message.includes('hostel') || message.includes('accommodation')) {
+                return "Yes, we provide hostel facilities for both boys and girls. The hostels are located within the campus and have all necessary amenities including mess, Wi-Fi, etc.";
+            } else if (message.includes('thank')) {
+                return "You're welcome! Feel free to ask if you have any other questions.";
+            } else if (message.includes('hello') || message.includes('hi')) {
+                return "Hello! How can I assist you today?";
+            } else {
+                return "I'm sorry, I don't have specific information about that. Please contact our administrative office for more details or ask me about admissions, programs, fees, placements, or campus facilities.";
+            }
+        }
+       
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+
+                const target = document.querySelector(this.getAttribute('href'));
+
+                if (target) {
+                    window.scrollTo({
+                        top: target.offsetTop - 80, // Adjust for fixed header
+                        behavior: 'smooth'
+                    });
+
+                    // Close mobile menu if open
+                    document.getElementById('mobileMenu').classList.remove('active');
+                }
+            });
+        });
+
+        // Backend simulation for login (In a real application, this would be server-side code)
+        // This is a simplified example for demonstration purposes
+        class User {
+            constructor(id, password, role, name) {
+                this.id = id;
+                this.password = password;
+                this.role = role;
+                this.name = name;
+            }
+
+            verifyPassword(inputPassword) {
+                return this.password === inputPassword;
+            }
+        }
+
+        // Sample user database
+        const users = [
+            new User('ST001', 'password123', 'student', 'Rahul Kumar'),
+            new User('ST002', 'password123', 'student', 'Priya Singh'),
+            new User('FAC001', 'faculty123', 'faculty', 'Dr. Rajesh Kumar'),
+            new User('FAC002', 'faculty123', 'faculty', 'Dr. Sunita Sharma'),
+            new User('ADM001', 'admin123', 'admin', 'Admin User')
+        ];
+
+        // Function to authenticate user
+        function authenticateUser(userId, password) {
+            const user = users.find(u => u.id === userId);
+
+            if (user && user.verifyPassword(password)) {
+                return {
+                    success: true,
+                    user: {
+                        id: user.id,
+                        name: user.name,
+                        role: user.role
+                    }
+                };
+            } else {
+                return {
+                    success: false,
+                    message: 'Invalid ID or password'
+                };
+            }
+        }
+
+        // Add animation for scroll reveal
+        function revealOnScroll() {
+            const reveals = document.querySelectorAll('.animate-fade-in');
+
+            for (let i = 0; i < reveals.length; i++) {
+                const windowHeight = window.innerHeight;
+                const elementTop = reveals[i].getBoundingClientRect().top;
+                const elementVisible = 150;
+
+                if (elementTop < windowHeight - elementVisible) {
+                    reveals[i].style.opacity = '1';
+                    reveals[i].style.transform = 'translateY(0)';
+                } else {
+                    reveals[i].style.opacity = '0';
+                    reveals[i].style.transform = 'translateY(20px)';
+                }
+            }
+        }
+
+        window.addEventListener('scroll', revealOnScroll);
+        window.addEventListener('load', revealOnScroll);
+    </script>
+    
+</body>
+</html>

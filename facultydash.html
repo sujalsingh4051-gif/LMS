@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GP Adityapur - Faculty Management Panel</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+
+        .card-hover:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+
+<body class="bg-gray-50">
+    <!-- Header -->
+    <header class="gradient-bg text-white py-6 mb-8">
+        <div class="container mx-auto px-6">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-4">
+                    <i class="fas fa-graduation-cap text-3xl"></i>
+                    <div>
+                        <h1 class="text-3xl font-bold">GP Adityapur</h1>
+                        <p class="text-blue-100">Faculty Management System</p>
+                    </div>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <div class="text-right">
+                        <p class="text-sm text-blue-100">Welcome Back</p>
+                        <p class="font-semibold">Faculity 1</p>
+                    </div>
+                    <a href="login32.html"><button @click="logout()" class="bg-red-600 hover:bg-red-700 px-3 py-1 rounded text-sm">
+                    <i class="fas fa-sign-out-alt mr-1"></i>Logout
+                </button></a>
+                    <i class="fas fa-user-circle text-2xl"></i>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="container mx-auto px-6 pb-8">
+        <!-- Dashboard Stats -->
+        <div class="grid grid-cols-4 gap-6 mb-8">
+            <div class="bg-white rounded-lg shadow-md p-6 card-hover">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <p class="text-gray-600 text-sm">Total Students</p>
+                        <p class="text-3xl font-bold text-blue-600">1,247</p>
+                    </div>
+                    <i class="fas fa-users text-blue-600 text-2xl"></i>
+                </div>
+            </div>
+            <div class="bg-white rounded-lg shadow-md p-6 card-hover">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <p class="text-gray-600 text-sm">Faculty Members</p>
+                        <p class="text-3xl font-bold text-green-600">89</p>
+                    </div>
+                    <i class="fas fa-chalkboard-teacher text-green-600 text-2xl"></i>
+                </div>
+            </div>
+            <div class="bg-white rounded-lg shadow-md p-6 card-hover">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <p class="text-gray-600 text-sm">Active Courses</p>
+                        <p class="text-3xl font-bold text-purple-600">156</p>
+                    </div>
+                    <i class="fas fa-book text-purple-600 text-2xl"></i>
+                </div>
+            </div>
+            <div class="bg-white rounded-lg shadow-md p-6 card-hover">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <p class="text-gray-600 text-sm">Upcoming Exams</p>
+                        <p class="text-3xl font-bold text-red-600">12</p>
+                    </div>
+                    <i class="fas fa-calendar-alt text-red-600 text-2xl"></i>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Content Grid -->
+        <div class="grid grid-cols-2 gap-8">
+            <!-- Left Column -->
+            <div class="space-y-8">
+                <!-- Academic Management -->
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-6 flex items-center">
+                        <i class="fas fa-university text-blue-600 mr-3"></i> Academic Management
+                    </h2>
+
+                    <!-- Course Management -->
+                    <div class="mb-8">
+                        <h3 class="text-lg font-semibold text-gray-700 mb-4 flex items-center">
+                            <i class="fas fa-book-open text-green-600 mr-2"></i> Course Management
+                        </h3>
+                        <div class="grid grid-cols-2 gap-4">
+                            <button class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-3 rounded-lg transition-colors">
+                                <i class="fas fa-plus mr-2"></i>Add Course
+                            </button>
+                            <button class="bg-green-500 hover:bg-green-600 text-white px-4 py-3 rounded-lg transition-colors">
+                                <i class="fas fa-edit mr-2"></i>Edit Courses
+                            </button>
+                            <button class="bg-purple-500 hover:bg-purple-600 text-white px-4 py-3 rounded-lg transition-colors">
+                                <i class="fas fa-user-tie mr-2"></i>Assign Faculty
+                            </button>
+                            <button class="bg-orange-500 hover:bg-orange-600 text-white px-4 py-3 rounded-lg transition-colors">
+                                <i class="fas fa-upload mr-2"></i>Upload Materials
+                            </button>
+                        </div>
+
+                        <div class="mt-4 bg-gray-50 rounded-lg p-4">
+                            <h4 class="font-semibold text-gray-700 mb-3">Recent Course Activities</h4>
+                            <div class="space-y-2">
+                                <div class="flex items-center justify-between text-sm">
+                                    <span>Data Structures & Algorithms</span>
+                                    <span class="text-green-600">✓ Materials Updated</span>
+                                </div>
+                                <div class="flex items-center justify-between text-sm">
+                                    <span>Database Management Systems</span>
+                                    <span class="text-blue-600">Faculty Assigned</span>
+                                </div>
+                                <div class="flex items-center justify-between text-sm">
+                                    <span>Machine Learning</span>
+                                    <span class="text-orange-600">Pending Review</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Class Scheduling -->
+                    <div class="mb-8">
+                        <h3 class="text-lg font-semibold text-gray-700 mb-4 flex items-center">
+                            <i class="fas fa-calendar text-indigo-600 mr-2"></i> Class Scheduling
+                        </h3>
+                        <div class="grid grid-cols-2 gap-4">
+                            <button class="bg-indigo-500 hover:bg-indigo-600 text-white px-4 py-3 rounded-lg transition-colors">
+                                <i class="fas fa-calendar-plus mr-2"></i>Create Timetable
+                            </button>
+                            <button class="bg-teal-500 hover:bg-teal-600 text-white px-4 py-3 rounded-lg transition-colors">
+                                <i class="fas fa-door-open mr-2"></i>Room Allocation
+                            </button>
+                        </div>
+
+                        <div class="mt-4 bg-gray-50 rounded-lg p-4">
+                            <h4 class="font-semibold text-gray-700 mb-3">Today's Schedule</h4>
+                            <div class="space-y-2">
+                                <div class="flex items-center justify-between text-sm">
+                                    <span>9:00 AM - Computer Networks (Room 101)</span>
+                                    <span class="text-green-600">Active</span>
+                                </div>
+                                <div class="flex items-center justify-between text-sm">
+                                    <span>11:00 AM - Software Engineering (Room 205)</span>
+                                    <span class="text-blue-600">Upcoming</span>
+                                </div>
+                                <div class="flex items-center justify-between text-sm">
+                                    <span>2:00 PM - Data Mining (Lab 3)</span>
+                                    <span class="text-gray-600">Scheduled</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Attendance Tracking -->
+                    <div>
+                        <h3 class="text-lg font-semibold text-gray-700 mb-4 flex items-center">
+                            <i class="fas fa-clipboard-check text-red-600 mr-2"></i> Attendance Tracking
+                        </h3>
+                        <div class="grid grid-cols-2 gap-4">
+                            <button class="bg-red-500 hover:bg-red-600 text-white px-4 py-3 rounded-lg transition-colors">
+                                <i class="fas fa-check mr-2"></i>Mark Attendance
+                            </button>
+                            <button class="bg-yellow-500 hover:bg-yellow-600 text-white px-4 py-3 rounded-lg transition-colors">
+                                <i class="fas fa-chart-bar mr-2"></i>Generate Reports
+                            </button>
+                        </div>
+
+                        
+                    </div>
+                </div>
+
+                <!-- User Management -->
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-6 flex items-center">
+                        <i class="fas fa-users-cog text-purple-600 mr-3"></i> User Management
+                    </h2>
+
+                    <!-- Student Management -->
+                    <div class="mb-8">
+                        <h3 class="text-lg font-semibold text-gray-700 mb-4 flex items-center">
+                            <i class="fas fa-user-graduate text-blue-600 mr-2"></i> Student Management
+                        </h3>
+                        <div class="grid grid-cols-2 gap-4">
+                            <button class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-3 rounded-lg transition-colors">
+                                <i class="fas fa-user-plus mr-2"></i>Add Student
+                            </button>
+                            <button class="bg-green-500 hover:bg-green-600 text-white px-4 py-3 rounded-lg transition-colors">
+                                <i class="fas fa-edit mr-2"></i>Edit Profiles
+                            </button>
+                            <button class="bg-purple-500 hover:bg-purple-600 text-white px-4 py-3 rounded-lg transition-colors">
+                                <i class="fas fa-clipboard-list mr-2"></i>Course Enrollment
+                            </button>
+                            <button class="bg-orange-500 hover:bg-orange-600 text-white px-4 py-3 rounded-lg transition-colors">
+                                <i class="fas fa-file-alt mr-2"></i>Academic Records
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Faculty Management -->
+                    <div class="mb-8">
+                        <h3 class="text-lg font-semibold text-gray-700 mb-4 flex items-center">
+                            <i class="fas fa-chalkboard-teacher text-green-600 mr-2"></i> Faculty Management
+                        </h3>
+                        <div class="grid grid-cols-2 gap-4">
+                            <button class="bg-green-500 hover:bg-green-600 text-white px-4 py-3 rounded-lg transition-colors">
+                                <i class="fas fa-user-plus mr-2"></i>Add Faculty
+                            </button>
+                            <button class="bg-indigo-500 hover:bg-indigo-600 text-white px-4 py-3 rounded-lg transition-colors">
+                                <i class="fas fa-tasks mr-2"></i>Assign Duties
+                            </button>
+                            <button class="bg-red-500 hover:bg-red-600 text-white px-4 py-3 rounded-lg transition-colors">
+                                <i class="fas fa-clock mr-2"></i>Track Attendance
+                            </button>
+                            <button class="bg-yellow-500 hover:bg-yellow-600 text-white px-4 py-3 rounded-lg transition-colors">
+                                <i class="fas fa-weight-hanging mr-2"></i>Workload Analysis
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Admin Roles -->
+                    <div>
+                        <h3 class="text-lg font-semibold text-gray-700 mb-4 flex items-center">
+                            <i class="fas fa-user-shield text-red-600 mr-2"></i> Admin Roles
+                        </h3>
+                        <div class="bg-gray-50 rounded-lg p-4">
+                            <div class="space-y-3">
+                                <div class="flex items-center justify-between">
+                                    <div class="flex items-center">
+                                        <i class="fas fa-crown text-yellow-500 mr-2"></i>
+                                        <span class="font-medium">Super Admin</span>
+                                    </div>
+                                    <span class="text-sm text-gray-600">Full Access</span>
+                                </div>
+                                <div class="flex items-center justify-between">
+                                    <div class="flex items-center">
+                                        <i class="fas fa-user-tie text-blue-500 mr-2"></i>
+                                        <span class="font-medium">Department Admin</span>
+                                    </div>
+                                    <span class="text-sm text-gray-600">Department Level</span>
+                                </div>
+                                <div class="flex items-center justify-between">
+                                    <div class="flex items-center">
+                                        <i class="fas fa-user-check text-green-500 mr-2"></i>
+                                        <span class="font-medium">Faculty Coordinator</span>
+                                    </div>
+                                    <span class="text-sm text-gray-600">Limited Access</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Column -->
+            <div class="space-y-8">
+                <!-- Examination & Results -->
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-6 flex items-center">
+                        <i class="fas fa-clipboard-list text-red-600 mr-3"></i> Examination & Results
+                    </h2>
+
+                    <!-- Exam Scheduling -->
+                    <div class="mb-8">
+                        <h3 class="text-lg font-semibold text-gray-700 mb-4 flex items-center">
+                            <i class="fas fa-calendar-week text-purple-600 mr-2"></i> Exam Scheduling
+                        </h3>
+                        <div class="grid grid-cols-2 gap-4">
+                            <button class="bg-purple-500 hover:bg-purple-600 text-white px-4 py-3 rounded-lg transition-colors">
+                                <i class="fas fa-plus mr-2"></i>Schedule Exam
+                            </button>
+                            <button class="bg-indigo-500 hover:bg-indigo-600 text-white px-4 py-3 rounded-lg transition-colors">
+                                <i class="fas fa-user-shield mr-2"></i>Assign Invigilators
+                            </button>
+                        </div>
+
+                        <div class="mt-4 bg-gray-50 rounded-lg p-4">
+                            <h4 class="font-semibold text-gray-700 mb-3">Upcoming Exams</h4>
+                            <div class="space-y-2">
+                                <div class="flex items-center justify-between text-sm">
+                                    <span>Mid-Semester - Computer Networks</span>
+                                    <span class="text-blue-600">March 15, 2024</span>
+                                </div>
+                                <div class="flex items-center justify-between text-sm">
+                                    <span>Final - Database Systems</span>
+                                    <span class="text-red-600">March 22, 2024</span>
+                                </div>
+                                <div class="flex items-center justify-between text-sm">
+                                    <span>Internal - Software Engineering</span>
+                                    <span class="text-green-600">March 18, 2024</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Marks Management -->
+                    <div class="mb-8">
+                        <h3 class="text-lg font-semibold text-gray-700 mb-4 flex items-center">
+                            <i class="fas fa-edit text-green-600 mr-2"></i> Marks Management
+                        </h3>
+                        <div class="grid grid-cols-2 gap-4">
+                            <button class="bg-green-500 hover:bg-green-600 text-white px-4 py-3 rounded-lg transition-colors">
+                                <i class="fas fa-keyboard mr-2"></i>Enter Marks
+                            </button>
+                            <button class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-3 rounded-lg transition-colors">
+                                <i class="fas fa-upload mr-2"></i>Upload Marks
+                            </button>
+                            <button class="bg-orange-500 hover:bg-orange-600 text-white px-4 py-3 rounded-lg transition-colors">
+                                <i class="fas fa-file-pdf mr-2"></i>Generate Reports
+                            </button>
+                            <button class="bg-red-500 hover:bg-red-600 text-white px-4 py-3 rounded-lg transition-colors">
+                                <i class="fas fa-certificate mr-2"></i>Report Cards
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Results Publication -->
+                    <div class="mb-8">
+                        <h3 class="text-lg font-semibold text-gray-700 mb-4 flex items-center">
+                            <i class="fas fa-globe text-blue-600 mr-2"></i> Results Publication
+                        </h3>
+                        <div class="grid grid-cols-2 gap-4">
+                            <button class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-3 rounded-lg transition-colors">
+                                <i class="fas fa-eye mr-2"></i>Preview Results
+                            </button>
+                            <button class="bg-green-500 hover:bg-green-600 text-white px-4 py-3 rounded-lg transition-colors">
+                                <i class="fas fa-share mr-2"></i>Publish Online
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Feedback Management -->
+                    <div>
+                        <h3 class="text-lg font-semibold text-gray-700 mb-4 flex items-center">
+                            <i class="fas fa-comments text-yellow-600 mr-2"></i> Feedback Management
+                        </h3>
+                        <div class="grid grid-cols-2 gap-4">
+                            <button class="bg-yellow-500 hover:bg-yellow-600 text-white px-4 py-3 rounded-lg transition-colors">
+                                <i class="fas fa-poll mr-2"></i>Collect Feedback
+                            </button>
+                            <button class="bg-teal-500 hover:bg-teal-600 text-white px-4 py-3 rounded-lg transition-colors">
+                                <i class="fas fa-chart-line mr-2"></i>Analyze Data
+                            </button>
+                        </div>
+
+                       
+                    </div>
+                </div>
+
+                <!-- Quick Actions & Recent Activities -->
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-6 flex items-center">
+                        <i class="fas fa-bolt text-yellow-600 mr-3"></i> Quick Actions
+                    </h2>
+
+                    <div class="grid grid-cols-2 gap-4 mb-8">
+                        <button class="bg-gradient-to-r from-blue-500 to-purple-600 text-white px-4 py-3 rounded-lg transition-all transform hover:scale-105">
+                            <i class="fas fa-bell mr-2"></i>Send Notifications
+                        </button>
+                        <button class="bg-gradient-to-r from-green-500 to-teal-600 text-white px-4 py-3 rounded-lg transition-all transform hover:scale-105">
+                            <i class="fas fa-download mr-2"></i>Backup Data
+                        </button>
+                        <button class="bg-gradient-to-r from-red-500 to-pink-600 text-white px-4 py-3 rounded-lg transition-all transform hover:scale-105">
+                            <i class="fas fa-chart-pie mr-2"></i>Analytics
+                        </button>
+                        <button class="bg-gradient-to-r from-yellow-500 to-orange-600 text-white px-4 py-3 rounded-lg transition-all transform hover:scale-105">
+                            <i class="fas fa-cog mr-2"></i>Settings
+                        </button>
+                    </div>
+
+                    <h3 class="text-lg font-semibold text-gray-700 mb-4 flex items-center">
+                        <i class="fas fa-history text-gray-600 mr-2"></i> Recent Activities
+                    </h3>
+
+                    <div class="space-y-4">
+                        <div class="flex items-start space-x-3 p-3 bg-blue-50 rounded-lg">
+                            <i class="fas fa-user-plus text-blue-600 mt-1"></i>
+                            <div>
+                                <p class="text-sm font-medium">New student enrolled</p>
+                                <p class="text-xs text-gray-600">John Doe joined Computer Science</p>
+                                <p class="text-xs text-gray-500">2 hours ago</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start space-x-3 p-3 bg-green-50 rounded-lg">
+                            <i class="fas fa-check-circle text-green-600 mt-1"></i>
+                            <div>
+                                <p class="text-sm font-medium">Exam results published</p>
+                                <p class="text-xs text-gray-600">Database Systems final exam results</p>
+                                <p class="text-xs text-gray-500">5 hours ago</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start space-x-3 p-3 bg-yellow-50 rounded-lg">
+                            <i class="fas fa-exclamation-triangle text-yellow-600 mt-1"></i>
+                            <div>
+                                <p class="text-sm font-medium">Attendance alert</p>
+                                <p class="text-xs text-gray-600">Low attendance in Machine Learning course</p>
+                                <p class="text-xs text-gray-500">1 day ago</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start space-x-3 p-3 bg-purple-50 rounded-lg">
+                            <i class="fas fa-calendar text-purple-600 mt-1"></i>
+                            <div>
+                                <p class="text-sm font-medium">Timetable updated</p>
+                                <p class="text-xs text-gray-600">Spring semester schedule finalized</p>
+                                <p class="text-xs text-gray-500">2 days ago</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- System Information -->
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-6 flex items-center">
+                        <i class="fas fa-info-circle text-blue-600 mr-3"></i> System Information
+                    </h2>
+
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="bg-gray-50 rounded-lg p-4">
+                            <h4 class="font-semibold text-gray-700 mb-2">System Status</h4>
+                            <div class="flex items-center">
+                                <i class="fas fa-circle text-green-500 mr-2"></i>
+                                <span class="text-sm">All systems operational</span>
+                            </div>
+                        </div>
+
+                        <div class="bg-gray-50 rounded-lg p-4">
+                            <h4 class="font-semibold text-gray-700 mb-2">Last Backup</h4>
+                            <p class="text-sm text-gray-600">March 10, 2024 - 2:30 AM</p>
+                        </div>
+
+                        <div class="bg-gray-50 rounded-lg p-4">
+                            <h4 class="font-semibold text-gray-700 mb-2">Version</h4>
+                            <p class="text-sm text-gray-600">Faculty Panel v2.1.3</p>
+                        </div>
+
+                        <div class="bg-gray-50 rounded-lg p-4">
+                            <h4 class="font-semibold text-gray-700 mb-2">Support</h4>
+                            <p class="text-sm text-gray-600">24/7 Technical Support</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Attendance Chart
+        const attendanceCtx = document.getElementById('attendanceChart').getContext('2d');
+        new Chart(attendanceCtx, {
+            type: 'doughnut',
+            data: {
+                labels: ['Present', 'Absent', 'Late'],
+                datasets: [{
+                    data: [75, 20, 5],
+                    backgroundColor: ['#10B981', '#EF4444', '#F59E0B'],
+                    borderWidth: 0
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'bottom'
+                    }
+                }
+            }
+        });
+
+        // Feedback Chart
+        const feedbackCtx = document.getElementById('feedbackChart').getContext('2d');
+        new Chart(feedbackCtx, {
+            type: 'bar',
+            data: {
+                labels: ['Excellent', 'Good', 'Average', 'Poor'],
+                datasets: [{
+                    label: 'Feedback Count',
+                    data: [45, 38, 12, 5],
+                    backgroundColor: ['#10B981', '#3B82F6', '#F59E0B', '#EF4444'],
+                    borderWidth: 0
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        display: false
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+        // Add interactive functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add click handlers for buttons
+            const buttons = document.querySelectorAll('button');
+            buttons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // Add visual feedback
+                    this.style.transform = 'scale(0.95)';
+                    setTimeout(() => {
+                        this.style.transform = '';
+                    }, 150);
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>

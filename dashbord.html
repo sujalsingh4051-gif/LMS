@@ -1,0 +1,1463 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GP Adityapur Student Portal</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="mystlye.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  
+</head>
+
+<body class="bg-gray-50 font-sans">
+    <!-- Header -->
+    <header class="gradient-bg text-white shadow-lg sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-4">
+                    <i class="fas fa-graduation-cap text-2xl"></i>
+                    <h1 class="text-xl font-bold">GP Adityapur Student Portal</h1>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <div class="relative">
+                        <i class="fas fa-bell text-xl cursor-pointer"></i>
+                        <span class="notification-badge absolute -top-1 -right-1 bg-red-500 text-xs rounded-full h-4 w-4 flex items-center justify-center">5</span>
+                    </div>
+                    <div class="flex items-center space-x-2">
+                        <img src="https://via.placeholder.com/32x32" alt="Profile" class="w-8 h-8 rounded-full">
+                        <span class="hidden md:block">vaibhav</span>
+                    </div>
+                   <a href="login32.html"><button @click="logout()" class="bg-red-600 hover:bg-red-700 px-3 py-1 rounded text-sm">
+                    <i class="fas fa-sign-out-alt mr-1"></i>Logout
+                </button></a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="flex">
+        <!-- Sidebar -->
+        <aside class="sidebar w-64 bg-white shadow-lg min-h-screen sticky top-16">
+            <nav class="p-4">
+                <div class="space-y-2">
+                    <div class="sidebar-item p-3 rounded-lg cursor-pointer text-gray-700" data-section="dashboard">
+                        <i class="fas fa-tachometer-alt w-5"></i>
+                        <span class="ml-3">Dashboard</span>
+                    </div>
+                    <div class="sidebar-item p-3 rounded-lg cursor-pointer text-gray-700" data-section="profile">
+                        <i class="fas fa-user w-5"></i>
+                        <span class="ml-3">Student Profile</span>
+                    </div>
+                    <div class="sidebar-item p-3 rounded-lg cursor-pointer text-gray-700" data-section="courses">
+                        <i class="fas fa-book w-5"></i>
+                        <span class="ml-3">Course Registration</span>
+                    </div>
+                    <div class="sidebar-item p-3 rounded-lg cursor-pointer text-gray-700" data-section="grades">
+                        <i class="fas fa-chart-line w-5"></i>
+                        <span class="ml-3">Academic Records</span>
+                    </div>
+                    <div class="sidebar-item p-3 rounded-lg cursor-pointer text-gray-700" data-section="assignments">
+                        <i class="fas fa-tasks w-5"></i>
+                        <span class="ml-3">Assignments</span>
+                    </div>
+                    <div class="sidebar-item p-3 rounded-lg cursor-pointer text-gray-700" data-section="attendance">
+                        <i class="fas fa-calendar-check w-5"></i>
+                        <span class="ml-3">Attendance</span>
+                    </div>
+                    <div class="sidebar-item p-3 rounded-lg cursor-pointer text-gray-700" data-section="exams">
+                        <i class="fas fa-clipboard-list w-5"></i>
+                        <span class="ml-3">Examinations</span>
+                    </div>
+                    <div class="sidebar-item p-3 rounded-lg cursor-pointer text-gray-700" data-section="fees">
+                        <i class="fas fa-credit-card w-5"></i>
+                        <span class="ml-3">Fee Management</span>
+                    </div>
+                    <div class="sidebar-item p-3 rounded-lg cursor-pointer text-gray-700" data-section="library">
+                        <i class="fas fa-book-open w-5"></i>
+                        <span class="ml-3">Library</span>
+                    </div>
+                    <div class="sidebar-item p-3 rounded-lg cursor-pointer text-gray-700" data-section="career">
+                        <i class="fas fa-briefcase w-5"></i>
+                        <span class="ml-3">Career Services</span>
+                    </div>
+                    <div class="sidebar-item p-3 rounded-lg cursor-pointer text-gray-700" data-section="announcements">
+                        <i class="fas fa-bullhorn w-5"></i>
+                        <span class="ml-3">Announcements</span>
+                    </div>
+                    <div class="sidebar-item p-3 rounded-lg cursor-pointer text-gray-700" data-section="documents">
+                        <i class="fas fa-file-alt w-5"></i>
+                        <span class="ml-3">Documents</span>
+                    </div>
+                </div>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content flex-1 p-6">
+            <!-- Dashboard Section -->
+            <section id="dashboard" class="content-section active">
+                <div class="mb-6">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-2">Welcome back, John!</h2>
+                    <p class="text-gray-600">Here's your academic overview</p>
+                </div>
+
+                <!-- Quick Stats -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+                    <div class="card-hover bg-white p-6 rounded-lg shadow">
+                        <div class="flex items-center">
+                            <div class="p-3 bg-blue-100 rounded-full">
+                                <i class="fas fa-book text-blue-600"></i>
+                            </div>
+                            <div class="ml-4">
+                                <p class="text-sm text-gray-600">Current Courses</p>
+                                <p class="text-2xl font-bold text-gray-800">6</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-hover bg-white p-6 rounded-lg shadow">
+                        <div class="flex items-center">
+                            <div class="p-3 bg-green-100 rounded-full">
+                                <i class="fas fa-chart-line text-green-600"></i>
+                            </div>
+                            <div class="ml-4">
+                                <p class="text-sm text-gray-600">Current CGPA</p>
+                                <p class="text-2xl font-bold text-gray-800">8.5</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-hover bg-white p-6 rounded-lg shadow">
+                        <div class="flex items-center">
+                            <div class="p-3 bg-yellow-100 rounded-full">
+                                <i class="fas fa-calendar-check text-yellow-600"></i>
+                            </div>
+                            <div class="ml-4">
+                                <p class="text-sm text-gray-600">Attendance</p>
+                                <p class="text-2xl font-bold text-gray-800">92%</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-hover bg-white p-6 rounded-lg shadow">
+                        <div class="flex items-center">
+                            <div class="p-3 bg-red-100 rounded-full">
+                                <i class="fas fa-tasks text-red-600"></i>
+                            </div>
+                            <div class="ml-4">
+                                <p class="text-sm text-gray-600">Pending Tasks</p>
+                                <p class="text-2xl font-bold text-gray-800">3</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Charts and Recent Activity -->
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+                    <div class="bg-white p-6 rounded-lg shadow">
+                        <h3 class="text-lg font-semibold mb-4">Academic Progress</h3>
+                        <canvas id="progressChart" width="400" height="200"></canvas>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow">
+                        <h3 class="text-lg font-semibold mb-4">Recent Activities</h3>
+                        <div class="space-y-3">
+                            <div class="flex items-center p-3 bg-gray-50 rounded">
+                                <i class="fas fa-upload text-blue-600 w-5"></i>
+                                <span class="ml-3 text-sm">Assignment submitted for Data Structures</span>
+                                <span class="ml-auto text-xs text-gray-500">2 hours ago</span>
+                            </div>
+                            <div class="flex items-center p-3 bg-gray-50 rounded">
+                                <i class="fas fa-calendar text-green-600 w-5"></i>
+                                <span class="ml-3 text-sm">Attended Database Systems lecture</span>
+                                <span class="ml-auto text-xs text-gray-500">5 hours ago</span>
+                            </div>
+                            <div class="flex items-center p-3 bg-gray-50 rounded">
+                                <i class="fas fa-credit-card text-yellow-600 w-5"></i>
+                                <span class="ml-3 text-sm">Fee payment completed</span>
+                                <span class="ml-auto text-xs text-gray-500">1 day ago</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Upcoming Events -->
+                <div class="bg-white p-6 rounded-lg shadow">
+                    <h3 class="text-lg font-semibold mb-4">Upcoming Events</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <div class="border-l-4 border-blue-500 pl-4">
+                            <h4 class="font-semibold">Mid-term Exams</h4>
+                            <p class="text-sm text-gray-600">March 15-20, 2024</p>
+                        </div>
+                        <div class="border-l-4 border-green-500 pl-4">
+                            <h4 class="font-semibold">Project Submission</h4>
+                            <p class="text-sm text-gray-600">March 25, 2024</p>
+                        </div>
+                        <div class="border-l-4 border-yellow-500 pl-4">
+                            <h4 class="font-semibold">Career Fair</h4>
+                            <p class="text-sm text-gray-600">April 1, 2024</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Student Profile Section -->
+            <section id="profile" class="content-section">
+                <div class="mb-6">
+                    <h2 class="text-2xl font-bold text-gray-800">Student Profile</h2>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                    <div class="lg:col-span-1">
+                        <div class="bg-white p-6 rounded-lg shadow">
+                            <div class="text-center">
+                                <img src="https://via.placeholder.com/120x120" alt="Profile" class="w-30 h-30 rounded-full mx-auto mb-4">
+                                <h3 class="text-xl font-semibold">Virat</h3>
+                                <p class="text-gray-600">Student ID: GP2024001</p>
+                                <p class="text-gray-600">Computer Science Engineering</p>
+                                <p class="text-gray-600">3rd Year, 5th Semester</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="lg:col-span-2">
+                        <div class="bg-white p-6 rounded-lg shadow">
+                            <h3 class="text-lg font-semibold mb-4">Personal Information</h3>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-1">Full Name</label>
+                                    <input type="text" value="John Doe" class="w-full p-2 border border-gray-300 rounded">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-1">Email</label>
+                                    <input type="email" value="john.doe@gpadityapur.edu" class="w-full p-2 border border-gray-300 rounded">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-1">Phone</label>
+                                    <input type="tel" value="+91 9876543210" class="w-full p-2 border border-gray-300 rounded">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-1">Date of Birth</label>
+                                    <input type="date" value="2002-05-15" class="w-full p-2 border border-gray-300 rounded">
+                                </div>
+                                <div class="md:col-span-2">
+                                    <label class="block text-sm font-medium text-gray-700 mb-1">Address</label>
+                                    <textarea class="w-full p-2 border border-gray-300 rounded" rows="3">123 Main Street, Adityapur, Jamshedpur, Jharkhand - 831013</textarea>
+                                </div>
+                            </div>
+                            <button class="mt-4 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Update Profile</button>
+                        </div>
+
+                        <div class="bg-white p-6 rounded-lg shadow mt-6">
+                            <h3 class="text-lg font-semibold mb-4">Academic History</h3>
+                            <div class="space-y-4">
+                                <div class="border-l-4 border-blue-500 pl-4">
+                                    <h4 class="font-semibold">10th Grade</h4>
+                                    <p class="text-sm text-gray-600">ABC High School - 85% (2018)</p>
+                                </div>
+                                <div class="border-l-4 border-green-500 pl-4">
+                                    <h4 class="font-semibold">12th Grade</h4>
+                                    <p class="text-sm text-gray-600">XYZ Senior Secondary - 88% (2020)</p>
+                                </div>
+                                <div class="border-l-4 border-yellow-500 pl-4">
+                                    <h4 class="font-semibold">B.Tech CSE (Current)</h4>
+                                    <p class="text-sm text-gray-600">GP Adityapur - CGPA 8.5 (2021-2025)</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Course Registration Section -->
+            <section id="courses" class="content-section">
+                <div class="mb-6">
+                    <h2 class="text-2xl font-bold text-gray-800">Course Registration & Enrollment</h2>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                    <div class="bg-white p-6 rounded-lg shadow">
+                        <h3 class="text-lg font-semibold mb-4">Available Courses</h3>
+                        <div class="space-y-4">
+                            <div class="border rounded-lg p-4">
+                                <div class="flex justify-between items-start">
+                                    <div>
+                                        <h4 class="font-semibold">Advanced Database Systems</h4>
+                                        <p class="text-sm text-gray-600">CSE-501 | 4 Credits</p>
+                                        <p class="text-sm text-gray-600">Prerequisites: Database Management Systems</p>
+                                        <p class="text-sm text-gray-600">Faculty: Dr. Smith</p>
+                                    </div>
+                                    <button class="bg-green-600 text-white px-3 py-1 rounded text-sm hover:bg-green-700">Enroll</button>
+                                </div>
+                            </div>
+                            <div class="border rounded-lg p-4">
+                                <div class="flex justify-between items-start">
+                                    <div>
+                                        <h4 class="font-semibold">Machine Learning</h4>
+                                        <p class="text-sm text-gray-600">CSE-502 | 4 Credits</p>
+                                        <p class="text-sm text-gray-600">Prerequisites: Data Structures, Statistics</p>
+                                        <p class="text-sm text-gray-600">Faculty: Dr. Johnson</p>
+                                    </div>
+                                    <button class="bg-green-600 text-white px-3 py-1 rounded text-sm hover:bg-green-700">Enroll</button>
+                                </div>
+                            </div>
+                            <div class="border rounded-lg p-4">
+                                <div class="flex justify-between items-start">
+                                    <div>
+                                        <h4 class="font-semibold">Software Engineering</h4>
+                                        <p class="text-sm text-gray-600">CSE-503 | 3 Credits</p>
+                                        <p class="text-sm text-gray-600">Prerequisites: Programming Fundamentals</p>
+                                        <p class="text-sm text-gray-600">Faculty: Prof. Williams</p>
+                                    </div>
+                                    <button class="bg-green-600 text-white px-3 py-1 rounded text-sm hover:bg-green-700">Enroll</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-lg shadow">
+                        <h3 class="text-lg font-semibold mb-4">Enrolled Courses</h3>
+                        <div class="space-y-4">
+                            <div class="border rounded-lg p-4 bg-blue-50">
+                                <h4 class="font-semibold">Data Structures & Algorithms</h4>
+                                <p class="text-sm text-gray-600">CSE-301 | 4 Credits | Dr. Brown</p>
+                                <p class="text-sm text-gray-600">Mon, Wed, Fri - 10:00 AM - 11:00 AM</p>
+                                <div class="mt-2 flex space-x-2">
+                                    <button class="bg-blue-600 text-white px-2 py-1 rounded text-xs">View Syllabus</button>
+                                    <button class="bg-gray-600 text-white px-2 py-1 rounded text-xs">Drop Course</button>
+                                </div>
+                            </div>
+                            <div class="border rounded-lg p-4 bg-blue-50">
+                                <h4 class="font-semibold">Computer Networks</h4>
+                                <p class="text-sm text-gray-600">CSE-302 | 3 Credits | Prof. Davis</p>
+                                <p class="text-sm text-gray-600">Tue, Thu - 2:00 PM - 3:30 PM</p>
+                                <div class="mt-2 flex space-x-2">
+                                    <button class="bg-blue-600 text-white px-2 py-1 rounded text-xs">View Syllabus</button>
+                                    <button class="bg-gray-600 text-white px-2 py-1 rounded text-xs">Drop Course</button>
+                                </div>
+                            </div>
+                            <div class="border rounded-lg p-4 bg-blue-50">
+                                <h4 class="font-semibold">Operating Systems</h4>
+                                <p class="text-sm text-gray-600">CSE-303 | 4 Credits | Dr. Wilson</p>
+                                <p class="text-sm text-gray-600">Mon, Wed, Fri - 2:00 PM - 3:00 PM</p>
+                                <div class="mt-2 flex space-x-2">
+                                    <button class="bg-blue-600 text-white px-2 py-1 rounded text-xs">View Syllabus</button>
+                                    <button class="bg-gray-600 text-white px-2 py-1 rounded text-xs">Drop Course</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white p-6 rounded-lg shadow mt-6">
+                    <h3 class="text-lg font-semibold mb-4">Class Schedule</h3>
+                    <div class="overflow-x-auto">
+                        <table class="w-full border-collapse border border-gray-300">
+                            <thead>
+                                <tr class="bg-gray-100">
+                                    <th class="border border-gray-300 p-2">Time</th>
+                                    <th class="border border-gray-300 p-2">Monday</th>
+                                    <th class="border border-gray-300 p-2">Tuesday</th>
+                                    <th class="border border-gray-300 p-2">Wednesday</th>
+                                    <th class="border border-gray-300 p-2">Thursday</th>
+                                    <th class="border border-gray-300 p-2">Friday</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="border border-gray-300 p-2 font-semibold">10:00-11:00</td>
+                                    <td class="border border-gray-300 p-2 bg-blue-100">DSA<br><small>Dr. Brown</small></td>
+                                    <td class="border border-gray-300 p-2"></td>
+                                    <td class="border border-gray-300 p-2 bg-blue-100">DSA<br><small>Dr. Brown</small></td>
+                                    <td class="border border-gray-300 p-2"></td>
+                                    <td class="border border-gray-300 p-2 bg-blue-100">DSA<br><small>Dr. Brown</small></td>
+                                </tr>
+                                <tr>
+                                    <td class="border border-gray-300 p-2 font-semibold">14:00-15:30</td>
+                                    <td class="border border-gray-300 p-2 bg-green-100">OS<br><small>Dr. Wilson</small></td>
+                                    <td class="border border-gray-300 p-2 bg-yellow-100">Networks<br><small>Prof. Davis</small></td>
+                                    <td class="border border-gray-300 p-2 bg-green-100">OS<br><small>Dr. Wilson</small></td>
+                                    <td class="border border-gray-300 p-2 bg-yellow-100">Networks<br><small>Prof. Davis</small></td>
+                                    <td class="border border-gray-300 p-2 bg-green-100">OS<br><small>Dr. Wilson</small></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Academic Records Section -->
+            <section id="grades" class="content-section">
+                <div class="mb-6">
+                    <h2 class="text-2xl font-bold text-gray-800">Academic Records & Grades</h2>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-6">
+                    <div class="bg-white p-6 rounded-lg shadow text-center">
+                        <h3 class="text-lg font-semibold mb-2">Overall CGPA</h3>
+                        <p class="text-3xl font-bold text-blue-600">8.5</p>
+                        <p class="text-sm text-gray-600">Out of 10.0</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow text-center">
+                        <h3 class="text-lg font-semibold mb-2">Current Semester GPA</h3>
+                        <p class="text-3xl font-bold text-green-600">8.8</p>
+                        <p class="text-sm text-gray-600">Semester 5</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow text-center">
+                        <h3 class="text-lg font-semibold mb-2">Credits Completed</h3>
+                        <p class="text-3xl font-bold text-yellow-600">120</p>
+                        <p class="text-sm text-gray-600">Out of 160</p>
+                    </div>
+                </div>
+
+                <div class="bg-white p-6 rounded-lg shadow mb-6">
+                    <h3 class="text-lg font-semibold mb-4">Grade Trends</h3>
+                    <canvas id="gradeChart" width="400" height="200"></canvas>
+                </div>
+
+                <div class="bg-white p-6 rounded-lg shadow">
+                    <div class="flex justify-between items-center mb-4">
+                        <h3 class="text-lg font-semibold">Semester-wise Grades</h3>
+                        <button class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
+                            <i class="fas fa-download mr-2"></i>Download Transcript
+                        </button>
+                    </div>
+
+                    <div class="space-y-6">
+                        <div class="border rounded-lg p-4">
+                            <h4 class="font-semibold mb-3">Semester 5 (Current) - GPA: 8.8</h4>
+                            <div class="overflow-x-auto">
+                                <table class="w-full">
+                                    <thead>
+                                        <tr class="border-b">
+                                            <th class="text-left py-2">Course Code</th>
+                                            <th class="text-left py-2">Course Name</th>
+                                            <th class="text-left py-2">Credits</th>
+                                            <th class="text-left py-2">Grade</th>
+                                            <th class="text-left py-2">Points</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr class="border-b">
+                                            <td class="py-2">CSE-301</td>
+                                            <td class="py-2">Data Structures & Algorithms</td>
+                                            <td class="py-2">4</td>
+                                            <td class="py-2"><span class="bg-green-100 text-green-800 px-2 py-1 rounded">A</span></td>
+                                            <td class="py-2">9.0</td>
+                                        </tr>
+                                        <tr class="border-b">
+                                            <td class="py-2">CSE-302</td>
+                                            <td class="py-2">Computer Networks</td>
+                                            <td class="py-2">3</td>
+                                            <td class="py-2"><span class="bg-blue-100 text-blue-800 px-2 py-1 rounded">A-</span></td>
+                                            <td class="py-2">8.5</td>
+                                        </tr>
+                                        <tr class="border-b">
+                                            <td class="py-2">CSE-303</td>
+                                            <td class="py-2">Operating Systems</td>
+                                            <td class="py-2">4</td>
+                                            <td class="py-2"><span class="bg-green-100 text-green-800 px-2 py-1 rounded">A</span></td>
+                                            <td class="py-2">9.0</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <div class="border rounded-lg p-4">
+                            <h4 class="font-semibold mb-3">Semester 4 - GPA: 8.6</h4>
+                            <div class="overflow-x-auto">
+                                <table class="w-full">
+                                    <thead>
+                                        <tr class="border-b">
+                                            <th class="text-left py-2">Course Code</th>
+                                            <th class="text-left py-2">Course Name</th>
+                                            <th class="text-left py-2">Credits</th>
+                                            <th class="text-left py-2">Grade</th>
+                                            <th class="text-left py-2">Points</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr class="border-b">
+                                            <td class="py-2">CSE-201</td>
+                                            <td class="py-2">Database Management Systems</td>
+                                            <td class="py-2">4</td>
+                                            <td class="py-2"><span class="bg-green-100 text-green-800 px-2 py-1 rounded">A</span></td>
+                                            <td class="py-2">9.0</td>
+                                        </tr>
+                                        <tr class="border-b">
+                                            <td class="py-2">CSE-202</td>
+                                            <td class="py-2">Computer Architecture</td>
+                                            <td class="py-2">3</td>
+                                            <td class="py-2"><span class="bg-yellow-100 text-yellow-800 px-2 py-1 rounded">B+</span></td>
+                                            <td class="py-2">8.0</td>
+                                        </tr>
+                                        <tr class="border-b">
+                                            <td class="py-2">MAT-201</td>
+                                            <td class="py-2">Discrete Mathematics</td>
+                                            <td class="py-2">3</td>
+                                            <td class="py-2"><span class="bg-green-100 text-green-800 px-2 py-1 rounded">A</span></td>
+                                            <td class="py-2">9.0</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Assignments Section -->
+            <section id="assignments" class="content-section">
+                <div class="mb-6">
+                    <h2 class="text-2xl font-bold text-gray-800">Assignments & Submissions</h2>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                    <div class="bg-white p-6 rounded-lg shadow">
+                        <h3 class="text-lg font-semibold mb-4">Pending Assignments</h3>
+                        <div class="space-y-4">
+                            <div class="border-l-4 border-red-500 pl-4 py-2">
+                                <h4 class="font-semibold">Binary Search Tree Implementation</h4>
+                                <p class="text-sm text-gray-600">CSE-301 | Due: March 20, 2024</p>
+                                <p class="text-sm text-gray-600">Status: Not Started</p>
+                                <div class="mt-2">
+                                    <button class="bg-blue-600 text-white px-3 py-1 rounded text-sm hover:bg-blue-700">View Details</button>
+                                    <button class="bg-green-600 text-white px-3 py-1 rounded text-sm hover:bg-green-700 ml-2">Submit</button>
+                                </div>
+                            </div>
+                            <div class="border-l-4 border-yellow-500 pl-4 py-2">
+                                <h4 class="font-semibold">Network Protocol Analysis</h4>
+                                <p class="text-sm text-gray-600">CSE-302 | Due: March 25, 2024</p>
+                                <p class="text-sm text-gray-600">Status: In Progress</p>
+                                <div class="mt-2">
+                                    <button class="bg-blue-600 text-white px-3 py-1 rounded text-sm hover:bg-blue-700">View Details</button>
+                                    <button class="bg-green-600 text-white px-3 py-1 rounded text-sm hover:bg-green-700 ml-2">Submit</button>
+                                </div>
+                            </div>
+                            <div class="border-l-4 border-orange-500 pl-4 py-2">
+                                <h4 class="font-semibold">Process Scheduling Simulation</h4>
+                                <p class="text-sm text-gray-600">CSE-303 | Due: March 28, 2024</p>
+                                <p class="text-sm text-gray-600">Status: Not Started</p>
+                                <div class="mt-2">
+                                    <button class="bg-blue-600 text-white px-3 py-1 rounded text-sm hover:bg-blue-700">View Details</button>
+                                    <button class="bg-green-600 text-white px-3 py-1 rounded text-sm hover:bg-green-700 ml-2">Submit</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-lg shadow">
+                        <h3 class="text-lg font-semibold mb-4">Submitted Assignments</h3>
+                        <div class="space-y-4">
+                            <div class="border-l-4 border-green-500 pl-4 py-2">
+                                <h4 class="font-semibold">Sorting Algorithms Comparison</h4>
+                                <p class="text-sm text-gray-600">CSE-301 | Submitted: March 10, 2024</p>
+                                <p class="text-sm text-gray-600">Grade: A (92/100)</p>
+                                <div class="mt-2">
+                                    <button class="bg-blue-600 text-white px-3 py-1 rounded text-sm hover:bg-blue-700">View Feedback</button>
+                                    <button class="bg-gray-600 text-white px-3 py-1 rounded text-sm hover:bg-gray-700 ml-2">Download</button>
+                                </div>
+                            </div>
+                            <div class="border-l-4 border-green-500 pl-4 py-2">
+                                <h4 class="font-semibold">TCP vs UDP Analysis</h4>
+                                <p class="text-sm text-gray-600">CSE-302 | Submitted: March 5, 2024</p>
+                                <p class="text-sm text-gray-600">Grade: B+ (85/100)</p>
+                                <div class="mt-2">
+                                    <button class="bg-blue-600 text-white px-3 py-1 rounded text-sm hover:bg-blue-700">View Feedback</button>
+                                    <button class="bg-gray-600 text-white px-3 py-1 rounded text-sm hover:bg-gray-700 ml-2">Download</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white p-6 rounded-lg shadow mt-6">
+                    <h3 class="text-lg font-semibold mb-4">Course Materials</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <div class="border rounded-lg p-4">
+                            <h4 class="font-semibold">Data Structures & Algorithms</h4>
+                            <div class="mt-3 space-y-2">
+                                <div class="flex items-center">
+                                    <i class="fas fa-file-pdf text-red-500 mr-2"></i>
+                                    <span class="text-sm">Lecture 1: Introduction</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <i class="fas fa-file-pdf text-red-500 mr-2"></i>
+                                    <span class="text-sm">Lecture 2: Arrays & Linked Lists</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <i class="fas fa-video text-blue-500 mr-2"></i>
+                                    <span class="text-sm">Video: Tree Traversals</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="border rounded-lg p-4">
+                            <h4 class="font-semibold">Computer Networks</h4>
+                            <div class="mt-3 space-y-2">
+                                <div class="flex items-center">
+                                    <i class="fas fa-file-pdf text-red-500 mr-2"></i>
+                                    <span class="text-sm">OSI Model Reference</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <i class="fas fa-file-powerpoint text-orange-500 mr-2"></i>
+                                    <span class="text-sm">TCP/IP Protocols</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <i class="fas fa-code text-green-500 mr-2"></i>
+                                    <span class="text-sm">Socket Programming Lab</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="border rounded-lg p-4">
+                            <h4 class="font-semibold">Operating Systems</h4>
+                            <div class="mt-3 space-y-2">
+                                <div class="flex items-center">
+                                    <i class="fas fa-file-pdf text-red-500 mr-2"></i>
+                                    <span class="text-sm">Process Management</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <i class="fas fa-file-alt text-gray-500 mr-2"></i>
+                                    <span class="text-sm">Memory Management</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <i class="fas fa-video text-blue-500 mr-2"></i>
+                                    <span class="text-sm">Deadlock Prevention</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Attendance Section -->
+            <section id="attendance" class="content-section">
+                <div class="mb-6">
+                    <h2 class="text-2xl font-bold text-gray-800">Attendance Tracking</h2>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-6">
+                    <div class="bg-white p-6 rounded-lg shadow text-center">
+                        <h3 class="text-lg font-semibold mb-2">Overall Attendance</h3>
+                        <p class="text-3xl font-bold text-green-600">92%</p>
+                        <p class="text-sm text-gray-600">Above minimum requirement</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow text-center">
+                        <h3 class="text-lg font-semibold mb-2">Classes Attended</h3>
+                        <p class="text-3xl font-bold text-blue-600">156</p>
+                        <p class="text-sm text-gray-600">Out of 170 total</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow text-center">
+                        <h3 class="text-lg font-semibold mb-2">Classes Missed</h3>
+                        <p class="text-3xl font-bold text-red-600">14</p>
+                        <p class="text-sm text-gray-600">Maximum allowed: 25</p>
+                    </div>
+                </div>
+
+                <div class="bg-white p-6 rounded-lg shadow mb-6">
+                    <h3 class="text-lg font-semibold mb-4">Attendance by Course</h3>
+                    <div class="space-y-4">
+                        <div class="flex items-center justify-between p-4 border rounded-lg">
+                            <div>
+                                <h4 class="font-semibold">Data Structures & Algorithms</h4>
+                                <p class="text-sm text-gray-600">CSE-301</p>
+                            </div>
+                            <div class="text-right">
+                                <p class="text-lg font-bold text-green-600">95%</p>
+                                <p class="text-sm text-gray-600">38/40 classes</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center justify-between p-4 border rounded-lg">
+                            <div>
+                                <h4 class="font-semibold">Computer Networks</h4>
+                                <p class="text-sm text-gray-600">CSE-302</p>
+                            </div>
+                            <div class="text-right">
+                                <p class="text-lg font-bold text-yellow-600">88%</p>
+                                <p class="text-sm text-gray-600">22/25 classes</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center justify-between p-4 border rounded-lg">
+                            <div>
+                                <h4 class="font-semibold">Operating Systems</h4>
+                                <p class="text-sm text-gray-600">CSE-303</p>
+                            </div>
+                            <div class="text-right">
+                                <p class="text-lg font-bold text-green-600">93%</p>
+                                <p class="text-sm text-gray-600">28/30 classes</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white p-6 rounded-lg shadow">
+                    <h3 class="text-lg font-semibold mb-4">Recent Attendance</h3>
+                    <div class="overflow-x-auto">
+                        <table class="w-full border-collapse border border-gray-300">
+                            <thead>
+                                <tr class="bg-gray-100">
+                                    <th class="border border-gray-300 p-2">Date</th>
+                                    <th class="border border-gray-300 p-2">Course</th>
+                                    <th class="border border-gray-300 p-2">Time</th>
+                                    <th class="border border-gray-300 p-2">Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="border border-gray-300 p-2">March 15, 2024</td>
+                                    <td class="border border-gray-300 p-2">DSA</td>
+                                    <td class="border border-gray-300 p-2">10:00-11:00 AM</td>
+                                    <td class="border border-gray-300 p-2"><span class="bg-green-100 text-green-800 px-2 py-1 rounded">Present</span></td>
+                                </tr>
+                                <tr>
+                                    <td class="border border-gray-300 p-2">March 15, 2024</td>
+                                    <td class="border border-gray-300 p-2">OS</td>
+                                    <td class="border border-gray-300 p-2">2:00-3:00 PM</td>
+                                    <td class="border border-gray-300 p-2"><span class="bg-green-100 text-green-800 px-2 py-1 rounded">Present</span></td>
+                                </tr>
+                                <tr>
+                                    <td class="border border-gray-300 p-2">March 14, 2024</td>
+                                    <td class="border border-gray-300 p-2">Networks</td>
+                                    <td class="border border-gray-300 p-2">2:00-3:30 PM</td>
+                                    <td class="border border-gray-300 p-2"><span class="bg-red-100 text-red-800 px-2 py-1 rounded">Absent</span></td>
+                                </tr>
+                                <tr>
+                                    <td class="border border-gray-300 p-2">March 13, 2024</td>
+                                    <td class="border border-gray-300 p-2">DSA</td>
+                                    <td class="border border-gray-300 p-2">10:00-11:00 AM</td>
+                                    <td class="border border-gray-300 p-2"><span class="bg-green-100 text-green-800 px-2 py-1 rounded">Present</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Examinations Section -->
+            <section id="exams" class="content-section">
+                <div class="mb-6">
+                    <h2 class="text-2xl font-bold text-gray-800">Examination Management</h2>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
+                    <div class="bg-white p-6 rounded-lg shadow">
+                        <h3 class="text-lg font-semibold mb-4">Upcoming Exams</h3>
+                        <div class="space-y-4">
+                            <div class="border-l-4 border-red-500 pl-4 py-2">
+                                <h4 class="font-semibold">Mid-term Exam - DSA</h4>
+                                <p class="text-sm text-gray-600">Date: March 20, 2024</p>
+                                <p class="text-sm text-gray-600">Time: 10:00 AM - 1:00 PM</p>
+                                <p class="text-sm text-gray-600">Room: Hall A-101</p>
+                                <button class="mt-2 bg-blue-600 text-white px-3 py-1 rounded text-sm hover:bg-blue-700">Download Admit Card</button>
+                            </div>
+                            <div class="border-l-4 border-orange-500 pl-4 py-2">
+                                <h4 class="font-semibold">Mid-term Exam - Networks</h4>
+                                <p class="text-sm text-gray-600">Date: March 22, 2024</p>
+                                <p class="text-sm text-gray-600">Time: 2:00 PM - 5:00 PM</p>
+                                <p class="text-sm text-gray-600">Room: Hall B-205</p>
+                                <button class="mt-2 bg-blue-600 text-white px-3 py-1 rounded text-sm hover:bg-blue-700">Download Admit Card</button>
+                            </div>
+                            <div class="border-l-4 border-yellow-500 pl-4 py-2">
+                                <h4 class="font-semibold">Mid-term Exam - OS</h4>
+                                <p class="text-sm text-gray-600">Date: March 25, 2024</p>
+                                <p class="text-sm text-gray-600">Time: 10:00 AM - 1:00 PM</p>
+                                <p class="text-sm text-gray-600">Room: Hall C-301</p>
+                                <button class="mt-2 bg-blue-600 text-white px-3 py-1 rounded text-sm hover:bg-blue-700">Download Admit Card</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-lg shadow">
+                        <h3 class="text-lg font-semibold mb-4">Recent Results</h3>
+                        <div class="space-y-4">
+                            <div class="border-l-4 border-green-500 pl-4 py-2">
+                                <h4 class="font-semibold">Quiz 1 - DSA</h4>
+                                <p class="text-sm text-gray-600">Date: March 5, 2024</p>
+                                <p class="text-sm text-gray-600">Score: 18/20</p>
+                                <p class="text-sm text-gray-600">Grade: A</p>
+                                <button class="mt-2 bg-gray-600 text-white px-3 py-1 rounded text-sm hover:bg-gray-700">View Details</button>
+                            </div>
+                            <div class="border-l-4 border-blue-500 pl-4 py-2">
+                                <h4 class="font-semibold">Assignment Test - Networks</h4>
+                                <p class="text-sm text-gray-600">Date: March 8, 2024</p>
+                                <p class="text-sm text-gray-600">Score: 42/50</p>
+                                <p class="text-sm text-gray-600">Grade: B+</p>
+                                <button class="mt-2 bg-gray-600 text-white px-3 py-1 rounded text-sm hover:bg-gray-700">View Details</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white p-6 rounded-lg shadow">
+                    <h3 class="text-lg font-semibold mb-4">Examination Policies</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <h4 class="font-semibold mb-2">General Guidelines</h4>
+                            <ul class="text-sm text-gray-600 space-y-1">
+                                <li>• Arrive 15 minutes before exam time</li>
+                                <li>• Bring valid student ID and admit card</li>
+                                <li>• No electronic devices allowed</li>
+                                <li>• Use only blue/black pen for writing</li>
+                                <li>• Maintain silence in examination hall</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold mb-2">Grading System</h4>
+                            <ul class="text-sm text-gray-600 space-y-1">
+                                <li>• A: 90-100 (Excellent)</li>
+                                <li>• B+: 80-89 (Very Good)</li>
+                                <li>• B: 70-79 (Good)</li>
+                                <li>• C+: 60-69 (Satisfactory)</li>
+                                <li>• C: 50-59 (Pass)</li>
+                                <li>• F: Below 50 (Fail)</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Fee Management Section -->
+            <section id="fees" class="content-section">
+                <div class="mb-6">
+                    <h2 class="text-2xl font-bold text-gray-800">Fee Management</h2>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-6">
+                    <div class="bg-white p-6 rounded-lg shadow text-center">
+                        <h3 class="text-lg font-semibold mb-2">Total Fee</h3>
+                        <p class="text-3xl font-bold text-blue-600">₹80,000</p>
+                        <p class="text-sm text-gray-600">Per year</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow text-center">
+                        <h3 class="text-lg font-semibold mb-2">Paid Amount</h3>
+                        <p class="text-3xl font-bold text-green-600">₹60,000</p>
+                        <p class="text-sm text-gray-600">Current year</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow text-center">
+                        <h3 class="text-lg font-semibold mb-2">Outstanding</h3>
+                        <p class="text-3xl font-bold text-red-600">₹20,000</p>
+                        <p class="text-sm text-gray-600">Due: April 15, 2024</p>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
+                    <div class="bg-white p-6 rounded-lg shadow">
+                        <h3 class="text-lg font-semibold mb-4">Fee Structure</h3>
+                        <div class="space-y-3">
+                            <div class="flex justify-between py-2 border-b">
+                                <span>Tuition Fee</span>
+                                <span class="font-semibold">₹60,000</span>
+                            </div>
+                            <div class="flex justify-between py-2 border-b">
+                                <span>Hostel Fee</span>
+                                <span class="font-semibold">₹15,000</span>
+                            </div>
+                            <div class="flex justify-between py-2 border-b">
+                                <span>Library Fee</span>
+                                <span class="font-semibold">₹2,000</span>
+                            </div>
+                            <div class="flex justify-between py-2 border-b">
+                                <span>Lab Fee</span>
+                                <span class="font-semibold">₹3,000</span>
+                            </div>
+                            <div class="flex justify-between py-2 font-bold text-lg">
+                                <span>Total</span>
+                                <span>₹80,000</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-lg shadow">
+                        <h3 class="text-lg font-semibold mb-4">Payment Methods</h3>
+                        <div class="space-y-3">
+                            <button class="w-full p-3 border-2 border-blue-200 rounded-lg hover:border-blue-400 transition-colors">
+                                <div class="flex items-center">
+                                    <i class="fas fa-credit-card text-blue-600 mr-3"></i>
+                                    <span>Credit/Debit Card</span>
+                                </div>
+                            </button>
+                            <button class="w-full p-3 border-2 border-green-200 rounded-lg hover:border-green-400 transition-colors">
+                                <div class="flex items-center">
+                                    <i class="fas fa-university text-green-600 mr-3"></i>
+                                    <span>Net Banking</span>
+                                </div>
+                            </button>
+                            <button class="w-full p-3 border-2 border-purple-200 rounded-lg hover:border-purple-400 transition-colors">
+                                <div class="flex items-center">
+                                    <i class="fas fa-mobile-alt text-purple-600 mr-3"></i>
+                                    <span>UPI Payment</span>
+                                </div>
+                            </button>
+                        </div>
+                        <button class="w-full mt-4 bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 font-semibold">
+                            Pay Outstanding Amount
+                        </button>
+                    </div>
+                </div>
+
+                <div class="bg-white p-6 rounded-lg shadow">
+                    <div class="flex justify-between items-center mb-4">
+                        <h3 class="text-lg font-semibold">Payment History</h3>
+                        <button class="bg-gray-600 text-white px-4 py-2 rounded hover:bg-gray-700">
+                            <i class="fas fa-download mr-2"></i>Download Receipt
+                        </button>
+                    </div>
+                    <div class="overflow-x-auto">
+                        <table class="w-full border-collapse border border-gray-300">
+                            <thead>
+                                <tr class="bg-gray-100">
+                                    <th class="border border-gray-300 p-2">Date</th>
+                                    <th class="border border-gray-300 p-2">Description</th>
+                                    <th class="border border-gray-300 p-2">Amount</th>
+                                    <th class="border border-gray-300 p-2">Method</th>
+                                    <th class="border border-gray-300 p-2">Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="border border-gray-300 p-2">Jan 15, 2024</td>
+                                    <td class="border border-gray-300 p-2">First Installment</td>
+                                    <td class="border border-gray-300 p-2">₹30,000</td>
+                                    <td class="border border-gray-300 p-2">Net Banking</td>
+                                    <td class="border border-gray-300 p-2"><span class="bg-green-100 text-green-800 px-2 py-1 rounded">Paid</span></td>
+                                </tr>
+                                <tr>
+                                    <td class="border border-gray-300 p-2">Feb 15, 2024</td>
+                                    <td class="border border-gray-300 p-2">Second Installment</td>
+                                    <td class="border border-gray-300 p-2">₹30,000</td>
+                                    <td class="border border-gray-300 p-2">UPI</td>
+                                    <td class="border border-gray-300 p-2"><span class="bg-green-100 text-green-800 px-2 py-1 rounded">Paid</span></td>
+                                </tr>
+                                <tr>
+                                    <td class="border border-gray-300 p-2">Apr 15, 2024</td>
+                                    <td class="border border-gray-300 p-2">Final Installment</td>
+                                    <td class="border border-gray-300 p-2">₹20,000</td>
+                                    <td class="border border-gray-300 p-2">-</td>
+                                    <td class="border border-gray-300 p-2"><span class="bg-red-100 text-red-800 px-2 py-1 rounded">Pending</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Library Section -->
+            <section id="library" class="content-section">
+                <div class="mb-6">
+                    <h2 class="text-2xl font-bold text-gray-800">Library Resources</h2>
+                </div>
+
+                <div class="bg-white p-6 rounded-lg shadow mb-6">
+                    <h3 class="text-lg font-semibold mb-4">Search Library Catalog</h3>
+                    <div class="flex space-x-4">
+                        <input type="text" placeholder="Search books, journals, articles..." class="flex-1 p-3 border border-gray-300 rounded-lg">
+                        <select class="p-3 border border-gray-300 rounded-lg">
+                            <option>All Categories</option>
+                            <option>Computer Science</option>
+                            <option>Mathematics</option>
+                            <option>Physics</option>
+                        </select>
+                        <button class="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
+                    <div class="bg-white p-6 rounded-lg shadow">
+                        <h3 class="text-lg font-semibold mb-4">Currently Borrowed</h3>
+                        <div class="space-y-4">
+                            <div class="flex justify-between items-start p-3 border rounded-lg">
+                                <div>
+                                    <h4 class="font-semibold">Introduction to Algorithms</h4>
+                                    <p class="text-sm text-gray-600">Thomas H. Cormen</p>
+                                    <p class="text-sm text-gray-600">ISBN: 978-0262033848</p>
+                                </div>
+                                <div class="text-right">
+                                    <p class="text-sm text-red-600">Due: Mar 25, 2024</p>
+                                    <button class="mt-1 bg-blue-600 text-white px-2 py-1 rounded text-xs hover:bg-blue-700">Renew</button>
+                                </div>
+                            </div>
+                            <div class="flex justify-between items-start p-3 border rounded-lg">
+                                <div>
+                                    <h4 class="font-semibold">Computer Networks</h4>
+                                    <p class="text-sm text-gray-600">Andrew S. Tanenbaum</p>
+                                    <p class="text-sm text-gray-600">ISBN: 978-0132126953</p>
+                                </div>
+                                <div class="text-right">
+                                    <p class="text-sm text-green-600">Due: Apr 2, 2024</p>
+                                    <button class="mt-1 bg-blue-600 text-white px-2 py-1 rounded text-xs hover:bg-blue-700">Renew</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-lg shadow">
+                        <h3 class="text-lg font-semibold mb-4">Popular Books</h3>
+                        <div class="space-y-3">
+                            <div class="flex justify-between items-center p-3 border rounded-lg">
+                                <div>
+                                    <h4 class="font-semibold text-sm">Design Patterns</h4>
+                                    <p class="text-xs text-gray-600">Gang of Four</p>
+                                </div>
+                                <button class="bg-green-600 text-white px-3 py-1 rounded text-xs hover:bg-green-700">Available</button>
+                            </div>
+                            <div class="flex justify-between items-center p-3 border rounded-lg">
+                                <div>
+                                    <h4 class="font-semibold text-sm">Clean Code</h4>
+                                    <p class="text-xs text-gray-600">Robert C. Martin</p>
+                                </div>
+                                <button class="bg-yellow-600 text-white px-3 py-1 rounded text-xs hover:bg-yellow-700">Reserved</button>
+                            </div>
+                            <div class="flex justify-between items-center p-3 border rounded-lg">
+                                <div>
+                                    <h4 class="font-semibold text-sm">Operating System Concepts</h4>
+                                    <p class="text-xs text-gray-600">Silberschatz</p>
+                                </div>
+                                <button class="bg-red-600 text-white px-3 py-1 rounded text-xs">Checked Out</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white p-6 rounded-lg shadow">
+                    <h3 class="text-lg font-semibold mb-4">Digital Resources</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <div class="border rounded-lg p-4 text-center">
+                            <i class="fas fa-file-pdf text-red-500 text-3xl mb-2"></i>
+                            <h4 class="font-semibold">E-Books</h4>
+                            <p class="text-sm text-gray-600">Access thousands of digital books</p>
+                            <button class="mt-2 bg-blue-600 text-white px-3 py-1 rounded text-sm hover:bg-blue-700">Browse</button>
+                        </div>
+                        <div class="border rounded-lg p-4 text-center">
+                            <i class="fas fa-newspaper text-blue-500 text-3xl mb-2"></i>
+                            <h4 class="font-semibold">Journals</h4>
+                            <p class="text-sm text-gray-600">Scientific and academic journals</p>
+                            <button class="mt-2 bg-blue-600 text-white px-3 py-1 rounded text-sm hover:bg-blue-700">Browse</button>
+                        </div>
+                        <div class="border rounded-lg p-4 text-center">
+                            <i class="fas fa-database text-green-500 text-3xl mb-2"></i>
+                            <h4 class="font-semibold">Databases</h4>
+                            <p class="text-sm text-gray-600">Research databases and archives</p>
+                            <button class="mt-2 bg-blue-600 text-white px-3 py-1 rounded text-sm hover:bg-blue-700">Browse</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Career Services Section -->
+            <section id="career" class="content-section">
+                <div class="mb-6">
+                    <h2 class="text-2xl font-bold text-gray-800">Career Services & Placements</h2>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
+                    <div class="bg-white p-6 rounded-lg shadow">
+                        <h3 class="text-lg font-semibold mb-4">Job Opportunities</h3>
+                        <div class="space-y-4">
+                            <div class="border rounded-lg p-4">
+                                <h4 class="font-semibold">Software Developer</h4>
+                                <p class="text-sm text-gray-600">TCS | Full-time | ₹4.5 LPA</p>
+                                <p class="text-sm text-gray-600">Skills: Java, Spring Boot, MySQL</p>
+                                <p class="text-sm text-gray-600">Deadline: March 30, 2024</p>
+                                <button class="mt-2 bg-blue-600 text-white px-3 py-1 rounded text-sm hover:bg-blue-700">Apply Now</button>
+                            </div>
+                            <div class="border rounded-lg p-4">
+                                <h4 class="font-semibold">Data Analyst</h4>
+                                <p class="text-sm text-gray-600">Wipro | Full-time | ₹3.8 LPA</p>
+                                <p class="text-sm text-gray-600">Skills: Python, SQL, Tableau</p>
+                                <p class="text-sm text-gray-600">Deadline: April 5, 2024</p>
+                                <button class="mt-2 bg-blue-600 text-white px-3 py-1 rounded text-sm hover:bg-blue-700">Apply Now</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-lg shadow">
+                        <h3 class="text-lg font-semibold mb-4">Internship Programs</h3>
+                        <div class="space-y-4">
+                            <div class="border rounded-lg p-4">
+                                <h4 class="font-semibold">Summer Internship - Web Development</h4>
+                                <p class="text-sm text-gray-600">Infosys | 2 months | ₹15,000/month</p>
+                                <p class="text-sm text-gray-600">Duration: May - June 2024</p>
+                                <button class="mt-2 bg-green-600 text-white px-3 py-1 rounded text-sm hover:bg-green-700">Apply</button>
+                            </div>
+                            <div class="border rounded-lg p-4">
+                                <h4 class="font-semibold">ML Research Internship</h4>
+                                <p class="text-sm text-gray-600">IIT Kharagpur | 6 months | ₹12,000/month</p>
+                                <p class="text-sm text-gray-600">Duration: June - November 2024</p>
+                                <button class="mt-2 bg-green-600 text-white px-3 py-1 rounded text-sm hover:bg-green-700">Apply</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white p-6 rounded-lg shadow mb-6">
+                    <h3 class="text-lg font-semibold mb-4">Resume Builder</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <h4 class="font-semibold mb-2">Your Resume</h4>
+                            <div class="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center">
+                                <i class="fas fa-file-alt text-gray-400 text-3xl mb-2"></i>
+                                <p class="text-gray-600">Upload your resume or create a new one</p>
+                                <button class="mt-2 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Upload Resume</button>
+                            </div>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold mb-2">Quick Actions</h4>
+                            <div class="space-y-2">
+                                <button class="w-full p-3 border border-gray-300 rounded-lg hover:bg-gray-50 text-left">
+                                    <i class="fas fa-edit mr-2"></i>Edit Resume
+                                </button>
+                                <button class="w-full p-3 border border-gray-300 rounded-lg hover:bg-gray-50 text-left">
+                                    <i class="fas fa-download mr-2"></i>Download PDF
+                                </button>
+                                <button class="w-full p-3 border border-gray-300 rounded-lg hover:bg-gray-50 text-left">
+                                    <i class="fas fa-share mr-2"></i>Share with Companies
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white p-6 rounded-lg shadow">
+                    <h3 class="text-lg font-semibold mb-4">Upcoming Events</h3>
+                    <div class="space-y-4">
+                        <div class="flex items-center p-4 border rounded-lg">
+                            <div class="p-3 bg-blue-100 rounded-full mr-4">
+                                <i class="fas fa-users text-blue-600"></i>
+                            </div>
+                            <div class="flex-1">
+                                <h4 class="font-semibold">Career Fair 2024</h4>
+                                <p class="text-sm text-gray-600">Meet with top recruiters and explore opportunities</p>
+                                <p class="text-sm text-gray-600">Date: April 1, 2024 | Time: 10:00 AM - 4:00 PM</p>
+                            </div>
+                            <button class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Register</button>
+                        </div>
+                        <div class="flex items-center p-4 border rounded-lg">
+                            <div class="p-3 bg-green-100 rounded-full mr-4">
+                                <i class="fas fa-chalkboard-teacher text-green-600"></i>
+                            </div>
+                            <div class="flex-1">
+                                <h4 class="font-semibold">Resume Writing Workshop</h4>
+                                <p class="text-sm text-gray-600">Learn to create an impressive resume</p>
+                                <p class="text-sm text-gray-600">Date: March 28, 2024 | Time: 2:00 PM - 4:00 PM</p>
+                            </div>
+                            <button class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">Register</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Announcements Section -->
+            <section id="announcements" class="content-section">
+                <div class="mb-6">
+                    <h2 class="text-2xl font-bold text-gray-800">Announcements & Notifications</h2>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-6">
+                    <div class="bg-white p-6 rounded-lg shadow text-center">
+                        <i class="fas fa-bell text-3xl text-blue-600 mb-2"></i>
+                        <h3 class="text-lg font-semibold mb-2">Total Notifications</h3>
+                        <p class="text-2xl font-bold text-gray-800">15</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow text-center">
+                        <i class="fas fa-exclamation-triangle text-3xl text-red-600 mb-2"></i>
+                        <h3 class="text-lg font-semibold mb-2">Urgent</h3>
+                        <p class="text-2xl font-bold text-gray-800">3</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow text-center">
+                        <i class="fas fa-eye text-3xl text-gray-600 mb-2"></i>
+                        <h3 class="text-lg font-semibold mb-2">Unread</h3>
+                        <p class="text-2xl font-bold text-gray-800">8</p>
+                    </div>
+                </div>
+
+                <div class="bg-white p-6 rounded-lg shadow">
+                    <div class="flex justify-between items-center mb-4">
+                        <h3 class="text-lg font-semibold">Recent Announcements</h3>
+                        <button class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Mark All as Read</button>
+                    </div>
+
+                    <div class="space-y-4">
+                        <div class="border-l-4 border-red-500 pl-4 py-3 bg-red-50">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h4 class="font-semibold text-red-800">Urgent: Mid-term Exam Schedule Updated</h4>
+                                    <p class="text-sm text-red-700 mt-1">The mid-term examination for Computer Networks has been rescheduled to March 23, 2024. Please check your admit card for updated timing.</p>
+                                    <p class="text-xs text-red-600 mt-2">Posted by: Academic Office | March 15, 2024, 2:30 PM</p>
+                                </div>
+                                <span class="bg-red-500 text-white text-xs px-2 py-1 rounded">URGENT</span>
+                            </div>
+                        </div>
+
+                        <div class="border-l-4 border-blue-500 pl-4 py-3 bg-blue-50">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h4 class="font-semibold text-blue-800">Library Holiday Notice</h4>
+                                    <p class="text-sm text-blue-700 mt-1">The library will remain closed on March 22, 2024, due to maintenance work. Online resources will be available 24/7.</p>
+                                    <p class="text-xs text-blue-600 mt-2">Posted by: Library | March 14, 2024, 10:00 AM</p>
+                                </div>
+                                <span class="bg-blue-500 text-white text-xs px-2 py-1 rounded">NEW</span>
+                            </div>
+                        </div>
+
+                        <div class="border-l-4 border-green-500 pl-4 py-3 bg-green-50">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h4 class="font-semibold text-green-800">Career Fair Registration Open</h4>
+                                    <p class="text-sm text-green-700 mt-1">Registration for the annual career fair is now open. Over 50 companies will participate. Register by March 25, 2024.</p>
+                                    <p class="text-xs text-green-600 mt-2">Posted by: Placement Cell | March 13, 2024, 3:15 PM</p>
+                                </div>
+                                <span class="bg-green-500 text-white text-xs px-2 py-1 rounded">EVENT</span>
+                            </div>
+                        </div>
+
+                        <div class="border-l-4 border-yellow-500 pl-4 py-3 bg-yellow-50">
+                            <h4 class="font-semibold text-yellow-800">Fee Payment Reminder</h4>
+                            <p class="text-sm text-yellow-700 mt-1">This is a reminder that the final installment of fees is due on April 15, 2024. Avoid late fees by paying on time.</p>
+                            <p class="text-xs text-yellow-600 mt-2">Posted by: Accounts Office | March 12, 2024, 11:30 AM</p>
+                        </div>
+
+                        <div class="border-l-4 border-purple-500 pl-4 py-3 bg-purple-50">
+                            <h4 class="font-semibold text-purple-800">Workshop: AI and Machine Learning</h4>
+                            <p class="text-sm text-purple-700 mt-1">Join us for a 3-day workshop on AI and ML fundamentals. Registration deadline: March 30, 2024. Limited seats available.</p>
+                            <p class="text-xs text-purple-600 mt-2">Posted by: CSE Department | March 10, 2024, 4:45 PM</p>
+                        </div>
+                    </div>
+
+                    <div class="mt-6 text-center">
+                        <button class="bg-gray-600 text-white px-6 py-2 rounded hover:bg-gray-700">Load More Announcements</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Documents Section -->
+            <section id="documents" class="content-section">
+                <div class="mb-6">
+                    <h2 class="text-2xl font-bold text-gray-800">Document Management</h2>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
+                    <div class="bg-white p-6 rounded-lg shadow">
+                        <h3 class="text-lg font-semibold mb-4">Upload Documents</h3>
+                        <div class="space-y-4">
+                            <div class="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center">
+                                <i class="fas fa-cloud-upload-alt text-gray-400 text-3xl mb-2"></i>
+                                <p class="text-gray-600 mb-2">Drag and drop files here or click to browse</p>
+                                <button class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Choose Files</button>
+                            </div>
+                            <div class="text-sm text-gray-600">
+                                <p>Supported formats: PDF, JPG, PNG, DOC, DOCX</p>
+                                <p>Maximum file size: 5MB per file</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-lg shadow">
+                        <h3 class="text-lg font-semibold mb-4">Document Categories</h3>
+                        <div class="space-y-3">
+                            <div class="flex justify-between items-center p-3 border rounded-lg">
+                                <div class="flex items-center">
+                                    <i class="fas fa-id-card text-blue-600 mr-3"></i>
+                                    <span>Identity Documents</span>
+                                </div>
+                                <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded text-sm">3 files</span>
+                            </div>
+                            <div class="flex justify-between items-center p-3 border rounded-lg">
+                                <div class="flex items-center">
+                                    <i class="fas fa-graduation-cap text-green-600 mr-3"></i>
+                                    <span>Academic Certificates</span>
+                                </div>
+                                <span class="bg-green-100 text-green-800 px-2 py-1 rounded text-sm">5 files</span>
+                            </div>
+                            <div class="flex justify-between items-center p-3 border rounded-lg">
+                                <div class="flex items-center">
+                                    <i class="fas fa-file-medical text-red-600 mr-3"></i>
+                                    <span>Medical Records</span>
+                                </div>
+                                <span class="bg-red-100 text-red-800 px-2 py-1 rounded text-sm">2 files</span>
+                            </div>
+                            <div class="flex justify-between items-center p-3 border rounded-lg">
+                                <div class="flex items-center">
+                                    <i class="fas fa-file-alt text-yellow-600 mr-3"></i>
+                                    <span>Other Documents</span>
+                                </div>
+                                <span class="bg-yellow-100 text-yellow-800 px-2 py-1 rounded text-sm">4 files</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white p-6 rounded-lg shadow">
+                    <div class="flex justify-between items-center mb-4">
+                        <h3 class="text-lg font-semibold">My Documents</h3>
+                        <div class="flex space-x-2">
+                            <input type="text" placeholder="Search documents..." class="p-2 border border-gray-300 rounded">
+                            <button class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Search</button>
+                        </div>
+                    </div>
+
+                    <div class="overflow-x-auto">
+                        <table class="w-full border-collapse border border-gray-300">
+                            <thead>
+                                <tr class="bg-gray-100">
+                                    <th class="border border-gray-300 p-3 text-left">Document Name</th>
+                                    <th class="border border-gray-300 p-3 text-left">Category</th>
+                                    <th class="border border-gray-300 p-3 text-left">Upload Date</th>
+                                    <th class="border border-gray-300 p-3 text-left">Size</th>
+                                    <th class="border border-gray-300 p-3 text-left">Status</th>
+                                    <th class="border border-gray-300 p-3 text-left">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="border border-gray-300 p-3">
+                                        <div class="flex items-center">
+                                            <i class="fas fa-file-pdf text-red-500 mr-2"></i>
+                                            <span>Aadhaar Card</span>
+                                        </div>
+                                    </td>
+                                    <td class="border border-gray-300 p-3">Identity</td>
+                                    <td class="border border-gray-300 p-3">Jan 15, 2024</td>
+                                    <td class="border border-gray-300 p-3">2.3 MB</td>
+                                    <td class="border border-gray-300 p-3">
+                                        <span class="bg-green-100 text-green-800 px-2 py-1 rounded text-sm">Verified</span>
+                                    </td>
+                                    <td class="border border-gray-300 p-3">
+                                        <button class="bg-blue-600 text-white px-2 py-1 rounded text-xs hover:bg-blue-700 mr-1">View</button>
+                                        <button class="bg-gray-600 text-white px-2 py-1 rounded text-xs hover:bg-gray-700">Download</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="border border-gray-300 p-3">
+                                        <div class="flex items-center">
+                                            <i class="fas fa-file-pdf text-red-500 mr-2"></i>
+                                            <span>12th Grade Certificate</span>
+                                        </div>
+                                    </td>
+                                    <td class="border border-gray-300 p-3">Academic</td>
+                                    <td class="border border-gray-300 p-3">Jan 20, 2024</td>
+                                    <td class="border border-gray-300 p-3">1.8 MB</td>
+                                    <td class="border border-gray-300 p-3">
+                                        <span class="bg-green-100 text-green-800 px-2 py-1 rounded text-sm">Verified</span>
+                                    </td>
+                                    <td class="border border-gray-300 p-3">
+                                        <button class="bg-blue-600 text-white px-2 py-1 rounded text-xs hover:bg-blue-700 mr-1">View</button>
+                                        <button class="bg-gray-600 text-white px-2 py-1 rounded text-xs hover:bg-gray-700">Download</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="border border-gray-300 p-3">
+                                        <div class="flex items-center">
+                                            <i class="fas fa-file-image text-blue-500 mr-2"></i>
+                                            <span>Passport Photo</span>
+                                        </div>
+                                    </td>
+                                    <td class="border border-gray-300 p-3">Identity</td>
+                                    <td class="border border-gray-300 p-3">Feb 1, 2024</td>
+                                    <td class="border border-gray-300 p-3">245 KB</td>
+                                    <td class="border border-gray-300 p-3">
+                                        <span class="bg-yellow-100 text-yellow-800 px-2 py-1 rounded text-sm">Pending</span>
+                                    </td>
+                                    <td class="border border-gray-300 p-3">
+                                        <button class="bg-blue-600 text-white px-2 py-1 rounded text-xs hover:bg-blue-700 mr-1">View</button>
+                                        <button class="bg-gray-600 text-white px-2 py-1 rounded text-xs hover:bg-gray-700">Download</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script>
+        // Navigation functionality
+        document.querySelectorAll('.sidebar-item').forEach(item => {
+            item.addEventListener('click', function() {
+                // Remove active class from all sections
+                document.querySelectorAll('.content-section').forEach(section => {
+                    section.classList.remove('active');
+                });
+
+                // Remove active styling from all sidebar items
+                document.querySelectorAll('.sidebar-item').forEach(sidebarItem => {
+                    sidebarItem.classList.remove('bg-blue-600', 'text-white');
+                });
+
+                // Add active styling to clicked item
+                this.classList.add('bg-blue-600', 'text-white');
+
+                // Show corresponding section
+                const sectionId = this.getAttribute('data-section');
+                document.getElementById(sectionId).classList.add('active');
+            });
+        });
+
+        // Initialize charts
+        document.addEventListener('DOMContentLoaded', function() {
+            // Progress Chart
+            const progressCtx = document.getElementById('progressChart').getContext('2d');
+            new Chart(progressCtx, {
+                type: 'line',
+                data: {
+                    labels: ['Sem 1', 'Sem 2', 'Sem 3', 'Sem 4', 'Sem 5'],
+                    datasets: [{
+                        label: 'CGPA',
+                        data: [7.8, 8.2, 8.4, 8.6, 8.8],
+                        borderColor: 'rgb(59, 130, 246)',
+                        backgroundColor: 'rgba(59, 130, 246, 0.1)',
+                        tension: 0.1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        y: {
+                            beginAtZero: false,
+                            min: 7,
+                            max: 10
+                        }
+                    }
+                }
+            });
+
+            // Grade Chart
+            if (document.getElementById('gradeChart')) {
+                const gradeCtx = document.getElementById('gradeChart').getContext('2d');
+                new Chart(gradeCtx, {
+                    type: 'bar',
+                    data: {
+                        labels: ['Sem 1', 'Sem 2', 'Sem 3', 'Sem 4', 'Sem 5'],
+                        datasets: [{
+                            label: 'GPA',
+                            data: [7.8, 8.2, 8.4, 8.6, 8.8],
+                            backgroundColor: [
+                                'rgba(59, 130, 246, 0.8)',
+                                'rgba(16, 185, 129, 0.8)',
+                                'rgba(245, 158, 11, 0.8)',
+                                'rgba(239, 68, 68, 0.8)',
+                                'rgba(139, 92, 246, 0.8)'
+                            ]
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        scales: {
+                            y: {
+                                beginAtZero: false,
+                                min: 7,
+                                max: 10
+                            }
+                        }
+                    }
+                });
+            }
+        });
+
+        // Set default active section
+        document.querySelector('.sidebar-item[data-section="dashboard"]').classList.add('bg-blue-600', 'text-white');
+    </script>
+</body>
+
+</html>
